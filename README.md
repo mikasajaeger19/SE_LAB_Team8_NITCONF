@@ -47,31 +47,27 @@
 ### 2.1 Purpose
 This document outlines the requirements for the NITCONF Conference Website, focusing on speaker login and project submission functionalities along with being able to view their details and status of their papers.
 
-### 2.2 Document Conventions
-- All sections follow the Markdown syntax.
-- Headings use the '#' symbol followed by space.
-
-### 2.3 Intended Audience and Reading Suggestions
+### 2.2 Intended Audience and Reading Suggestions
 - Intended for speakers to submit their research papers as part of the CFP process.
 
-### 2.4 Product Scope
+### 2.3 Product Scope
 - Specifies features related to the CFP process.
 - Enables users to login and submit abstracts.
 
-### 2.5 References
+### 2.4 References
 - [Spring Boot Documentation](https://spring.io/)
 
 ## 3. Overall Description
 ### 3.1 Product Perspective
 - NITCONF website enhances the conference management process.
 
-![System Flowchart](./flowchart.png)
-
 ### 3.2 Product Functions
 - User login using Google.
 - Abstract submission.
 - View status of submitted papers.
 - Edit and view speaker details.
+
+  ![FLOWCHART](https://github.com/mikasajaeger19/SE_LAB_Team8_NITCONF/blob/main/docs/NITCONF_Flow_Chart.png?raw=true)
 
 ### 3.3 User Classes and Characteristics
 1. Authors:
