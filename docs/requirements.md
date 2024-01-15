@@ -16,10 +16,6 @@ The purpose of this document is to outline the specific requirements for the dev
 - Authors can view and manage their submitted papers.
 - Access to a dashboard displaying the status of each submission (e.g., pending review, accepted, rejected).
 
-### 2.2 Additional Features
-#### 2.2.1 Notifications
-- Automated email notifications to authors about the status of their submissions (e.g., acknowledgment of submission, acceptance, rejection).
-
 ## 3. User Roles
 ### 3.1 Author
 - Can create an account and log in.
