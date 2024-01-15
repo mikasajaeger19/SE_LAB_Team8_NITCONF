@@ -47,7 +47,7 @@
 ### 2.1 Purpose
 This document outlines the requirements for the NITCONF Conference Website, focusing on speaker login and project submission functionalities along with being able to view their details and status of their papers.
 
-### 2.2 Intended Audience and Reading Suggestions
+### 2.2 Intended Audience
 - Intended for speakers to submit their research papers as part of the CFP process.
 
 ### 2.3 Product Scope
