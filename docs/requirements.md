@@ -6,7 +6,7 @@ The purpose of this document is to outline the specific requirements for the dev
 ## 2. System Overview
 ### 2.1 Key Features
 #### 2.1.1 User Authentication
-- Authors can create accounts and log in securely.
+- Authors can log in securely using their Google account.
 
 #### 2.1.2 Paper Submission
 - Authenticated authors can submit research papers.
