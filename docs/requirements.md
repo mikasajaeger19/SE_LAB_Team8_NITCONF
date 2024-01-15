@@ -23,7 +23,7 @@ The purpose of this document is to outline the specific requirements for the dev
 - Can submit research papers.
 - Can view the status and details of their submitted papers.
 
-!FLOWCHART(https://github.com/mikasajaeger19/SE_LAB_Team8_NITCONF/blob/main/docs/NITCONF_Flow_Chart.png?raw=true)
+![FLOWCHART](https://github.com/mikasajaeger19/SE_LAB_Team8_NITCONF/blob/main/docs/NITCONF_Flow_Chart.png?raw=true)
 
 ## 4. Conclusion
 This requirements document focuses specifically on the features and functionalities required for the NITCONF paper submission portal. By adhering to these requirements, the portal will provide authors with a seamless experience for logging in, uploading, and viewing their research papers throughout the submission process.
