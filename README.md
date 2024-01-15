@@ -6,7 +6,7 @@
 1. [Revision History](#1-revision-history)
 2. [Introduction](#2-introduction)
    - 2.1 [Purpose](#21-purpose)
-   - 2.2 [Intended Audience and Reading Suggestions](#22-intended-audience-and-reading-suggestions)
+   - 2.2 [Intended Audience](#22-intended-audience)
    - 2.3 [Product Scope](#23-product-scope)
    - 2.4 [References](#24-references)
 3. [Overall Description](#3-overall-description)
