@@ -19,6 +19,7 @@ The purpose of this document is to outline the specific requirements for the dev
 ## 3. User Roles
 ### 3.1 Author
 - Can create an account and log in.
+- View their author dashboard and update personal information.
 - Can submit research papers.
 - Can view the status and details of their submitted papers.
 
