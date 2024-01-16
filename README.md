@@ -115,7 +115,7 @@ This document outlines the requirements for the NITCONF Conference Website, focu
 
 #### 5.2.2 Upload And View Submissions
 - View submission status.
-- Re-submit with reviewer-suggested changes.
+- Re-submit with reviewer-suggested changes, within a reviewer specified deadline.
 
 #### 5.2.3 Interaction With Reviewers
 - View reviewer comments.
