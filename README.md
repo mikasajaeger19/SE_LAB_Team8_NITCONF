@@ -120,6 +120,7 @@ This document outlines the requirements for the NITCONF Conference Website, focu
 #### 5.2.3 Interaction With Reviewers
 - View reviewer comments.
 - Access reviewer contact information.
+- View whether individual reviewer has given approval or not.
 
 #### 5.2.4 Notification System
 - Receive urgent notifications via email.
