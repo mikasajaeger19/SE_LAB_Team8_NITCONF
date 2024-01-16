@@ -114,6 +114,7 @@ This document outlines the requirements for the NITCONF Conference Website, focu
 - View/update user details.
 
 #### 5.2.2 Upload And View Submissions
+- Upload papers and add associated tags which enable viewers to filter papers by topic.
 - View submission status.
 - Re-submit with reviewer-suggested changes, within a reviewer specified deadline.
 
