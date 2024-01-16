@@ -66,7 +66,7 @@ This document outlines the requirements for the NITCONF Conference Website, focu
 - View status of submitted papers.
 - Edit and view speaker details.
 
-  ![FLOWCHART](https://github.com/mikasajaeger19/SE_LAB_Team8_NITCONF/blob/main/docs/flow_Chart.png?raw=true)
+  ![FLOWCHART](https://github.com/mikasajaeger19/SE_LAB_Team8_NITCONF/blob/main/docs/flow_chart.png?raw=true)
 
 ### 3.3 User Classes and Characteristics
 1. Authors:
