@@ -62,7 +62,7 @@ This document outlines the requirements for the NITCONF Conference Website, focu
 
 ### 3.2 Product Functions
 - User login using Google.
-- Abstract submission.
+- Abstract submission (upto 3).
 - View status of submitted papers.
 - Edit and view speaker details.
 
