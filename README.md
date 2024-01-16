@@ -117,6 +117,7 @@ This document outlines the requirements for the NITCONF Conference Website, focu
 - Upload papers and add associated tags which enable viewers to filter papers by topic.
 - View submission status.
 - Re-submit with reviewer-suggested changes, within a reviewer specified deadline.
+- View paper history and associated reviewer comments for the version.
 
 #### 5.2.3 Interaction With Reviewers
 - View reviewer comments and enable authors to reply to them if necessary.
