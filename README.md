@@ -40,7 +40,7 @@
       - 6.3.5 [Cost Effectiveness](#635-cost-effectiveness)
 
 ## 1. Revision History
-- Version 1.0 - Initial Release (DATE)
+- Version 1.0 
 
 ## 2. Introduction
 ### 2.1 Purpose
