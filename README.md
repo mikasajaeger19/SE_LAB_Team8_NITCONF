@@ -78,16 +78,7 @@ This document outlines the requirements for the NITCONF Conference Website, focu
 - Compatible with major OS and browsers.
 - Uses Spring Boot framework with Java.
 
-### 3.5 Design and Implementation Constraints
-- Adheres to Spring Boot framework.
-- Compliance with data security policies.
-- Utilizes Spring Security for authentication.
-
-### 3.6 User Documentation
-- User manuals and online help resources.
-- Tutorials for submission process.
-
-### 3.7 Assumptions and Dependencies
+### 3.5 Assumptions and Dependencies
 - Users have internet access.
 - Users follow provided guidelines.
 - Dependencies on Spring Boot, external libraries, and notification system.
