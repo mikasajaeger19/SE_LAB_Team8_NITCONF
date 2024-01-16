@@ -121,7 +121,7 @@ This document outlines the requirements for the NITCONF Conference Website, focu
 
 #### 5.2.3 Interaction With Reviewers
 - View reviewer comments and enable authors to reply to them if necessary.
-- Access reviewer contact information.
+- Reviewers maintain anonymity through interaction in the comments on a paper's page.
 - View whether individual reviewer has given approval or not.
 
 #### 5.2.4 Notification System
