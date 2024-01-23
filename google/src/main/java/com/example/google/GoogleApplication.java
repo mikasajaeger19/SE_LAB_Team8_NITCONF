@@ -1,13 +1,13 @@
-package com.NITCONF.NITCONF;
+package com.example.google;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NitconfApplication {
+public class GoogleApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NitconfApplication.class, args);
+		SpringApplication.run(GoogleApplication.class, args);
 	}
 
 }
