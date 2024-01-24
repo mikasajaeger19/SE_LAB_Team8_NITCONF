@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 20px; /* Adjust the font size as needed */
+        }
+
+        input[type="text"] {
+            font-size: 18px; /* Adjust the font size as needed */
+            padding: 8px; /* Adjust the padding as needed */
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label.upload-label {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <label for="paperTitle">Paper Title:</label>
+        <input type="text" id="paperTitle" name="paperTitle" size="50">
+    </div>
+
+    <div class="container">
+        <label for="pdfUpload" class="upload-label">Upload PDF</label>
+        <input type="file" id="pdfUpload" accept=".pdf">
+    </div>
+
+    <div class="container">
+        <button type="button" onclick="submitForm()">Submit</button>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Add your form submission logic here
+            alert("Form submitted!");
+        }
+    </script>
+
+</body>
+</html>
