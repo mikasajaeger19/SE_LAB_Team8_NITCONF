@@ -1,1 +1,2 @@
 Create frontend React Vite project in this folder
+Merge frontend changes with main branch
