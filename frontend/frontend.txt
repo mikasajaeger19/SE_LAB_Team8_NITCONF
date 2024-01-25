@@ -1,0 +1,1 @@
+Create frontend React Vite project in this folder
