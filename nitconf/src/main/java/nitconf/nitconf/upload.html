@@ -55,6 +55,11 @@
         button:hover {
             background-color: #45a049;
         }
+
+        #selectedFileName {
+            margin-top: 10px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -66,7 +71,8 @@
 
     <div class="container">
         <label for="pdfUpload" class="upload-label">Upload PDF</label>
-        <input type="file" id="pdfUpload" accept=".pdf">
+        <input type="file" id="pdfUpload" accept=".pdf" onchange="displayFileName()">
+        <div id="selectedFileName"></div>
     </div>
 
     <div class="container">
@@ -74,9 +80,23 @@
     </div>
 
     <script>
+        function displayFileName() {
+            const fileInput = document.getElementById('pdfUpload');
+            const fileNameContainer = document.getElementById('selectedFileName');
+
+            if (fileInput.files.length > 0) {
+                fileNameContainer.textContent = `Selected PDF: ${fileInput.files[0].name}`;
+            } else {
+                fileNameContainer.textContent = '';
+            }
+        }
+
         function submitForm() {
+            const paperTitle = document.getElementById('paperTitle').value;
+            const selectedFileName = document.getElementById('selectedFileName').textContent;
+
             // Add your form submission logic here
-            alert("Form submitted!");
+            alert(`Paper Title: ${paperTitle}\n${selectedFileName}`);
         }
     </script>
 
