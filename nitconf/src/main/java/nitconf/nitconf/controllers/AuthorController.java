@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import nitconf.nitconf.models.Author;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/authors")
@@ -22,5 +22,9 @@ public class AuthorController{
    public String hello() {
        return "Hello world!";
    }
-   
+
+   @PostMapping("/edit")
+   public String edit(@RequestParam String name) {
+         return "Hello " + name + "!";
+    }   
 }
