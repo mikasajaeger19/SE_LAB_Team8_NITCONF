@@ -7,10 +7,11 @@ import Comments from './pages/Comments.jsx'
 import EditDetails from './pages/EditDetails.jsx'
 import Reupload from './pages/Reupload.jsx'
 
-function App() {
+
+function pp() {
   return (
     <BrowserRouter>
-      <Routes>
+    <Routes>
         <Route path="/personal" element={<Personal/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path = "/comments" element={<Comments/>}/>

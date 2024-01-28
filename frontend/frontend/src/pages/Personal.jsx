@@ -58,3 +58,5 @@ export const Personal = () => {
     
   )
 }
+
+export default Personal
