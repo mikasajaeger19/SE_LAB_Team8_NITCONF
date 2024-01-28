@@ -1,153 +1,94 @@
-import React, { Component } from 'react'
-import { useState,useEffect } from 'react'
-import axios from 'axios'
-import { useTable } from 'react-table'
+import React, { useState, useMemo } from 'react';
+import { useTable } from 'react-table';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar.jsx';
+// import axios from 'axios'; // uncomment if you need axios
 
-
+import dummy from '../dummy.json';
 
 export const Dashboard = () => {
-
-    const [userData,setuserData]=useState({})
+    const [userData, setUserData] = useState(dummy);
     const history = useNavigate();
-    
-
-    useEffect( () => {
-
-        //fetch author user id from local data (implement encryption later?)
-        
-
-        //change api call as per backend
-        const fetchUserData = async() =>{
-            try {
-                const response  =await axios.get(`http://localhost:3000/api/users/${authorId}`)
-                console.log(response.data)
-                setuserData(response.data)
-            } catch(errror){
-                console.log("invalid user")
-            }
-        }
-
-        fetchUserData();
-
-    },[]);
-    
-    //change the accessor links as per backend data structure
 
     const data = userData;
-    const finaldata = React.useMemo(() => data, []);
-    const columns = React.useMemo(() =>[
-        {
-            Header : "Paper Name",
-            accessor : "pname"
+    
+    const columns = useMemo(
+        () => [
+            {
+                Header: 'Paper Name',
+                accessor: 'title',
+            },
+            {
+                Header: 'Description',
+                accessor: 'shortdesc',
+            },
+            {
+                Header: 'Tags',
+                accessor: 'tags',
+            },
+            {
+                Header: 'Abstract',
+                accessor: 'abstractUrl',
+            },
+            {
+                Header: 'Upload Date',
+                accessor: 'uploadDate',
+            },
+            {
+                Header: 'Status',
+                accessor: 'approved',
+            },
+        ],
+        [] 
+    );
 
-        },
+    const finaldata = useMemo(() => data, [data]);
 
-        {
-            Header : "Author",
-            accessor : "author"
-
-        },
-
-        {
-            Header : "Tags",
-            accessor : "tags"
-
-        },
-
-        {
-            Header : "Abstract",
-            accessor : "abstract"
-
-        },
-
-        {
-            Header : "Version",
-            accessor : "version"
-
-        },
-
-        {
-            Header : "Status",
-            accessor : "status"
-
-        }, 
-
-        {
-            Header : "Comments",
-            accessor : "comments",
-            Cell: ({ row }) => {
-                  return <button onClick={() => handleComment(userData.paperId)}>View comments</button>;
-               
-            }
-        },
-        
-        {
-            Header : "Re-upload",
-            accessor : "reupload",
-            Cell: ({ row }) => {
-                if (row.original.status === "rejected") {
-                  return <button onClick={() => handleReupload(row.original.pname)}>Reupload</button>;
-                } else {
-                  return null;
-
-        }}}
-
-
-        
-    ]);
-
-    const {getTableProps , getTableBodyProps , headerGroups , rows , prepareRow} = useTable({columns,finaldata});
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data: finaldata });
 
     const handleReupload = () => {
-        //reupload logic here
-        localStorage.setItem('paperId',userData.paperId)
-        history.push('/reupload')
-        }
+        // reupload logic here
+        localStorage.setItem('paperId', userData.paperId);
+        history('/reupload');
+    };
+
     const handleComment = () => {
-        //comment logic logic here
-        localStorage.setItem('paperId',userData.paperId)
-        history.push('/comments')
-        }
-  
+        // comment logic here
+        localStorage.setItem('paperId', userData.paperId);
+        history('/comments');
+    };
+
     return (
-
-    
-     <div className='container'>
-
-
-
-        
-      <div className='table'>
-        <table {...getTableProps()} className='table'>
-            <thead>
-                {headerGroups.map((headerGroup) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map((column) => (
-                            <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+       
+        <div className='container'>
+             <Navbar />
+            <div className='table'>
+                <table {...getTableProps()} className='table'>
+                    <thead>
+                        {headerGroups.map((headerGroup) => (
+                            <tr {...headerGroup.getHeaderGroupProps()}>
+                                {headerGroup.headers.map((column) => (
+                                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                                ))}
+                            </tr>
                         ))}
-                    </tr>
-                ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-                {rows.map((row) => {
-                    prepareRow(row)
-                    return(
-                        <tr {...row.getRowProps()}>
-                            {row.cells.map((cell) => {
-                                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                            })}
-                        </tr>
-                    )
-                })}
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody {...getTableBodyProps()}>
+                        {rows.map((row) => {
+                            prepareRow(row);
+                            return (
+                                <tr {...row.getRowProps()}>
+                                    {row.cells.map((cell) => (
+                                        <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                    ))}
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
 
-        
-      </div>
-      </div>
-    )
-  
-}
-
-export default Dashboard
+export default Dashboard;

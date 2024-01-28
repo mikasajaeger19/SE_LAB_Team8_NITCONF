@@ -8,7 +8,7 @@ import EditDetails from './pages/EditDetails.jsx'
 import Reupload from './pages/Reupload.jsx'
 
 
-function pp() {
+function App() {
   return (
     <BrowserRouter>
     <Routes>

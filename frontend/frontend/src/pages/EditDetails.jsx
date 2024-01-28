@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 const EditDetails = () => {
   const [editedUserData, setEditedUserData] = useState({
@@ -13,6 +15,8 @@ const EditDetails = () => {
     alt: '',
   });
 
+  const navigate = useNavigate();
+  /*
   useEffect(() => {
    
     const fetchUserData = async () => {
@@ -26,6 +30,7 @@ const EditDetails = () => {
 
     fetchUserData();
   }, []);
+  */
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -38,8 +43,8 @@ const EditDetails = () => {
   const handleEditSubmit = async () => {
     try {
      
-      await axios.put(`http://localhost:3000/api/users/${userId}`, editedUserData);
-      React.useHistory().push('/personal');
+      //await axios.put(`http://localhost:3000/api/users/${userId}`, editedUserData);
+      navigate('/personal');
     
     } catch (error) {
       console.error('Error updating user data:', error);
