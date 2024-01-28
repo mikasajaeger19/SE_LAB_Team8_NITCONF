@@ -49,7 +49,7 @@ export const Personal = () => {
         <p className='information'>Email : {userData.email}</p>
         <p className='information'>Phone : {userData.phone}</p>
         <p className='information'>Alt email : {userData.alt}</p>
-        <h2><Link className = 'homebuttom' to = '/dashboard'>Go Home</Link></h2>
+        <h2><Link className = 'homebuttom' to = '/dashboard'>Go to Dashboard</Link></h2>
         <h2><Link className = 'editpage' to = '/editdetails'>Edit Details</Link></h2>
         
        

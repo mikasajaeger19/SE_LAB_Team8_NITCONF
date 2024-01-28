@@ -7,6 +7,7 @@ import Comments from './pages/Comments.jsx'
 import EditDetails from './pages/EditDetails.jsx'
 import Reupload from './pages/Reupload.jsx'
 import Navbar from './pages/Navbar.jsx'
+import Submit  from './pages/Submit.jsx';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path = "/comments" element={<Comments/>}/>
         <Route path = "/editdetails" element={<EditDetails/>}/>
         <Route path = "/reupload" element={<Reupload/>}/>
+        <Route path = "/submit" element={<Submit/>}/>
       </Routes>
     </BrowserRouter>
     

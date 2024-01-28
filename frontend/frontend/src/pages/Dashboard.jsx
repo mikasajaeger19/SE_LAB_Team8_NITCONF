@@ -12,6 +12,30 @@ export const Dashboard = () => {
     const history = useNavigate();
 
     const data = userData;
+    /*
+    useEffect( () => {
+
+        //fetch author user id from local data (implement encryption later?)
+        
+
+
+        const fetchUserData = async() =>{
+            try {
+                const response  =await axios.get(`http://localhost:3000/api/users/${id}`)
+                console.log(response.data)
+                setuserData(response.data)
+            } catch(errror){
+                //print("invalid user")
+            }
+        }
+
+        fetchUserData();
+
+    },[]);
+
+    */
+
+
     
     const columns = useMemo(
         () => [
@@ -49,7 +73,10 @@ export const Dashboard = () => {
                     if(value === true){
                         return <p>Approved</p>
                     }else{
-                        return <p>Rejected</p>
+                        return (<div>
+                                    <p>Rejected</p>
+                                    <button onClick={handleReupload} className='reupload--button'>Reupload</button>
+                                </div>)
                     }
                 }
             },
