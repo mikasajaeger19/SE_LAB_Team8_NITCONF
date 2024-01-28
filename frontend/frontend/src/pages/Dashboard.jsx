@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 import { useTable } from 'react-table'
-import {useHistory} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+
 
 
 export const Dashboard = () => {
 
     const [userData,setuserData]=useState({})
-    const history = useHistory();
+    const history = useNavigate();
     
 
     useEffect( () => {
@@ -19,7 +20,7 @@ export const Dashboard = () => {
         //change api call as per backend
         const fetchUserData = async() =>{
             try {
-                const response  =await axios.get(`http://localhost:3000/api/users/${userId}`)
+                const response  =await axios.get(`http://localhost:3000/api/users/${authorId}`)
                 console.log(response.data)
                 setuserData(response.data)
             } catch(errror){
@@ -111,7 +112,7 @@ export const Dashboard = () => {
   
     return (
 
-
+    
      <div className='container'>
 
 
@@ -148,3 +149,5 @@ export const Dashboard = () => {
     )
   
 }
+
+export default Dashboard
