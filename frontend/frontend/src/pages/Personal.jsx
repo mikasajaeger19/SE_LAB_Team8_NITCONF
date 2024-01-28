@@ -37,7 +37,7 @@ export const Personal = () => {
 
   return (
     <>
-    <Navbar />
+ 
     <div className='container'>
     <div className='div'>
         <h1 className = 'heading'>Account Details</h1>

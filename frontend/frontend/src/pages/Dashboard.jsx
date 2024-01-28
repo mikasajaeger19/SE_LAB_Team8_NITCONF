@@ -3,6 +3,7 @@ import { useTable } from 'react-table';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
 // import axios from 'axios'; // uncomment if you need axios
+import './Dashboard.css';
 
 import dummy from '../dummy.json';
 
@@ -29,6 +30,13 @@ export const Dashboard = () => {
             {
                 Header: 'Abstract',
                 accessor: 'abstractUrl',
+                Cell: ({ value }) => {
+                    return (
+                        <a href={value} target='_blank' rel='noreferrer'>
+                            {value}
+                        </a>
+                    );
+                }
             },
             {
                 Header: 'Upload Date',
@@ -37,6 +45,13 @@ export const Dashboard = () => {
             {
                 Header: 'Status',
                 accessor: 'approved',
+                Cell : ({value}) => {
+                    if(value === true){
+                        return <p>Approved</p>
+                    }else{
+                        return <p>Rejected</p>
+                    }
+                }
             },
         ],
         [] 
@@ -61,7 +76,7 @@ export const Dashboard = () => {
     return (
        
         <div className='container'>
-             <Navbar />
+            <h1>Dashboard</h1>
             <div className='table'>
                 <table {...getTableProps()} className='table'>
                     <thead>
