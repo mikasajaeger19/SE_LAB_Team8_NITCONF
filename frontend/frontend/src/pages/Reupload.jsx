@@ -8,7 +8,7 @@ const Reupload = () => {
 
     return (
         <div>
-            <h1>swag</h1>
+            <h1>reupload paper</h1>
         </div>
     );
 };

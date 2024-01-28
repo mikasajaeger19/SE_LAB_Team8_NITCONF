@@ -1,0 +1,93 @@
+[
+    {
+      "title": "Paper 1",
+      "approved": true,
+      "shortdesc": "Description for Paper 1",
+      "abstractUrl": "https://example.com/paper1-abstract",
+      "tags": "Science, Research, React",
+      "uploadDate": "2023-01-10",
+      "authorId": 123456789
+    },
+    {
+      "title": "Paper 2",
+      "approved": false,
+      "shortdesc": "Description for Paper 2",
+      "abstractUrl": "https://example.com/paper2-abstract",
+      "tags": "Technology, Innovation, React",
+      "uploadDate": "2023-02-15",
+      "authorId": 987654321
+    },
+    {
+      "title": "Paper 3",
+      "approved": true,
+      "shortdesc": "Description for Paper 3",
+      "abstractUrl": "https://example.com/paper3-abstract",
+      "tags": "Science, Data Analysis, React",
+      "uploadDate": "2023-03-20",
+      "authorId": 555555555
+    },
+    {
+      "title": "Paper 4",
+      "approved": true,
+      "shortdesc": "Description for Paper 4",
+      "abstractUrl": "https://example.com/paper4-abstract",
+      "tags": "Engineering, Robotics, React",
+      "uploadDate": "2023-04-25",
+      "authorId": 111111111
+    },
+    {
+      "title": "Paper 5",
+      "approved": false,
+      "shortdesc": "Description for Paper 5",
+      "abstractUrl": "https://example.com/paper5-abstract",
+      "tags": "Technology, AI, React",
+      "uploadDate": "2023-05-30",
+      "authorId": 999999999
+    },
+    {
+      "title": "Paper 6",
+      "approved": true,
+      "shortdesc": "Description for Paper 6",
+      "abstractUrl": "https://example.com/paper6-abstract",
+      "tags": "Science, Environment, React",
+      "uploadDate": "2023-06-05",
+      "authorId": 777777777
+    },
+    {
+      "title": "Paper 7",
+      "approved": false,
+      "shortdesc": "Description for Paper 7",
+      "abstractUrl": "https://example.com/paper7-abstract",
+      "tags": "Technology, Software, React",
+      "uploadDate": "2023-07-10",
+      "authorId": 888888888
+    },
+    {
+      "title": "Paper 8",
+      "approved": true,
+      "shortdesc": "Description for Paper 8",
+      "abstractUrl": "https://example.com/paper8-abstract",
+      "tags": "Science, Medicine, React",
+      "uploadDate": "2023-08-15",
+      "authorId": 444444444
+    },
+    {
+      "title": "Paper 9",
+      "approved": true,
+      "shortdesc": "Description for Paper 9",
+      "abstractUrl": "https://example.com/paper9-abstract",
+      "tags": "Engineering, Electronics, React",
+      "uploadDate": "2023-09-20",
+      "authorId": 666666666
+    },
+    {
+      "title": "Paper 10",
+      "approved": false,
+      "shortdesc": "Description for Paper 10",
+      "abstractUrl": "https://example.com/paper10-abstract",
+      "tags": "Technology, Networking, React",
+      "uploadDate": "2023-10-25",
+      "authorId": 222222222
+    }
+  ]
+  
