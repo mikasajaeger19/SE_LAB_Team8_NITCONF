@@ -15,6 +15,8 @@ public class User {
 
   private String email;
 
+  private String altEmail;
+
   public Integer getId() {
     return id;
   }
@@ -38,4 +40,13 @@ public class User {
   public void setEmail(String email) {
     this.email = email;
   }
+
+  public String getAltEmail() {
+    return altEmail;
+  }
+
+  public void setAltEmail(String altEmail) {
+    this.altEmail = altEmail;
+  }
+  
 }
