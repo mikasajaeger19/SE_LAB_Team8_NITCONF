@@ -14,7 +14,7 @@ function Navbar() {
           <Link to="/submit">Submit Abstract</Link>
         </h3>
         <h3 className="nav--reupload">
-          <Link to="/reupload">Account</Link>
+          <Link to="/reupload">Re-upload Paper</Link>
         </h3>
       </nav>
     );
