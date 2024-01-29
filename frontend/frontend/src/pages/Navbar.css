@@ -1,0 +1,27 @@
+/* Navbar.css */
+
+/* Style the entire navbar */
+.navbar {
+    background-color: #333; /* Black Color */
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Style the individual navigation links */
+.navbar h3 {
+    margin: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff; /* White Color */
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+/* Change link color on hover */
+.navbar a:hover {
+    color: #b0c4a8; /* Sage Green Color on Hover */
+}

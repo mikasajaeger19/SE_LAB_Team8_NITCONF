@@ -1,0 +1,34 @@
+name: NITCONF Conference Website CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version: [11]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: ${{ matrix.java-version }}
+        distribution: 'adopt'  # You can replace 'adopt' with the desired distribution
+
+    - name: Build and Test Spring Boot Application
+      run: |
+        ./mvnw clean install
+        ./mvnw test
+
+    - name: Deploy to Production (example - replace with your deployment strategy)
+      run: |
+        # Your deployment script or commands go here
+
