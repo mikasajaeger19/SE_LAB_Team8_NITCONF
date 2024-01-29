@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';    
 
 const Comments = () => {
 
@@ -6,7 +7,7 @@ const Comments = () => {
     const paperId = localStorage.getItem('paperId')
     const [userData,setuserData]=useState({})
     
-
+    /*
     useEffect( () => {
 
         //fetch author user id from local data (implement encryption later?) and change the paper id to call comments into userData
@@ -27,7 +28,7 @@ const Comments = () => {
         fetchUserData();
 
     },[]);
-
+    */
     return (
         <div>
             <h1 className='heading'>Comments</h1>
