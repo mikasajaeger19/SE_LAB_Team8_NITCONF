@@ -1,6 +1,7 @@
 package mysqltest.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import mysqltest.demo.models.User;
@@ -22,8 +23,9 @@ public class MainController {
     }
 
     @GetMapping(path="/")
-    public String hello() {
-        return "Hello World";
+    public User hello() {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return currentUser;
     }
 
     @GetMapping(path="/all")

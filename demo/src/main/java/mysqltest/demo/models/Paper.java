@@ -20,13 +20,13 @@ public class Paper {
   // Additional fields
   private String tags;
   private LocalDate uploadDate;
-  private Long authorId;
+  private Integer authorId;
 
   public Paper() {
   }
 
   public Paper(String title, Boolean approved, String shortdesc, String abstractUrl,
-               String tags, LocalDate uploadDate, Long authorId) {
+               String tags, LocalDate uploadDate, Integer authorId) {
     
     this.title = title;
     this.approved = approved;
@@ -93,11 +93,11 @@ public class Paper {
     this.uploadDate = uploadDate;
   }
 
-  public Long getAuthorId() {
+  public Integer getAuthorId() {
     return authorId;
   }
 
-  public void setAuthorId(Long authorId) {
+  public void setAuthorId(Integer authorId) {
     this.authorId = authorId;
   }
 }

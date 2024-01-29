@@ -1,0 +1,19 @@
+name: NITCONF Production Deployment
+
+on:
+  workflow_run:
+    workflows: ["NITCONF CI/CD Workflow"]
+    types:
+      - completed
+
+jobs:
+  deploy-to-production:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Deploy to Production
+      run: |
+        # Your deployment script or commands go here
