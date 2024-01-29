@@ -3,61 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NITC Conference Author Login</title>
+    <title>NITC Conference Official Login</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f8f8;
             margin: 0;
             padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .login-container {
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            width: 300px;
+            overflow: hidden;
+            width: 350px;
             text-align: center;
         }
 
         .login-container h2 {
             color: #333;
+            margin-bottom: 20px;
         }
 
         .login-form {
-            margin-top: 20px;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            color: #555;
         }
 
         .form-group input {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
+            font-size: 14px;
         }
 
         .form-group button {
             background-color: #4caf50;
             color: #fff;
-            padding: 10px;
+            padding: 12px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 14px;
         }
 
         .form-group button:hover {
@@ -67,7 +72,7 @@
         .form-group a {
             text-decoration: none;
             color: #007bff;
-            margin-right: 10px;
+            font-size: 14px;
         }
 
         .form-group a:hover {
@@ -78,7 +83,7 @@
 <body>
 
     <div class="login-container">
-        <h2>NITC Conference Author Login</h2>
+        <h2>NITC Conference Official Login</h2>
         <form class="login-form">
             <div class="form-group">
                 <label for="usernameOrEmail">Username or Email:</label>
