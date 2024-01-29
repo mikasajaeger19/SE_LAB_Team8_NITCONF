@@ -96,8 +96,9 @@ const Reupload = () => {
 
    
         return (
-            <div>
-                <label htmlFor="dropdown">Select a paper to reupload:</label>
+            <div className='container'>
+              <h1>Reupload Paper</h1>
+                <h2>Select a paper to reupload:</h2>
                 <div className='dropdown--div'>  
                     <select id="dropdown" value={selectedOption} onChange={handleDropdownChange}>
                     <option value=''>Select a paper</option>  
@@ -119,7 +120,7 @@ const Reupload = () => {
                     <h3>Tags</h3>
                     <input type="text" name="tags"  onChange={handleInputChange} />
                     <h3></h3>
-                    <button type="button" onClick={handleEditSubmit}>Submit Abstract</button>
+                    <button type="button" onClick={handleEditSubmit}>Reupload Abstract</button>
                   </form>
                 )  
                     }
