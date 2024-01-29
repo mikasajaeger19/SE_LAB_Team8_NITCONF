@@ -1,18 +1,19 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect} from 'react';
 import { useTable } from 'react-table';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
-// import axios from 'axios'; // uncomment if you need axios
+ import axios from 'axios'; // uncomment if you need axios
 import './Dashboard.css';
+
 
 import dummy from '../dummy.json';
 
 export const Dashboard = () => {
-    const [userData, setUserData] = useState(dummy);
+    const [userData, setUserData] = useState([]);
     const history = useNavigate();
 
     const data = userData;
-    /*
+    
     useEffect( () => {
 
         //fetch author user id from local data (implement encryption later?)
@@ -21,9 +22,13 @@ export const Dashboard = () => {
 
         const fetchUserData = async() =>{
             try {
-                const response  =await axios.get(`http://localhost:3000/api/users/${id}`)
+                const response  = await axios.get(`http://localhost:8080/paper/`, {
+                    headers: {
+                        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2h3aW5AbmFlZW0uY29tIiwiaWF0IjoxNzA2NTQzMTYwLCJleHAiOjE3MDY1NzkxNjB9.54emLy9x2lHOuOJlM9guhhp8ujhr8dbrhXrSGOn32v4`
+                    }
+                })
                 console.log(response.data)
-                setuserData(response.data)
+                setUserData(response.data)
             } catch(errror){
                 //print("invalid user")
             }
@@ -33,7 +38,7 @@ export const Dashboard = () => {
 
     },[]);
 
-    */
+   
 
 
     

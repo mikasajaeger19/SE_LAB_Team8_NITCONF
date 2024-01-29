@@ -1,9 +1,11 @@
 package mysqltest.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import mysqltest.demo.models.Paper;
+import mysqltest.demo.models.User;
 import mysqltest.demo.repositories.PaperRepository;
 
 @RestController
@@ -22,8 +24,9 @@ public class PaperController {
     }
 
     @GetMapping(path="/")
-    public String hello() {
-        return "Hello World";
+    public @ResponseBody Iterable<Paper> getMyPapers() {    
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();   
+        return paperRepository.findByAuthorId(currentUser.getId());
     }
 
     @GetMapping(path="/all")

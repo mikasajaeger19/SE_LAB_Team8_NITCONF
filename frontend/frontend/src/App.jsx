@@ -8,6 +8,9 @@ import EditDetails from './pages/EditDetails.jsx'
 import Reupload from './pages/Reupload.jsx'
 import Navbar from './pages/Navbar.jsx'
 import Submit  from './pages/Submit.jsx';
+import Home from './pages/Home.jsx';
+import LoginForm from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
 
 
 function App() {
@@ -15,6 +18,9 @@ function App() {
     <BrowserRouter>
     <Navbar />
     <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/login" element={<LoginForm/>}/> 
+        <Route path="/register" element={<Register />}/>
         <Route path="/personal" element={<Personal/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path = "/comments" element={<Comments/>}/>
