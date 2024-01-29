@@ -42,6 +42,7 @@ const Register = () => {
     ).catch((err) => {
       console.log(err);
     });
+    navigate("/dashboard")
   }
 
   return (

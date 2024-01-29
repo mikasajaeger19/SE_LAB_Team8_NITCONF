@@ -45,6 +45,7 @@ const LoginForm = () => {
       .catch((err) => {
         console.log(err);
       });
+      navigate("/dashboard")
   }
 
   return (
