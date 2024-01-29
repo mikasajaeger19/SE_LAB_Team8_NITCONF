@@ -37,8 +37,3 @@ h1 {
 .table tbody tr:hover {
   background-color: #a8bba3; /* Darker Sage Green Color on Hover */
 }
-
-
-option{
-  margin-bottom : 50px
-}

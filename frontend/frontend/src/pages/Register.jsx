@@ -32,6 +32,18 @@ const Register = () => {
     });
   };
 
+
+  const handleRegister = () => {
+    axios.post('http://localhost:8080/register', formData).then((res) => {
+      console.log(res);
+      localStorage.setItem('token', res.data.token);
+      navigate("/dashboard")
+    }
+    ).catch((err) => {
+      console.log(err);
+    });
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -74,7 +86,7 @@ const Register = () => {
         />
       </label>
       <br />
-      <button type="submit">Submit</button>
+      <button type="submit" onClick = {handleRegister}>Submit</button>
     </form>
   );
 };

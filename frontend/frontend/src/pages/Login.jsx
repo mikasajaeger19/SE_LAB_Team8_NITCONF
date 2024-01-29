@@ -26,14 +26,26 @@ const LoginForm = () => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
         navigate("/dashboard");
-        // You can store JWT to browser or React context if you are using it for state management
       })
       .catch((err) => {
         console.log(err);
       });
 
-    // You can add logic here to send the form data to your server for authentication
   };
+
+
+  const handleLogin = () => {
+    axios
+      .post('http://localhost:8000/login', formData)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem('token', res.data.token);
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <div className="container">
@@ -65,7 +77,7 @@ const LoginForm = () => {
           </div>
         </label>
         <br />
-        <button type="submit">Login</button>
+        <button type="submit" onClick = {handleLogin}>Login</button>
       </form>
     </div>
     </div>
