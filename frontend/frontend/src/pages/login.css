@@ -13,6 +13,7 @@ form {
   
   label {
     margin-bottom: 8px;
+    font-weight: 600;
   }
   
   input {
@@ -34,4 +35,10 @@ form {
   button:hover {
     background-color: #45a049;
   }
-  
+   .login{
+    margin-top : 20px
+   }
+
+   .container--login{
+    margin-top:200px
+   }

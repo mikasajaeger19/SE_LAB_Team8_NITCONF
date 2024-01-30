@@ -65,7 +65,8 @@ const Submit = () => {
 
 
     return (
-        <div>
+        <div className='container'>
+          <h1>Submit Paper</h1>
             <form>
         <h3>Title</h3>
         <input type="text"  name="title"   onChange={handleInputChange} />
