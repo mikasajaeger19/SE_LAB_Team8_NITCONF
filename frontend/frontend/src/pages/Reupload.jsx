@@ -10,8 +10,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Reupload = () => {
     //replace with empty array instead of dummy
-    const [userData,setuserData]=useState(dummy)
+    const [userData,setUserData]=useState([])
     localStorage.setItem('paperId', '');
+
+
+
 
     const [submission, setSubmission] = useState({
    
@@ -20,15 +23,14 @@ const Reupload = () => {
         shortdesc: '',
         abstracturl: '',
         tags: '',
-        uploadDate: Date.now(),
+        uploadDate: '',
         authorId : localStorage.getItem('authorId'),
       });
     
       const navigate = useNavigate();
 
 
-    /*
-    useEffect( () => {
+      useEffect( () => {
 
         //fetch author user id from local data (implement encryption later?)
         
@@ -36,9 +38,13 @@ const Reupload = () => {
 
         const fetchUserData = async() =>{
             try {
-                const response  =await axios.get(`http://localhost:3000/api/users/${id}`)
+                const response  = await axios.get(`http://localhost:8080/paper/all`, {
+                    headers: {
+                        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2h3aW5AbmFlZW0uY29tIiwiaWF0IjoxNzA2NTQzMTYwLCJleHAiOjE3MDY1NzkxNjB9.54emLy9x2lHOuOJlM9guhhp8ujhr8dbrhXrSGOn32v4`
+                    }
+                })
                 console.log(response.data)
-                setuserData(response.data)
+                setUserData(response.data)
             } catch(errror){
                 //print("invalid user")
             }
@@ -47,12 +53,12 @@ const Reupload = () => {
         fetchUserData();
 
     },[]);
-    */
+
 
     const filterdata  = () => {
         const data = userData;
         const filteredData = data.filter((item) => item.approved === false);
-        setuserData(filteredData);
+        setUserData(filteredData);
     }
 
     const [selectedOption, setSelectedOption] = useState('');
