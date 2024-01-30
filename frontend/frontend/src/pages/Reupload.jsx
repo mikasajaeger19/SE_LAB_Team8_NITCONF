@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import dummy from '../dummy.json';
 import { useNavigate } from 'react-router-dom';
-
+import './Reupload.css';
 
 
 
