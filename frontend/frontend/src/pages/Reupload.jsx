@@ -10,7 +10,7 @@ import './Reupload.css';
 
 const Reupload = () => {
     //replace with empty array instead of dummy
-    const [userData,setUserData]=useState([])
+    const [userData,setUserData]=useState(dummy)
     localStorage.setItem('paperId', '');
 
 
@@ -21,10 +21,10 @@ const Reupload = () => {
         title: '',
         approved: false,
         shortdesc: '',
-        abstracturl: '',
+        abstractUrl: '',
         tags: '',
-        uploadDate: '',
-        authorId : localStorage.getItem('authorId'),
+        uploadDate: '2024-01-30',
+        authorId : null,
       });
     
       const navigate = useNavigate();
@@ -45,7 +45,8 @@ const Reupload = () => {
                 })
                 console.log(response.data)
                 setUserData(response.data)
-            } catch(errror){
+            } catch(error){
+              console.log(error)
                 //print("invalid user")
             }
         }
@@ -81,7 +82,7 @@ const Reupload = () => {
 
   const handleEditSubmit = async () => {
     console.log(submission);
-    if (submission.title === '' || submission.shortdesc === '' || submission.abstracturl === '' || submission.tags === '') {
+    if (submission.title === '' || submission.shortdesc === '' || submission.abstractUrl === '' || submission.tags === '') {
       alert('Please fill in all fields!');
       return;
     }
@@ -122,7 +123,7 @@ const Reupload = () => {
                     <h3>Short Description</h3>
                     <input type="text" name="shortdesc"  onChange={handleInputChange} />
                     <h3>Abstract URL</h3>
-                    <input type="text" name="abstracturl"  onChange={handleInputChange} />
+                    <input type="text" name="abstractUrl"  onChange={handleInputChange} />
                     <h3>Tags</h3>
                     <input type="text" name="tags"  onChange={handleInputChange} />
                     <h3></h3>
