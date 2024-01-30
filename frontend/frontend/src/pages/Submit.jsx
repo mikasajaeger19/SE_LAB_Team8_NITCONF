@@ -12,9 +12,9 @@ const Submit = () => {
         title: '',
         approved: false,
         shortdesc: '',
-        abstracturl: '',
+        abstractUrl: '',
         tags: '',
-        uploadDate: Date.now(),
+        uploadDate: '2024-01-30',
         authorId : localStorage.getItem('authorId'),
       });
     
@@ -38,7 +38,7 @@ const Submit = () => {
         if (
           submission.title === '' ||
           submission.shortdesc === '' ||
-          submission.abstracturl === '' ||
+          submission.abstractUrl === '' ||
           submission.tags === ''
         ) {
           alert('Please fill in all fields!');
@@ -51,7 +51,7 @@ const Submit = () => {
             submission,
             {
               headers: {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2h3aW5AbmFlZW0uY29tIiwiaWF0IjoxNzA2NTQzMTYwLCJleHAiOjE3MDY1NzkxNjB9.54emLy9x2lHOuOJlM9guhhp8ujhr8dbrhXrSGOn32v4`,
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`,
               },
             }
           );
@@ -73,7 +73,7 @@ const Submit = () => {
         <h3>Short Description</h3>
         <input type="text" name="shortdesc"  onChange={handleInputChange} />
         <h3>Abstract URL</h3>
-        <input type="text" name="abstracturl"  onChange={handleInputChange} />
+        <input type="text" name="abstractUrl"  onChange={handleInputChange} />
         <h3>Tags</h3>
         <input type="text" name="tags"  onChange={handleInputChange} />
         <h3></h3>
