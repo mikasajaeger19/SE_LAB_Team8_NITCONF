@@ -16,7 +16,7 @@ import Register from './pages/Register.jsx';
 function App() {
   return (
     <BrowserRouter>
-    <Navbar />
+
     <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<LoginForm/>}/> 

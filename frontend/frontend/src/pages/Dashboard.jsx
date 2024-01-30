@@ -9,7 +9,7 @@ import './Dashboard.css';
 import dummy from '../dummy.json';
 
 export const Dashboard = () => {
-    const [userData, setUserData] = useState([]);
+    const [userData, setUserData] = useState(dummy);
     const history = useNavigate();
 
     const data = userData;

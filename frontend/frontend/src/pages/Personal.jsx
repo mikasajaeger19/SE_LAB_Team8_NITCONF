@@ -3,12 +3,11 @@ import { useState,useEffect } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Navbar from './Navbar.jsx'
-import './Personal.css';
 
 
 export const Personal = () => {
 
-    const [userData,setuserData]=useState({})
+    const [userData,setuserData]=useState([])
     
     useEffect( () => {
 
@@ -18,7 +17,7 @@ export const Personal = () => {
 
         const fetchUserData = async() =>{
             try {
-                const response  =await axios.get(`http://localhost:8080/demo/`)
+                const response  =await axios.get(`http://localhost:8080/demo/user/${id}`)
                 console.log(response.data)
                 setuserData(response.data)
             } catch(errror){
