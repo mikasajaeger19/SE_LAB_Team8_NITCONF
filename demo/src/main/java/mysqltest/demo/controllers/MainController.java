@@ -32,4 +32,10 @@ public class MainController {
     public @ResponseBody Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @GetMapping(path="/user/{id}")
+    public @ResponseBody User getUser(@PathVariable Integer id) {
+        return userRepository.findByUserId(id);
+    }
+
 }

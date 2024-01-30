@@ -73,7 +73,7 @@ public class Paper {
     return abstractUrl;
   }
 
-  public void setAbstractText(String abstractUrl) {
+  public void setAbstractUrl(String abstractUrl) {
     this.abstractUrl = abstractUrl;
   }
 
@@ -100,4 +100,5 @@ public class Paper {
   public void setAuthorId(Integer authorId) {
     this.authorId = authorId;
   }
+
 }
