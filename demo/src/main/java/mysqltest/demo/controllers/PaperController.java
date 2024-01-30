@@ -26,27 +26,27 @@ public class PaperController {
         return "Saved";
     }
 
-//     @PutMapping(path="/update/{paperId}")
-//     public @ResponseBody String updatePaper(@RequestBody Paper paper, @PathVariable Integer paperId) {
-//     Optional<Paper> existingPaperOptional = paperRepository.findById(paperId);
+    @PutMapping(path="/update/{paperId}")
+    public @ResponseBody String updatePaper(@RequestBody Paper paper, @PathVariable Integer paperId) {
+    Optional<Paper> existingPaperOptional = paperRepository.findById(paperId);
 
-//     if (existingPaperOptional.isPresent()) {
-//         Paper existingPaper = existingPaperOptional.get();
-//         // Update fields of the existing paper with the values from the request
-//         existingPaper.setTitle(paper.getTitle());
-//         existingPaper.setApproved(paper.getApproved());
-//         existingPaper.setShortdesc(paper.getShortdesc());
-//         existingPaper.setAbstractUrl(paper.getAbstractUrl());
-//         existingPaper.setTags(paper.getTags());
-//         existingPaper.setUploadDate(paper.getUploadDate());
-//         existingPaper.setAuthorId(paper.getAuthorId());
+    if (existingPaperOptional.isPresent()) {
+        Paper existingPaper = existingPaperOptional.get();
+        // Update fields of the existing paper with the values from the request
+        existingPaper.setTitle(paper.getTitle());
+        existingPaper.setApproved(paper.getApproved());
+        existingPaper.setShortdesc(paper.getShortdesc());
+        existingPaper.setAbstractUrl(paper.getAbstractUrl());
+        existingPaper.setTags(paper.getTags());
+        existingPaper.setUploadDate(paper.getUploadDate());
+        existingPaper.setAuthorId(paper.getAuthorId());
 
-//         paperRepository.save(existingPaper);
-//         return "Paper Updated";
-//     } else {
-//         return "Paper not found";
-//     } 
-// }
+        paperRepository.save(existingPaper);
+        return "Paper Updated";
+    } else {
+        return "Paper not found";
+    } 
+}
 
 
     @GetMapping(path="/")
