@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import emailjs from 'emailjs-com';
+
+
+
+
+
+
+
+
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -25,25 +34,19 @@ const Register = () => {
     axios.post('http://localhost:8080/register', formData).then((res) => {
       console.log(res);
       localStorage.setItem('token', res.data.token);
-      navigate("/dashboard")
-    }
-    ).catch((err) => {
-      console.log(err);
-    });
-  };
+      emailjs.sendForm('service_ndmh9hs', 'template_xllzwct', e.target, 'Fu40AmkAkR7VbMApW')
 
-
-  const handleRegister = () => {
-    axios.post('http://localhost:8080/register', formData).then((res) => {
-      console.log(res);
-      localStorage.setItem('token', res.data.token);
       navigate("/dashboard")
+
     }
     ).catch((err) => {
       console.log(err);
     });
     navigate("/dashboard")
-  }
+  };
+
+
+ 
 
   return (
     <form onSubmit={handleSubmit}>
@@ -87,7 +90,7 @@ const Register = () => {
         />
       </label>
       <br />
-      <button type="submit" onClick = {handleRegister}>Submit</button>
+      <button type="submit">Submit</button>
     </form>
   );
 };

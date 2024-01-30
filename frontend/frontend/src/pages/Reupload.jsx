@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Reupload = () => {
     //replace with empty array instead of dummy
-    const [userData,setUserData]=useState([])
+    const [userData,setUserData]=useState(dummy)
     localStorage.setItem('paperId', '');
 
 
