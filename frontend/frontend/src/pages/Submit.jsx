@@ -12,9 +12,9 @@ const Submit = () => {
         title: '',
         approved: false,
         shortdesc: '',
-        abstracturl: '',
+        abstractUrl: '',
         tags: '',
-        uploadDate: Date.now(),
+        uploadDate: '2024-01-30',
         authorId : localStorage.getItem('authorId'),
       });
     
@@ -34,26 +34,34 @@ const Submit = () => {
     
       const handleEditSubmit = async () => {
         console.log(submission);
-        if (submission.title === '' || submission.shortdesc === '' || submission.abstracturl === '' || submission.tags === '') {
+      
+        if (
+          submission.title === '' ||
+          submission.shortdesc === '' ||
+          submission.abstractUrl === '' ||
+          submission.tags === ''
+        ) {
           alert('Please fill in all fields!');
           return;
         }
+      
         try {
-         
-          //await axios.put(`http://localhost:3000/api/users/${userId}`, submission);
-          
+          const response = await axios.post(
+            `http://localhost:8080/paper/add`,
+            submission,
+            {
+              headers: {
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`,
+              },
+            }
+          );
+      
           navigate('/dashboard');
-          alert('Abstract submitted successfully!')
-        
+          alert('Abstract submitted successfully!');
         } catch (error) {
-          console.error('Error updating user data:', error);
+          console.error('Error submitting abstract:', error);
         }
       };
-    
-
-
-
-
 
 
     return (
@@ -65,7 +73,7 @@ const Submit = () => {
         <h3>Short Description</h3>
         <input type="text" name="shortdesc"  onChange={handleInputChange} />
         <h3>Abstract URL</h3>
-        <input type="text" name="abstracturl"  onChange={handleInputChange} />
+        <input type="text" name="abstractUrl"  onChange={handleInputChange} />
         <h3>Tags</h3>
         <input type="text" name="tags"  onChange={handleInputChange} />
         <h3></h3>
