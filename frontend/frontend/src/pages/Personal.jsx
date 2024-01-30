@@ -3,11 +3,7 @@ import { useState,useEffect } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Navbar from './Navbar.jsx'
-<<<<<<< HEAD
-=======
-import './Personal.css';
 
->>>>>>> a0802b24a435fc015c0954ad4c4ec60faa37e18b
 
 export const Personal = () => {
 
