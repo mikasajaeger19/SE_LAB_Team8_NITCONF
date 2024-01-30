@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
-//import axios from 'axios'
+import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Navbar from './Navbar.jsx'
 
@@ -9,7 +9,6 @@ export const Personal = () => {
 
     const [userData,setuserData]=useState({})
     
-    /*
     useEffect( () => {
 
         //fetch author user id from local data (implement encryption later?)
@@ -18,7 +17,7 @@ export const Personal = () => {
 
         const fetchUserData = async() =>{
             try {
-                const response  =await axios.get(`http://localhost:3000/api/users/${id}`)
+                const response  =await axios.get(`http://localhost:8080/demo/`)
                 console.log(response.data)
                 setuserData(response.data)
             } catch(errror){
@@ -30,14 +29,13 @@ export const Personal = () => {
 
     },[]);
 
-    */
 
 
 
 
   return (
-    <>
- 
+    
+    
     <div className='container'>
     <div className='div'>
         <h1 className = 'heading'>Account Details</h1>
@@ -53,10 +51,9 @@ export const Personal = () => {
         <h2><Link className = 'editpage' to = '/editdetails'>Edit Details</Link></h2>
         
        
-        
+    </div>   
     </div>
-    </div>
-    </>
+    
     
   )
 }

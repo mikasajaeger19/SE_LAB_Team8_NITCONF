@@ -22,7 +22,7 @@ export const Dashboard = () => {
 
         const fetchUserData = async() =>{
             try {
-                const response  = await axios.get(`http://localhost:8080/paper/`, {
+                const response  = await axios.get(`http://localhost:8080/paper/all`, {
                     headers: {
                         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2h3aW5AbmFlZW0uY29tIiwiaWF0IjoxNzA2NTQzMTYwLCJleHAiOjE3MDY1NzkxNjB9.54emLy9x2lHOuOJlM9guhhp8ujhr8dbrhXrSGOn32v4`
                     }

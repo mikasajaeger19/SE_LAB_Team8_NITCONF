@@ -34,26 +34,34 @@ const Submit = () => {
     
       const handleEditSubmit = async () => {
         console.log(submission);
-        if (submission.title === '' || submission.shortdesc === '' || submission.abstracturl === '' || submission.tags === '') {
+      
+        if (
+          submission.title === '' ||
+          submission.shortdesc === '' ||
+          submission.abstracturl === '' ||
+          submission.tags === ''
+        ) {
           alert('Please fill in all fields!');
           return;
         }
+      
         try {
-         
-          //await axios.put(`http://localhost:3000/api/users/${userId}`, submission);
-          
+          const response = await axios.post(
+            `http://localhost:8080/paper/add`,
+            submission,
+            {
+              headers: {
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2h3aW5AbmFlZW0uY29tIiwiaWF0IjoxNzA2NTQzMTYwLCJleHAiOjE3MDY1NzkxNjB9.54emLy9x2lHOuOJlM9guhhp8ujhr8dbrhXrSGOn32v4`,
+              },
+            }
+          );
+      
           navigate('/dashboard');
-          alert('Abstract submitted successfully!')
-        
+          alert('Abstract submitted successfully!');
         } catch (error) {
-          console.error('Error updating user data:', error);
+          console.error('Error submitting abstract:', error);
         }
       };
-    
-
-
-
-
 
 
     return (
