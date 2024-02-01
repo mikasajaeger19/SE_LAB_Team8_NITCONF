@@ -39,33 +39,75 @@ public class PaperController {
         return paperRepository.findByPaperId(paperId);
     }
 
+//     @PutMapping(path="/update/{paperId}")
+//     public @ResponseBody String updatePaper(@RequestBody Paper paper, @PathVariable Integer paperId) {
+//     Paper existingPaper = paperRepository.findByPaperId(paperId);
+
+//     if (existingPaper != null) {
+//         // Update fields of the existing paper with the values from the request
+//         if(paper.getTitle() != null)
+//             existingPaper.setTitle(paper.getTitle());
+//         if(paper.getApproved() != null)
+//             existingPaper.setApproved(paper.getApproved());
+//         if(paper.getShortdesc() != null)
+//             existingPaper.setShortdesc(paper.getShortdesc());
+//         if(paper.getAbstractUrl() != null)
+//             existingPaper.setAbstractUrl(paper.getAbstractUrl());
+//         if(paper.getTags() != null)
+//             existingPaper.setTags(paper.getTags());
+//         if(paper.getUploadDate() != null)
+//             existingPaper.setUploadDate(paper.getUploadDate());
+//         if(paper.getAuthorId() != null)
+//             existingPaper.setAuthorId(paper.getAuthorId());
+//         if(paper.getId() != null)
+//             existingPaper.setId(paperId);
+//         paperRepository.save(existingPaper);
+//         return "Paper Updated";
+//     } else {
+//         return "Paper not found";
+//     }
+// }
+
+
     @PutMapping(path="/update/{paperId}")
     public @ResponseBody String updatePaper(@RequestBody Paper paper, @PathVariable Integer paperId) {
-    Paper existingPaper = paperRepository.findByPaperId(paperId);
+        Paper existingPaper = paperRepository.findByPaperId(paperId);
 
-    if (existingPaper != null) {
-        // Update fields of the existing paper with the values from the request
-        if(paper.getTitle() != null)
-            existingPaper.setTitle(paper.getTitle());
-        if(paper.getApproved() != null)
-            existingPaper.setApproved(paper.getApproved());
-        if(paper.getShortdesc() != null)
-            existingPaper.setShortdesc(paper.getShortdesc());
-        if(paper.getAbstractUrl() != null)
-            existingPaper.setAbstractUrl(paper.getAbstractUrl());
-        if(paper.getTags() != null)
-            existingPaper.setTags(paper.getTags());
-        if(paper.getUploadDate() != null)
-            existingPaper.setUploadDate(paper.getUploadDate());
-        if(paper.getAuthorId() != null)
-            existingPaper.setAuthorId(paper.getAuthorId());
-        if(paper.getId() != null)
-            existingPaper.setId(paperId);
-        paperRepository.save(existingPaper);
-        return "Paper Updated";
-    } else {
-        return "Paper not found";
-    }
+            if (existingPaper != null) {
+            // Create a new version entry for the reupload
+            Version newVersion = new Version();
+            newVersion.setAbstractUrl(existingPaper.getAbstractUrl());
+            newVersion.setTitle(existingPaper.getTitle());
+            newVersion.setReleaseDate(existingPaper.getUploadDate());
+            newVersion.setComments(null);  // You may want to add comments from the request if needed
+            newVersion.setPaper(existingPaper);
+            versionRepository.save(newVersion);
+
+            // Update fields of the existing paper with the values from the request
+            if (paper.getTitle() != null)
+                existingPaper.setTitle(paper.getTitle());
+            if (paper.getApproved() != null)
+                existingPaper.setApproved(paper.getApproved());
+            if (paper.getShortdesc() != null)
+                existingPaper.setShortdesc(paper.getShortdesc());
+            if (paper.getAbstractUrl() != null)
+                existingPaper.setAbstractUrl(paper.getAbstractUrl());
+            if (paper.getTags() != null)
+                existingPaper.setTags(paper.getTags());
+            if (paper.getUploadDate() != null)
+                existingPaper.setUploadDate(paper.getUploadDate());
+            if (paper.getAuthorId() != null)
+                existingPaper.setAuthorId(paper.getAuthorId());
+            if (paper.getId() != null)
+                existingPaper.setId(paperId);
+
+            // Save the updated paper
+            paperRepository.save(existingPaper);
+
+            return "Paper Updated";
+        } else {
+            return "Paper not found";
+        }
 }
 
 

@@ -20,8 +20,18 @@ public interface VersionRepository extends CrudRepository<Version, Integer> {
     // Paper findByPaperId(@Param("paperId") Integer paperId);
 
     @Query("SELECT v FROM Version v WHERE v.paperId = :paperId")
-    List<Version> findByPaperId(@Param("paperId") Integer paperId);
+    Iterable<Version> findByPaperId(@Param("paperId") Integer paperId);
 
     @Query("SELECT v FROM Version v WHERE v.versionId = :versionId")
     Version findByVersionId(@Param("versionId") Integer versionId);
+
+    @Query("SELECT v FROM Version v WHERE v.paperId = :paperId ORDER BY v.versionId DESC")
+    Version findFirstByPaperIdOrderByVersionIdDesc(Integer paperId);
+
+    @Query("SELECT v.comments FROM Version v WHERE v.paperId = :paperId")
+    Iterable<String> findCommentsByPaperId(Integer paperId);
+
+    @Query("SELECT v.comments FROM Version v WHERE v.versionId = :versionId")
+    Iterable<String> findCommentsByVersionId(Integer versionId);
+
 }
