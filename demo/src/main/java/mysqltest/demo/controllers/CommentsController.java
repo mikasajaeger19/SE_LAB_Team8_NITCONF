@@ -43,9 +43,9 @@ public class CommentsController {
     }
 
     @GetMapping(path = "/{paperId}")
-    public @ResponseBody Iterable<String> getCommentsForPaper(@PathVariable Integer paperid) {
+    public @ResponseBody Iterable<String> getCommentsForPaper(@PathVariable Integer paperId) {
         // Assuming there is a method in the commentRepository to find comments by paperId
-        return versionRepository.findCommentsByPaperId(paperid);
+        return versionRepository.findCommentsByPaperId(paperId);
     }
 
 }
