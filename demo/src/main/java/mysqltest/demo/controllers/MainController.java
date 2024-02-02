@@ -1,6 +1,9 @@
 package mysqltest.demo.controllers;
 
+//import org.apache.el.stream.Optional;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,4 +41,19 @@ public class MainController {
         return userRepository.findByUserId(id);
     }
 
+   
+    @PutMapping(path="/update")
+public ResponseEntity<String> updateUserDetails(@RequestBody User updatedUser) {
+
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            // Update only the fields that are allowed to be modified
+            currentUser.setName(updatedUser.getName());
+            currentUser.setEmail(updatedUser.getEmail());
+            currentUser.setAltEmail(updatedUser.getAltEmail());
+            currentUser.setPassword(updatedUser.getPassword());
+
+            userRepository.save(currentUser);
+
+            return ResponseEntity.ok("User details updated");
+    }
 }
