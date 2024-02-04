@@ -40,6 +40,7 @@ const LoginForm = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('id',res.data.id);
         navigate("/dashboard");
       })
       .catch((err) => {
@@ -78,7 +79,7 @@ const LoginForm = () => {
           </div>
         </label>
         <br />
-        <button type="submit" onClick = {handleLogin}>Login</button>
+        <button type="submit">Login</button>
       </form>
     </div>
     </div>

@@ -20,7 +20,7 @@ export const Personal = () => {
                 const response  =await axios.get(`http://localhost:8080/demo/`)
                 console.log(response.data)
                 setuserData(response.data)
-            } catch(errror){
+            } catch(error){
                 //print("invalid user")
             }
         }
@@ -37,6 +37,7 @@ export const Personal = () => {
     
     
     <div className='container'>
+         <Navbar />
     <div className='div'>
         <h1 className = 'heading'>Account Details</h1>
         <div className = 'underlinecont'>

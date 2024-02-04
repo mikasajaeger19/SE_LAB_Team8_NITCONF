@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 //import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar.jsx';
 
 
 const EditDetails = () => {
@@ -53,7 +54,7 @@ const EditDetails = () => {
 
   return (
     <>
-      
+       <Navbar />
       <form>
         <input type="text"  name="username" value={editedUserData.username}  onChange={handleInputChange} />
         <input type="text" name="email" value={editedUserData.email} onChange={handleInputChange} />

@@ -22,6 +22,7 @@ export const Dashboard = () => {
 
         const fetchUserData = async() =>{
             try {
+                const authorId = localStorage.get()
                 const response  = await axios.get(`http://localhost:8080/paper/all`, {
                     headers: {
                         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`
@@ -108,7 +109,7 @@ export const Dashboard = () => {
     return (
       
         <div className='container'>
-             
+             <Navbar />
             <h1>Dashboard</h1>
             <div className='table'>
                 <table {...getTableProps()} className='table'>

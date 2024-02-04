@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import dummy from '../dummy.json';
 import { useNavigate } from 'react-router-dom';
 import './Reupload.css';
+import Navbar from './Navbar.jsx';
 
 
 
@@ -104,6 +105,7 @@ const Reupload = () => {
    
         return (
             <div className='container'>
+               <Navbar />
               <h1>Reupload Paper</h1>
                 <h2>Select a paper to reupload:</h2>
                 <div className='dropdown--div'>  
