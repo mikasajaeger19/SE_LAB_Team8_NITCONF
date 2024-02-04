@@ -1,9 +1,12 @@
 package mysqltest.demo.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import java.time.LocalDate;
 
 @Entity
@@ -73,7 +76,7 @@ public class Paper {
     return abstractUrl;
   }
 
-  public void setAbstractText(String abstractUrl) {
+  public void setAbstractUrl(String abstractUrl) {
     this.abstractUrl = abstractUrl;
   }
 
@@ -100,4 +103,5 @@ public class Paper {
   public void setAuthorId(Integer authorId) {
     this.authorId = authorId;
   }
+
 }

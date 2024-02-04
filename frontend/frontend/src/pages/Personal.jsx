@@ -17,7 +17,7 @@ export const Personal = () => {
 
         const fetchUserData = async() =>{
             try {
-                const response  =await axios.get(`http://localhost:8080/demo/`)
+                const response  =await axios.get(`http://localhost:8080/demo/user/${id}`)
                 console.log(response.data)
                 setuserData(response.data)
             } catch(error){

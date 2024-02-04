@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import emailjs from 'emailjs-com';
+=======
+
+import emailjs from 'emailjs-com';
+import './Register.css';
+>>>>>>> d7bc4b3cdf0c807f0e8821fc47b73322b2f937de
 
 const Register = () => {
   const navigate = useNavigate();

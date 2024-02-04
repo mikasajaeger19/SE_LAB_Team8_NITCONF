@@ -39,7 +39,9 @@ const Reupload = () => {
 
         const fetchUserData = async() =>{
             try {
-                const response  = await axios.get(`http://localhost:8080/paper/all`, {
+
+                const authorId = localStorage.get('authorId');
+                const response  = await axios.get(`http://localhost:8080/paper/author/${authorId}`, {
                     headers: {
                         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2h3aW5AbmFlZW0uY29tIiwiaWF0IjoxNzA2NTQzMTYwLCJleHAiOjE3MDY1NzkxNjB9.54emLy9x2lHOuOJlM9guhhp8ujhr8dbrhXrSGOn32v4`
                     }
@@ -88,8 +90,8 @@ const Reupload = () => {
       return;
     }
     try {
-     
-      //await axios.put(`http://localhost:3000/api/users/${userId}`, submission);
+      const paperId = localStorage.get('paperId');
+      await axios.put(`http://localhost:8080/paper/update/${paperId}`, submission);
       
       navigate('/dashboard');
       alert('Abstract submitted successfully!')
