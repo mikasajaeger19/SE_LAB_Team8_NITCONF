@@ -17,6 +17,26 @@ const Version = () => {
 
 
 
+    useEffect( () => {
+    const fetchUserData = async() =>{
+        try {
+            const authorId = localStorage.get()
+            const response  = await axios.get(`http://localhost:8080/paper/all`, {
+                headers: {
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`
+                }
+            })
+            console.log(response.data)
+            setVersionPaperId(response.data)
+        } catch(errror){
+            //print("invalid user")
+        }
+    }
+
+    fetchUserData();
+
+},[]);
+
 
 
 
@@ -38,14 +58,14 @@ const Version = () => {
     
         const fetchUserData = async() =>{
             try {
-                const response  = await axios.get(`http://localhost:8080/version/${versionpaperId}`, {
+                const response  = await axios.get(`http://localhost:8080/version/${versionPaperId}`, {
                     headers: {
                         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`
                     }
                 })
                 console.log(response.data)
                 setVersionPapers(response.data)
-            } catch(errror){
+            } catch(error){
                 console.log(error);
             }
         
@@ -54,10 +74,11 @@ const Version = () => {
     
     
     const handleDropdownChange = (e) => {
+        setSelectedOption(e.target.value);
         setSelectedPaper(e.target.value);
     }
     
-    
+    const [selectedOption, setSelectedOption] = useState('');
 
     
 
@@ -69,7 +90,7 @@ const Version = () => {
             <div className='dropdown--div'>  
                     <select id="dropdown" value={selectedOption} onChange={handleDropdownChange}>
                     <option value=''>Select a paper</option>  
-                        {userData.map((option, index) => option.approved === false && (
+                        {versionPapers.map((option, index) => option.approved === false && (
                             <option key={index} value={option.title}>
                                 {option.title}
                             </option>

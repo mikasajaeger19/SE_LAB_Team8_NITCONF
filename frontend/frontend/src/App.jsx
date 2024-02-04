@@ -11,6 +11,7 @@ import Submit  from './pages/Submit.jsx';
 import Home from './pages/Home.jsx';
 import LoginForm from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
+import Version from './pages/Version.jsx';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path = "/editdetails" element={<EditDetails/>}/>
         <Route path = "/reupload" element={<Reupload/>}/>
         <Route path = "/submit" element={<Submit/>}/>
+        <Route path = "/versions" element={<Version/>}/>
       </Routes>
     </BrowserRouter>
     
