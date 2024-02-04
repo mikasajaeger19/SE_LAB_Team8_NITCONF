@@ -15,7 +15,9 @@ const Reupload = () => {
     localStorage.setItem('paperId', '');
 
 
+    let today = new Date();
 
+  
 
     const [submission, setSubmission] = useState({
    
@@ -24,7 +26,7 @@ const Reupload = () => {
         shortdesc: '',
         abstractUrl: '',
         tags: '',
-        uploadDate: '2024-01-30',
+        uploadDate: today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+ today.getDate(),
         authorId : null,
       });
     
@@ -40,7 +42,7 @@ const Reupload = () => {
         const fetchUserData = async() =>{
             try {
 
-                const authorId = localStorage.get('authorId');
+                const authorId = localStorage.getItem('authorId');
                 const response  = await axios.get(`http://localhost:8080/paper/author/${authorId}`, {
                     headers: {
                         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2h3aW5AbmFlZW0uY29tIiwiaWF0IjoxNzA2NTQzMTYwLCJleHAiOjE3MDY1NzkxNjB9.54emLy9x2lHOuOJlM9guhhp8ujhr8dbrhXrSGOn32v4`
@@ -68,7 +70,7 @@ const Reupload = () => {
     const [selectedOption, setSelectedOption] = useState('');
 
   const handleDropdownChange = (event) => {
-    localStorage.setItem('paperId', event.target.id);
+
     setSelectedOption(event.target.value);
   };
 
@@ -90,7 +92,7 @@ const Reupload = () => {
       return;
     }
     try {
-      const paperId = localStorage.get('paperId');
+      const paperId = selectedOption;
       await axios.put(`http://localhost:8080/paper/update/${paperId}`, submission);
       
       navigate('/dashboard');
@@ -131,7 +133,7 @@ const Reupload = () => {
                     <h3>Tags</h3>
                     <input type="text" name="tags"  onChange={handleInputChange} />
                     <h3></h3>
-                    <button type="button" onClick={handleEditSubmit}>Reupload Abstract</button>
+                    <button type="button"  onClick={handleEditSubmit} >Reupload Abstract</button>
                   </form>
                 )  
                     }

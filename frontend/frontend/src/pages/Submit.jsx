@@ -3,12 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
-<<<<<<< HEAD
-import emailjs from 'emailjs-com'
-import Navbar from './Navbar.jsx';
-=======
 import './Submit.css';
->>>>>>> d7bc4b3cdf0c807f0e8821fc47b73322b2f937de
+import emailjs from 'emailjs-com';
+import Navbar from './Navbar.jsx';
 
 const Submit = () => {
 
