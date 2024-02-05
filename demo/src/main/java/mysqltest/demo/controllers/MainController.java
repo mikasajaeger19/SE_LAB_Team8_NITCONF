@@ -16,7 +16,11 @@ public class MainController {
 
     @Autowired
     private UserRepository userRepository;
-
+/**
+ * Creates a new user.
+ * @param user The user details.
+ * @return A response indicating the success of user creation.
+ */
     @PostMapping(path="/add")
     public @ResponseBody String addNewUser(@RequestBody User user) {
         // @ResponseBody means the returned String is the response, not a view name
