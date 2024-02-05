@@ -23,7 +23,6 @@ public class MainController {
      * @param user The User to be added.
      * @return A String indicating the result of the operation.
      */
-    @PostMapping(path = "/add")
 /**
  * Creates a new user.
  * @param user The user details.
