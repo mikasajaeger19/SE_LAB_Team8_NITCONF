@@ -3,7 +3,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+<<<<<<< HEAD
+import emailjs from 'emailjs-com'
+import Navbar from './Navbar.jsx';
+=======
 import './Submit.css';
+>>>>>>> d7bc4b3cdf0c807f0e8821fc47b73322b2f937de
 
 const Submit = () => {
 
@@ -33,7 +38,7 @@ const Submit = () => {
         }));
       };
     
-      const handleEditSubmit = async () => {
+      const handleEditSubmit = async (e) => {
         console.log(submission);
       
         if (
@@ -56,7 +61,7 @@ const Submit = () => {
               },
             }
           );
-      
+          emailjs.sendForm('service_ndmh9hs', 'template_xllzwct', e.target, 'Fu40AmkAkR7VbMApW')
           navigate('/dashboard');
           alert('Abstract submitted successfully!');
         } catch (error) {
@@ -67,6 +72,7 @@ const Submit = () => {
 
     return (
         <div className='container'>
+           <Navbar />
           <h1>Submit Paper</h1>
             <form>
         <h3>Title</h3>

@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 //import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
+import Navbar from './Navbar.jsx';
+
+=======
 import './EditDetails.css';
+>>>>>>> d7bc4b3cdf0c807f0e8821fc47b73322b2f937de
 
 const EditDetails = () => {
   const [editedUserData, setEditedUserData] = useState({
@@ -53,7 +58,7 @@ const EditDetails = () => {
 
   return (
     <>
-      
+       <Navbar />
       <form>
         <input type="text"  name="username" value={editedUserData.username}  onChange={handleInputChange} />
         <input type="text" name="email" value={editedUserData.email} onChange={handleInputChange} />

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
+import emailjs from 'emailjs-com';
+=======
 
 import emailjs from 'emailjs-com';
 import './Register.css';
+>>>>>>> d7bc4b3cdf0c807f0e8821fc47b73322b2f937de
 
 const Register = () => {
   const navigate = useNavigate();
@@ -29,7 +33,7 @@ const Register = () => {
     axios.post('http://localhost:8080/register', formData).then((res) => {
       console.log(res);
       localStorage.setItem('token', res.data.token);
-      emailjs.sendForm('service_ndmh9hs', 'template_xllzwct', e.target, 'Fu40AmkAkR7VbMApW')
+      emailjs.sendForm('service_ndmh9hs', 'template_kt5cpce', e.target, 'Fu40AmkAkR7VbMApW')
 
       navigate("/dashboard")
 
