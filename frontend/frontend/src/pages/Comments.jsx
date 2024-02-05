@@ -1,49 +1,41 @@
-import React from 'react';
-import { useState, useEffect } from 'react';   
-import './Comments.css'; 
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const Comments = () => {
+const Comments = ({ versionId }) => {
+  const [userData, setUserData] = useState([]);
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/version/${versionId}`, {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`,
+          },
+        });
+        console.log(response.data);
+        setUserData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-    const paperId = localStorage.getItem('paperId')
-    const [userData,setuserData]=useState({})
-    
-    /*
-    useEffect( () => {
+    fetchUserData();
+  }, [versionId]);
 
-        //fetch author user id from local data (implement encryption later?) and change the paper id to call comments into userData
-        
-
-
-        const fetchUserData = async() =>{
-            try {
-
-                const response  =await axios.get(`http://localhost:3000/api/users/${paperId}`)
-                console.log(response.data)
-                setuserData(response.data)
-            } catch(errror){
-                //print("invalid user")
-            }
-        }
-
-        fetchUserData();
-
-    },[]);
-    */
-    return (
-        <div>
-            <h1 className='heading'>Comments</h1>
-            <ul className='list-head'>
-            {userData.comments && userData.comments.length > 0 ? (userData.comments.map((comment,index) => {
-                <li key = {index}>{comment}</li>
-            })) : (<p>No comments</p>)}
-            </ul>
-           
-            
-            
-        </div>
-    );
+  return (
+    <div>
+      <h1 className='heading'>Comments</h1>
+      <ul className='list-head'>
+        {userData && userData[0].comment.length > 0 ? (
+          userData.map((comment, index) => (
+            <li key={index}>{comment.comment}</li>
+          ))
+        ) : (
+          <p>No comments</p>
+        )}
+      </ul>
+    </div>
+  );
 };
 
-//commit message
 export default Comments;

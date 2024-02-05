@@ -8,6 +8,7 @@ import Navbar from './Navbar.jsx'
 export const Personal = () => {
 
     const [userData,setuserData]=useState([])
+    const id = localStorage.getItem('authorId')
     
     useEffect( () => {
 

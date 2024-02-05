@@ -1,0 +1,18 @@
+{
+  "name": "se_lab_team8_nitconf",
+  "version": "1.0.0",
+  "description": "1. [Revision History](#1-revision-history)\r 2. [Introduction](#2-introduction)\r    - 2.1 [Purpose](#21-purpose)\r    - 2.2 [Intended Audience](#22-intended-audience)\r    - 2.3 [Product Scope](#23-product-scope)\r    - 2.4 [References](#24-references)\r 3. [Overall Description](#3-overall-description)\r    - 3.1 [Product Perspective](#31-product-perspective)\r    - 3.2 [Product Functions](#32-product-functions)\r    - 3.3 [User Classes and Characteristics](#33-user-classes-and-characteristics)\r    - 3.4 [Operating Environment](#34-operating-environment)\r    - 3.5 [Design and Implementation Constraints](#35-design-and-implementation-constraints)\r    - 3.6 [User Documentation](#36-user-documentation)\r    - 3.7 [Assumptions and Dependencies](#37-assumptions-and-dependencies)\r 4. [External Interface Requirements](#4-external-interface-requirements)\r    - 4.1 [User Interfaces](#41-user-interfaces)\r    - 4.2 [Hardware Interfaces](#42-hardware-interfaces)\r    - 4.3 [Software Interfaces](#43-software-interfaces)\r    - 4.4 [Communications Interfaces](#44-communications-interfaces)\r 5. [System Features](#5-system-features)\r    - 5.1 [Authentication](#51-authentication)\r    - 5.2 [Dashboard](#52-dashboard)\r       - 5.2.1 [User Profile](#521-user-profile)\r       - 5.2.2 [Upload and View Submissions](#522-upload-and-view-submissions)\r       - 5.2.3 [Interaction With Reviewers](#523-interaction-with-reviewers)\r       - 5.2.4 [Notification System](#524-notification-system)\r 6. [Other Nonfunctional Requirements](#6-other-nonfunctional-requirements)\r    - 6.1 [Performance Requirements](#61-performance-requirements)\r    - 6.2 [Safety & Security Requirements](#62-safety-and-security-requirements)\r    - 6.3 [Software Quality Attributes](#63-software-quality-attributes)\r       - 6.3.1 [Reliability](#631-reliability)\r       - 6.3.2 [Adaptability](#632-adaptability)\r       - 6.3.3 [Maintainability](#633-maintainability)\r       - 6.3.4 [Portability](#634-portability)\r       - 6.3.5 [Cost Effectiveness](#635-cost-effectiveness)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npm run dev --prefix backend",
+    "client": "npm start --prefix frontend/frontend",
+   "dev": "concurrently \"npm run server\" \"npm run client\""
+
+  },
+  "author": "",
+  "license": "ISC"
+}
