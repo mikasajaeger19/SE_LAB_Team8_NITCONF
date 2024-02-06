@@ -29,7 +29,8 @@ const Register = () => {
     axios.post('http://localhost:8080/register', formData).then((res) => {
       console.log(res);
       localStorage.setItem('token', res.data.token);
-      emailjs.sendForm('service_ndmh9hs', 'template_kt5cpce', e.target, 'Fu40AmkAkR7VbMApW')
+      localStorage.setItem('authorId',parseInt(res.data.id))
+      //emailjs.sendForm('service_ndmh9hs', 'template_kt5cpce', e.target, 'Fu40AmkAkR7VbMApW')
 
       navigate("/dashboard")
 

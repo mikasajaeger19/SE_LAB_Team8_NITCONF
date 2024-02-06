@@ -7,7 +7,7 @@
   min-height: 100vh;
 }
 
-h1 {
+.dashboard--header {
   color: #fff; /* White Color */
   font-size: 100px; /* Adjust the font size as needed */
   margin-bottom: 100px; /* Add some bottom margin for spacing */

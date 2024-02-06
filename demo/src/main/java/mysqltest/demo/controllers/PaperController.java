@@ -19,6 +19,7 @@ public class PaperController {
 
     @Autowired
     private PaperRepository paperRepository;
+    @Autowired
     private VersionRepository versionRepository;
 
     /**
@@ -35,9 +36,10 @@ public class PaperController {
         version.setTitle(paper.getTitle());
         version.setReleaseDate(paper.getUploadDate());
         version.setComments(null);
-        version.setPaper(paper);
-        versionRepository.save(version);
         paperRepository.save(paper);
+        version.setPaper(paper.getId());
+        versionRepository.save(version);
+        
         return "Saved";
     }
 
@@ -64,14 +66,7 @@ public class PaperController {
         Paper existingPaper = paperRepository.findByPaperId(paperId);
 
         if (existingPaper != null) {
-            // Create a new version entry for the reupload
-            Version newVersion = new Version();
-            newVersion.setAbstractUrl(existingPaper.getAbstractUrl());
-            newVersion.setTitle(existingPaper.getTitle());
-            newVersion.setReleaseDate(existingPaper.getUploadDate());
-            newVersion.setComments(null);  // You may want to add comments from the request if needed
-            newVersion.setPaper(existingPaper);
-            versionRepository.save(newVersion);
+            
 
             // Update fields of the existing paper with the values from the request
             if (paper.getTitle() != null)
@@ -93,6 +88,16 @@ public class PaperController {
 
             // Save the updated paper
             paperRepository.save(existingPaper);
+
+            // Create a new version entry for the reupload
+            Version newVersion = new Version();
+            newVersion.setAbstractUrl(existingPaper.getAbstractUrl());
+            newVersion.setTitle(existingPaper.getTitle());
+            newVersion.setReleaseDate(existingPaper.getUploadDate());
+            newVersion.setComments(null);  // You may want to add comments from the request if needed
+            newVersion.setPaper(existingPaper.getId());
+            versionRepository.save(newVersion);
+
 
             return "Paper Updated";
         } else {

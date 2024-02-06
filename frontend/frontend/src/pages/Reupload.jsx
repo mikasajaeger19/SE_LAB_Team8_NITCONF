@@ -11,13 +11,17 @@ import Navbar from './Navbar.jsx';
 
 const Reupload = () => {
     //replace with empty array instead of dummy
-    const [userData,setUserData]=useState(dummy)
+    const [userData,setUserData]=useState([])
     localStorage.setItem('paperId', '');
 
 
     let today = new Date();
 
-  
+
+    const uploadDate = today.getFullYear()+ "-"+ (today.getMonth()+1>=10 ? ( parseInt(today.getMonth()+1)) : ("0" + parseInt(today.getMonth()+1))) +"-"+ (today.getDate()+1>=10 ? ( parseInt(today.getDate()+1)) : ("0" + parseInt(today.getDate()+1)))
+    const authorId = localStorage.getItem('authorId');
+
+
 
     const [submission, setSubmission] = useState({
    
@@ -26,8 +30,8 @@ const Reupload = () => {
         shortdesc: '',
         abstractUrl: '',
         tags: '',
-        uploadDate: today.getFullYear()+ "-"+ parseInt(today.getMonth()+1) +"-"+ today.getDate(),
-        authorId : null,
+        uploadDate: uploadDate,
+        authorId : parseInt(authorId)
       });
     
       const navigate = useNavigate();
@@ -44,11 +48,11 @@ const Reupload = () => {
 
                 const authorId = localStorage.getItem('authorId');
                 const response  = await axios.get(`http://localhost:8080/paper/author/${authorId}`, {
-                    headers: {
-                        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2h3aW5AbmFlZW0uY29tIiwiaWF0IjoxNzA2NTQzMTYwLCJleHAiOjE3MDY1NzkxNjB9.54emLy9x2lHOuOJlM9guhhp8ujhr8dbrhXrSGOn32v4`
-                    }
-                })
-                console.log(response.data)
+                  headers: {
+                      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`
+                  }
+              })
+                
                 setUserData(response.data)
             } catch(error){
               console.log(error)
@@ -70,7 +74,7 @@ const Reupload = () => {
     const [selectedOption, setSelectedOption] = useState('');
 
   const handleDropdownChange = (event) => {
-
+    console.log(event.target.value);
     setSelectedOption(event.target.value);
   };
 
@@ -81,6 +85,8 @@ const Reupload = () => {
       ...prevData,
       [name]: value,
     }));
+
+  console.log('the id the of the paper selected is : ' + selectedOption);
   };
 
 
@@ -93,7 +99,7 @@ const Reupload = () => {
     }
     try {
       const paperId = selectedOption;
-      await axios.put(`http://localhost:8080/paper/update/${paperId}`, submission);
+      await axios.put(`http://localhost:8080/paper/update/${paperId}`, submission, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
       
       navigate('/dashboard');
       alert('Abstract submitted successfully!')
@@ -103,8 +109,23 @@ const Reupload = () => {
     }
   };
 
+    console.log(selectedOption)
 
+    const [currentOption, setCurrentOption] = useState([]); 
 
+    useEffect(() => {
+        try{
+          const response = axios.get(`http://localhost:8080/paper/${selectedOption}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+          });
+          setCurrentOption(response.data)
+          console.log('the current options info is : ' + response.data);
+        }catch(error){
+          console.log(error)
+        }
+      },[selectedOption]);
 
    
         return (
@@ -116,7 +137,7 @@ const Reupload = () => {
                     <select id="dropdown" value={selectedOption} onChange={handleDropdownChange}>
                     <option value=''>Select a paper</option>  
                         {userData.map((option, index) => option.approved === false && (
-                            <option key={index} value={option.title}>
+                            <option key={option.id} value={option.id}>
                                 {option.title}
                             </option>
                         ))}

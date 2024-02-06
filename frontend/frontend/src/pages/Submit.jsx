@@ -9,7 +9,9 @@ import Navbar from './Navbar.jsx';
 
 const Submit = () => {
 
-
+    const authorId  =localStorage.getItem('authorId')
+    let today = new Date();
+    const uploadDate = today.getFullYear()+ "-"+ (today.getMonth()+1>=10 ? ( parseInt(today.getMonth()+1)) : ("0" + parseInt(today.getMonth()+1))) +"-"+ (today.getDate()+1>=10 ? ( parseInt(today.getDate()+1)) : ("0" + parseInt(today.getDate()+1)))
     const [submission, setSubmission] = useState({
    
         title: '',
@@ -17,8 +19,8 @@ const Submit = () => {
         shortdesc: '',
         abstractUrl: '',
         tags: '',
-        uploadDate: '2024-01-30',
-        authorId : localStorage.getItem('authorId'),
+        uploadDate: uploadDate,
+        authorId : parseInt(authorId)
       });
     
       const navigate = useNavigate();

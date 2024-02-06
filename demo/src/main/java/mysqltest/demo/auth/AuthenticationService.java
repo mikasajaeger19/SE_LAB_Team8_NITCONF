@@ -27,12 +27,16 @@ public class AuthenticationService {
             .password(encoder.encode(request.getPassword()))
             .altEmail(request.getAltEmail())
             .build();
-        if (user != null)
+        if (user != null){
             repository.save(user);
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder()
-            .token(jwtToken)
-            .build();
+            var jwtToken = jwtService.generateToken(user);
+            return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .id(user.getId())
+                .build();
+        }
+
+        return null;
     }
 
     public AuthenticationResponse login(AuthenticationRequest request) {
@@ -46,6 +50,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
             .token(jwtToken)
+            .id(user.getId())
             .build();
     }
 }

@@ -17,6 +17,10 @@ function Navbar() {
         <h3 className="nav--reupload">
           <Link to="/reupload">Re-upload Paper</Link>
         </h3>
+
+        <h3 className="nav--versions">
+          <Link to="/versions">Versions</Link>
+        </h3>
       </nav>
     );
   }

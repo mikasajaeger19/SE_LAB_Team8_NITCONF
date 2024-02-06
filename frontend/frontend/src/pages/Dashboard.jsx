@@ -9,10 +9,11 @@ import './Dashboard.css';
 import dummy from '../dummy.json';
 
 export const Dashboard = () => {
-    const [userData, setUserData] = useState(dummy);
+    const [userData, setUserData] = useState([]);
     const history = useNavigate();
 
     const data = userData;
+    const authorId = localStorage.getItem('authorId');
     
     useEffect( () => {
 
@@ -22,8 +23,8 @@ export const Dashboard = () => {
 
         const fetchUserData = async() =>{
             try {
-                const authorId = localStorage.get()
-                const response  = await axios.get(`http://localhost:8080/paper/all`, {
+                 
+                const response  = await axios.get(`http://localhost:8080/paper/author/${authorId}`, {
                     headers: {
                         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`
                     }
@@ -40,7 +41,7 @@ export const Dashboard = () => {
     },[]);
 
    
-
+console.log(authorId)
 
     
     const columns = useMemo(
@@ -110,7 +111,7 @@ export const Dashboard = () => {
       
         <div className='container'>
              <Navbar />
-            <h1>Dashboard</h1>
+            <h1 className='dashboard--header'>Dashboard</h1>
             <div className='table'>
                 <table {...getTableProps()} className='table'>
                     <thead>

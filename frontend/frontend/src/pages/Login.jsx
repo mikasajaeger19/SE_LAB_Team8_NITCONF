@@ -25,6 +25,7 @@ const LoginForm = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('authorId',parseInt(res.data.id))
         navigate("/dashboard");
       })
       .catch((err) => {
@@ -34,20 +35,7 @@ const LoginForm = () => {
   };
 
 
-  const handleLogin = () => {
-    axios
-      .post('http://localhost:8000/login', formData)
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('id',res.data.id);
-        navigate("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      navigate("/dashboard")
-  }
+  
 
   return (
     <div className="container">

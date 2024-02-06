@@ -1,9 +1,10 @@
-import React from 'react';
-import {useEffect, useState } from 'react';
+
+import React,{useEffect, useState } from 'react';
 import  axios from 'axios';
 import dummy from '../dummy.json';
 import Navbar from './Navbar.jsx';
 import Comments from './Comments.jsx';
+import './Version.css';
 
 
 
@@ -13,30 +14,40 @@ import Comments from './Comments.jsx';
 
 const Version = () => {
 
-    const [versionPaperId, setVersionPaperId] = useState('')
+   
 
+    const [allPapers, setAllPapers] = useState([]);
+    const [versionPaperId, setVersionPaperId] = useState([])
 
+    
+   
 
+    const authorId = localStorage.getItem('authorId');
+    
     useEffect( () => {
-    const fetchUserData = async() =>{
-        try {
-            const authorId = localStorage.get()
-            const response  = await axios.get(`http://localhost:8080/paper/all`, {
-                headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`
-                }
-            })
-            console.log(response.data)
-            setVersionPaperId(response.data)
-        } catch(errror){
-            //print("invalid user")
+
+        //fetch author user id from local data (implement encryption later?)
+        
+
+
+        const fetchUserData = async() =>{
+            try {
+                 
+                const response  = await axios.get(`http://localhost:8080/paper/author/${authorId}`, {
+                    headers: {
+                        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`
+                    }
+                })
+                console.log(response.data)
+                setAllPapers(response.data)
+            } catch(errror){
+                //print("invalid user")
+            }
         }
-    }
 
-    fetchUserData();
+        fetchUserData();
 
-},[]);
-
+    },[]);
 
 
 
@@ -51,47 +62,77 @@ const Version = () => {
 
     const [versionPapers, setVersionPapers] = useState([]);
 
-    const [selectedPaper, setSelectedPaper] = useState([]);
+    const [selectedPaperVersion, setSelectedPaperVersion] = useState([]);
     
     
     useEffect( () => {
     
         const fetchUserData = async() =>{
+            
             try {
-                const response  = await axios.get(`http://localhost:8080/version/${versionPaperId}`, {
+                const response  = await axios.get(`http://localhost:8080/version/all/${versionPaperId}`, {
                     headers: {
                         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`
                     }
+                    
                 })
-                console.log(response.data)
                 setVersionPapers(response.data)
+                console.log('the versions of the selected paper are: ' + response.data)
+                
             } catch(error){
-                console.log(error);
+                
+                console.log(error)
             }
         
         }
-    },[])
+        fetchUserData();
+    },[versionPaperId])
     
     
     const handleDropdownChange = (e) => {
-        setSelectedOption(e.target.value);
-        setSelectedPaper(e.target.value);
+        console.log(e.target.value)
+        
+        setSelectedPaperVersion(e.target.value);
+        
     }
     
-    const [selectedOption, setSelectedOption] = useState('');
+  
 
+    const handleDropdownChangePapers = (e) => {
+       console.log('selected version id is :' + e.target.value)
+        setVersionPaperId(e.target.value);
+        setSelectedPaperVersion('');
     
+    } 
+
+
 
 
     return (
-        <div>
+        <div className='container'>
             <Navbar />
+
+            <h1>Select Paper</h1>
+            <div className='dropdown--div'>  
+                    <select id="dropdown" value={versionPaperId} onChange={handleDropdownChangePapers}>
+                    <option value=''>Select a paper</option>  
+                        {allPapers.map((option) =>(
+                            <option key={option.id} value={option.id}>
+                                {option.title}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+
+
+
             <h1>Version History</h1>
             <div className='dropdown--div'>  
-                    <select id="dropdown" value={selectedOption} onChange={handleDropdownChange}>
+                    <select id="dropdown" value={selectedPaperVersion} onChange={handleDropdownChange}>
                     <option value=''>Select a paper</option>  
-                        {versionPapers.map((option, index) => option.approved === false && (
-                            <option key={index} value={option.title}>
+                        {versionPapers.map((option) =>  (
+                            <option key={option.versionId} value={option.versionId}>
                                 {option.title}
                             </option>
                         ))}
@@ -99,7 +140,7 @@ const Version = () => {
                 </div>
 
                 <div>
-                    <Comments versionId={selectedPaper.versionId} />
+                    <Comments paperId ={versionPaperId} versionId={selectedPaperVersion} />
 
                 </div>
 

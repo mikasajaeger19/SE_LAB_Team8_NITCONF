@@ -17,6 +17,7 @@ public class CommentsController {
 
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
     private VersionRepository versionRepository;
 
     /**
@@ -30,6 +31,7 @@ public class CommentsController {
     public @ResponseBody String addNewComment(@RequestBody String comment, @PathVariable Integer versionId) {
         Version existingVersion = versionRepository.findByVersionId(versionId);
         existingVersion.setComments(comment);
+        versionRepository.save(existingVersion);
         // Uncomment the following line if you have a commentRepository to save comments
         // commentRepository.save(comment);
         return "Saved";
@@ -61,7 +63,7 @@ public class CommentsController {
      * @param versionId The ID of the version for which comments are retrieved.
      * @return Iterable of comments for the specified version.
      */
-    @GetMapping(path = "/{versionId}")
+    @GetMapping(path = "/version/{versionId}")
     public @ResponseBody Iterable<String> getCommentsForVersion(@PathVariable Integer versionId) {
         // Assuming there is a method in the versionRepository to find comments by versionId
         return versionRepository.findCommentsByVersionId(versionId);
@@ -73,7 +75,7 @@ public class CommentsController {
      * @param paperId The ID of the paper for which comments are retrieved.
      * @return Iterable of comments for the specified paper.
      */
-    @GetMapping(path = "/{paperId}")
+    @GetMapping(path = "/paper/{paperId}")
     public @ResponseBody Iterable<String> getCommentsForPaper(@PathVariable Integer paperId) {
         // Assuming there is a method in the versionRepository to find comments by paperId
         return versionRepository.findCommentsByPaperId(paperId);
