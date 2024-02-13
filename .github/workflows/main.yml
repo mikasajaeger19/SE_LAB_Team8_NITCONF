@@ -26,11 +26,7 @@ jobs:
            java-version: 21
 
       - name: Build project with Maven
-
-        run: cd demo 
-             mvn -B package 
-
+        run: cd demo && mvn -B package 
+  
       - name: Run tests
-
-        run: cd demo 
-             mvn test
+        run: cd demo && mvn test
