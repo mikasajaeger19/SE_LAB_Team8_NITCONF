@@ -49,7 +49,7 @@ const Reupload = () => {
                 const authorId = localStorage.getItem('authorId');
                 const response  = await axios.get(`http://localhost:8080/paper/author/${authorId}`, {
                   headers: {
-                      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
                   }
               })
                 

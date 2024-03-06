@@ -15,7 +15,7 @@ const Comments = (props) =>{
         try {
           const response = await axios.get(`http://localhost:8080/comments/version/${versionId}`, {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWVlbV9iMjEwNDc0Y3NAbml0Yy5hYy5pbiIsImlhdCI6MTcwNjU5NjMwOCwiZXhwIjoxNzA3NjM1NTM3fQ.SJF7Vapwc6sMO4ouPnRjaDjhf5STQtNlnnRsunxrumk`,
+              Authorization: 'Bearer ' + localStorage.getItem('token')
             },
           });
           console.log(response.data!==null ? 'response data is : ' + response.data : 'no data');
