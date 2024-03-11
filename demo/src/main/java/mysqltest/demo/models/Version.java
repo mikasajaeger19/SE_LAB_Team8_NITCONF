@@ -1,113 +1,79 @@
 package mysqltest.demo.models;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-
-
-@Entity
+@Document(collection = "versions")
 public class Version {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer versionId;
+    @Id
+    private String versionId;
 
-  private String title;
-  private String abstractUrl;
-  private String comments;
-  private LocalDate releaseDate;
+    private String title;
+    private String abstractUrl;
+    private String comments;
+    private LocalDate releaseDate;
 
-  private Integer paperId;
+    private String paperId; // Changed to String to store ObjectId
 
-  // @ManyToOne
-  // private Paper paper;
+    public Version() {
+        // Default constructor required by Spring Data MongoDB
+    }
 
-  public Version() {
-    // Default constructor required by JPA
-  }
+    public Version(String title, String abstractUrl, String comments, LocalDate releaseDate, String paperId) {
+        this.title = title;
+        this.abstractUrl = abstractUrl;
+        this.comments = comments;
+        this.releaseDate = releaseDate;
+        this.paperId = paperId;
+    }
 
-  public Version(String title, String abstractUrl, String comments, LocalDate releaseDate, Integer paperId) {
-    this.title = title;
-    this.abstractUrl = abstractUrl;
-    this.comments = comments;
-    this.releaseDate = releaseDate;
-    this.paperId = paperId;
-  }
+    // Getters and setters
+    public String getId() {
+        return versionId;
+    }
 
-  // Getter and Setter methods for all fields
+    public void setId(String id) {
+        this.versionId = id;
+    }
 
-  public Integer getVersionId() {
-    return versionId;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public void setVersionId(Integer versionId) {
-    this.versionId = versionId;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public String getAbstractUrl() {
+        return abstractUrl;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setAbstractUrl(String abstractUrl) {
+        this.abstractUrl = abstractUrl;
+    }
 
-  public String getAbstractUrl() {
-    return abstractUrl;
-  }
+    public String getComments() {
+        return comments;
+    }
 
-  public void setAbstractUrl(String abstractUrl) {
-    this.abstractUrl = abstractUrl;
-  }
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
 
-  // public String[] getComments() {
-  //   return comments;
-  // }
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
 
-//   public void setComments(String comment) {
-//     // Check if comments array is null
-//     if (this.comments == null) {
-//         this.comments = new String[]{comment};
-//     } else {
-//         // Create a new array with increased size
-//         String[] newComments = new String[this.comments.length + 1];
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
 
-//         // Copy existing comments to the new array
-//         System.arraycopy(this.comments, 0, newComments, 0, this.comments.length);
+    public String getPaperId() {
+        return paperId;
+    }
 
-//         // Append the new comment to the end of the array
-//         newComments[this.comments.length] = comment;
-
-//         // Update the comments array
-//         this.comments = newComments;
-//     }
-// }
-
-  public String getComments() {
-    return comments;
-  }
-
-  public void setComments(String comments) {
-    this.comments = comments;
-  }
-
-  public LocalDate getReleaseDate() {
-    return releaseDate;
-  }
-
-  public void setReleaseDate(LocalDate releaseDate) {
-    this.releaseDate = releaseDate;
-  }
-
-  public Integer getPaper() {
-    return paperId;
-  }
-
-  public void setPaper(Integer paperId) {
-    this.paperId = paperId;
-  }
-
+    public void setPaperId(String paperId) {
+        this.paperId = paperId;
+    }
 }

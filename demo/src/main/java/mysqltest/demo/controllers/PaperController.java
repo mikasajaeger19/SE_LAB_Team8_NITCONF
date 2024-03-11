@@ -1,5 +1,4 @@
 package mysqltest.demo.controllers;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +36,7 @@ public class PaperController {
         version.setReleaseDate(paper.getUploadDate());
         version.setComments(null);
         paperRepository.save(paper);
-        version.setPaper(paper.getId());
+        version.setPaperId(paper.getId()); // Change to use the ID directly
         versionRepository.save(version);
         
         return "Saved";
@@ -50,8 +49,8 @@ public class PaperController {
      * @return The retrieved Paper.
      */
     @GetMapping(path = "/{paperId}")
-    public @ResponseBody Paper getPaper(@PathVariable Integer paperId) {
-        return paperRepository.findByPaperId(paperId);
+    public @ResponseBody Paper getPaper(@PathVariable String paperId) { // Change the parameter type to String
+        return paperRepository.findById(paperId).orElse(null);
     }
 
     /**
@@ -62,29 +61,19 @@ public class PaperController {
      * @return A String indicating the result of the operation.
      */
     @PutMapping(path = "/update/{paperId}")
-    public @ResponseBody String updatePaper(@RequestBody Paper paper, @PathVariable Integer paperId) {
+    public @ResponseBody String updatePaper(@RequestBody Paper paper, @PathVariable String paperId) { // Change the parameter type to String
         Paper existingPaper = paperRepository.findByPaperId(paperId);
 
         if (existingPaper != null) {
-            
-
             // Update fields of the existing paper with the values from the request
-            if (paper.getTitle() != null)
-                existingPaper.setTitle(paper.getTitle());
-            if (paper.getApproved() != null)
-                existingPaper.setApproved(paper.getApproved());
-            if (paper.getShortdesc() != null)
-                existingPaper.setShortdesc(paper.getShortdesc());
-            if (paper.getAbstractUrl() != null)
-                existingPaper.setAbstractUrl(paper.getAbstractUrl());
-            if (paper.getTags() != null)
-                existingPaper.setTags(paper.getTags());
-            if (paper.getUploadDate() != null)
-                existingPaper.setUploadDate(paper.getUploadDate());
-            if (paper.getAuthorId() != null)
-                existingPaper.setAuthorId(paper.getAuthorId());
-            if (paper.getId() != null)
-                existingPaper.setId(paperId);
+            existingPaper.setTitle(paper.getTitle());
+            existingPaper.setApproved(paper.getApproved());
+            existingPaper.setShortdesc(paper.getShortdesc());
+            existingPaper.setAbstractUrl(paper.getAbstractUrl());
+            existingPaper.setTags(paper.getTags());
+            existingPaper.setUploadDate(paper.getUploadDate());
+            existingPaper.setAuthorId(paper.getAuthorId());
+            // Don't update ID for an existing entity
 
             // Save the updated paper
             paperRepository.save(existingPaper);
@@ -95,9 +84,8 @@ public class PaperController {
             newVersion.setTitle(existingPaper.getTitle());
             newVersion.setReleaseDate(existingPaper.getUploadDate());
             newVersion.setComments(null);  // You may want to add comments from the request if needed
-            newVersion.setPaper(existingPaper.getId());
+            newVersion.setPaperId(existingPaper.getId()); // Change to use the ID directly
             versionRepository.save(newVersion);
-
 
             return "Paper Updated";
         } else {
@@ -133,7 +121,7 @@ public class PaperController {
      * @return Iterable of Papers authored by the specified user.
      */
     @GetMapping(path = "/author/{id}")
-    public @ResponseBody Iterable<Paper> getPaperById(@PathVariable Integer id) {
+    public @ResponseBody Iterable<Paper> getPaperById(@PathVariable String id) {
         return paperRepository.findByAuthorId(id);
     }
 }

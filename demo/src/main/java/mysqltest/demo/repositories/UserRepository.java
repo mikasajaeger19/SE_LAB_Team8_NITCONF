@@ -1,19 +1,14 @@
 package mysqltest.demo.repositories;
 
-import java.util.Optional;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
 
 import mysqltest.demo.models.User;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
-
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends MongoRepository<User, Integer> {
     
     Optional<User> findByEmail(String email);
 
-    @Query("SELECT u FROM User u WHERE u.id = :userId")
-    User findByUserId(Integer userId);
+    User findByUserId(Integer userId); // Spring Data MongoDB supports method naming conventions
 }

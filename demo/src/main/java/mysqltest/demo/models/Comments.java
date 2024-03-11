@@ -1,41 +1,37 @@
 package mysqltest.demo.models;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
+@Document(collection = "comments")
 public class Comments {
-  @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  private Integer commentId;
+    @Id
+    private String commentId;
 
-  private String comment;
+    private String comment;
 
-  private Integer paperId;
+    private String paperId;
 
-  public Integer getCommentId() {
-    return commentId;
-  }
+    public String getId() {
+        return commentId;
+    }
 
-  public void setCommentId(Integer commentId) {
-    this.commentId = commentId;
-  }
+    public void setId(String id) {
+        this.commentId = id;
+    }
 
-  public String getComment() {
-    return comment;
-  }
+    public String getComment() {
+        return comment;
+    }
 
-  public void setComment(String comment) {
-    this.comment = comment;
-  }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-  public Integer getPaperId() {
-    return paperId;
-  }
+    public String getPaperId() {
+        return paperId;
+    }
 
-  public void setPaperId(Integer paperId) {
-    this.paperId = paperId;
-  }
+    public void setPaperId(String paperId) {
+        this.paperId = paperId;
+    }
 }

@@ -28,7 +28,7 @@ public class CommentsController {
      * @return A string indicating the status of the operation.
      */
     @PostMapping(path = "/add/{versionId}")
-    public @ResponseBody String addNewComment(@RequestBody String comment, @PathVariable Integer versionId) {
+    public @ResponseBody String addNewComment(@RequestBody String comment, @PathVariable String versionId) {
         Version existingVersion = versionRepository.findByVersionId(versionId);
         existingVersion.setComments(comment);
         versionRepository.save(existingVersion);
@@ -64,7 +64,7 @@ public class CommentsController {
      * @return Iterable of comments for the specified version.
      */
     @GetMapping(path = "/version/{versionId}")
-    public @ResponseBody Iterable<String> getCommentsForVersion(@PathVariable Integer versionId) {
+    public @ResponseBody Iterable<String> getCommentsForVersion(@PathVariable String versionId) {
         // Assuming there is a method in the versionRepository to find comments by versionId
         return versionRepository.findCommentsByVersionId(versionId);
     }
@@ -76,7 +76,7 @@ public class CommentsController {
      * @return Iterable of comments for the specified paper.
      */
     @GetMapping(path = "/paper/{paperId}")
-    public @ResponseBody Iterable<String> getCommentsForPaper(@PathVariable Integer paperId) {
+    public @ResponseBody Iterable<String> getCommentsForPaper(@PathVariable String paperId) {
         // Assuming there is a method in the versionRepository to find comments by paperId
         return versionRepository.findCommentsByPaperId(paperId);
     }
