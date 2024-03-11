@@ -1,0 +1,372 @@
+openapi: "3.0.1"
+info:
+  title: "OpenAPI definition"
+  version: "v0"
+servers:
+  - url: "http://localhost:8080"
+    description: "Generated server url"
+paths:
+  "/paper/update/{paperId}":
+    put:
+      tags:
+        - "paper-controller"
+      operationId: "updatePaper"
+      summary: "Update a paper"
+      description: "Update details of a paper specified by its ID."
+      parameters:
+        - name: "paperId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Paper"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "string"
+  "/demo/update":
+    put:
+      tags:
+        - "main-controller"
+      operationId: "updateUserDetails"
+      summary: "Update user details"
+      description: "Update details of a user."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "string"
+  "/register":
+    post:
+      tags:
+        - "login-controller"
+      operationId: "registerUser"
+      summary: "Register a user"
+      description: "Register a new user."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/AuthenticationResponse"
+  "/paper/add":
+    post:
+      tags:
+        - "paper-controller"
+      operationId: "addNewPaper"
+      summary: "Add a new paper"
+      description: "Add a new paper to the system."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Paper"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "string"
+  "/login":
+    post:
+      tags:
+        - "login-controller"
+      operationId: "login"
+      summary: "User login"
+      description: "Authenticate and log in a user."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthenticationRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/AuthenticationResponse"
+  "/demo/add":
+    post:
+      tags:
+        - "main-controller"
+      operationId: "addNewUser"
+      summary: "Add a new user"
+      description: "Add a new user to the system."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "string"
+  "/comments/add/{versionId}":
+    post:
+      tags:
+        - "comments-controller"
+      operationId: "addNewComment"
+      summary: "Add a new comment"
+      description: "Add a new comment to a specific version."
+      parameters:
+        - name: "versionId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "string"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "string"
+  "/version/all/{paperId}":
+    get:
+      tags:
+        - "version-controller"
+      operationId: "getVersions"
+      summary: "Get all versions"
+      description: "Retrieve all versions of a paper."
+      parameters:
+        - name: "paperId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+  "/paper/{paperId}":
+    get:
+      tags:
+        - "paper-controller"
+      operationId: "getPaper"
+      summary: "Get a paper"
+      description: "Retrieve details of a paper specified by its ID."
+      parameters:
+        - name: "paperId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/Paper"
+  "/paper/author/{id}":
+    get:
+      tags:
+        - "paper-controller"
+      operationId: "getPaperById"
+      summary: "Get a paper by ID"
+      description: "Retrieve details of a paper specified by its ID."
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+  "/paper/all":
+    get:
+      tags:
+        - "paper-controller"
+      operationId: "getAllPapers"
+      summary: "Get all papers"
+      description: "Retrieve details of all papers."
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+  "/paper/":
+    get:
+      tags:
+        - "paper-controller"
+      operationId: "getMyPapers"
+      summary: "Get my papers"
+      description: "Retrieve details of papers associated with the current user."
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+  "/demo/user/{id}":
+    get:
+      tags:
+        - "main-controller"
+      operationId: "getUser"
+      summary: "Get a user"
+      description: "Retrieve details of a user specified by its ID."
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/User"
+  "/demo/all":
+    get:
+      tags:
+        - "main-controller"
+      operationId: "getAllUsers"
+      summary: "Get all users"
+      description: "Retrieve details of all users."
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+  "/demo/":
+    get:
+      tags:
+        - "main-controller"
+      operationId: "hello"
+      summary: "Demo endpoint"
+      description: "A demo endpoint."
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/User"
+  "/comments/version/{versionId}":
+    get:
+      tags:
+        - "comments-controller"
+      operationId: "getCommentsForVersion"
+      summary: "Get comments for a version"
+      description: "Retrieve comments for a specific version."
+      parameters:
+        - name: "versionId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+  "/comments/paper/{paperId}":
+    get:
+      tags:
+        - "comments-controller"
+      operationId: "getCommentsForPaper"
+      summary: "Get comments for a paper"
+      description: "Retrieve comments for a specific paper."
+      parameters:
+        - name: "paperId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+  "/comments/all":
+    get:
+      tags:
+        - "comments-controller"
+      operationId: "getAllComments"
+      summary: "Get all comments"
+      description: "Retrieve details of all comments."
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+  "/comments/":
+    get:
+      tags:
+        - "comments-controller"
+      operationId: "hello_1"
+      summary: "Comments endpoint"
+      description: "An endpoint for comments."
+      responses:
+        "200":
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "string"
