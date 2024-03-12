@@ -25,7 +25,7 @@ const LoginForm = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
-        localStorage.setItem('authorId',parseInt(res.data.id))
+        localStorage.setItem('authorId',res.data.id)
         navigate("/dashboard");
       })
       .catch((err) => {

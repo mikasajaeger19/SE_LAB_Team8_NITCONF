@@ -31,7 +31,7 @@ const Reupload = () => {
         abstractUrl: '',
         tags: '',
         uploadDate: uploadDate,
-        authorId : parseInt(authorId)
+        authorId : authorId
       });
     
       const navigate = useNavigate();
