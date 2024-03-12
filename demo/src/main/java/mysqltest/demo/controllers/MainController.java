@@ -32,7 +32,7 @@ public class MainController {
     }
 
     @GetMapping(path = "/user/{id}")
-    public @ResponseBody User getUser(@PathVariable Integer id) {
+    public @ResponseBody User getUser(@PathVariable String id) {
         return userRepository.findById(id).orElse(null);
     }
 
