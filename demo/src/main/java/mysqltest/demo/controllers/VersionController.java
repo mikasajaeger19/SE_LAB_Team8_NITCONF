@@ -25,7 +25,7 @@ public class VersionController {
      * @return Iterable<Version>
      */
     @GetMapping(path="/all/{paperId}")
-    public @ResponseBody Iterable<Version> getVersions(@PathVariable Integer paperId) {
+    public @ResponseBody Iterable<Version> getVersions(@PathVariable String paperId) {
         return versionRepository.findByPaperId(paperId);
     }
 
