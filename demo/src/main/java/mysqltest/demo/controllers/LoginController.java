@@ -38,7 +38,7 @@ public class LoginController {
      */
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> registerUser(@RequestBody RegisterRequest user) {
-        if (user.getEmail() == null || user.getPassword() == null || user.getAltEmail() == null || user.getName() == null)
+        if (user.getEmail() == null || user.getPassword() == null || user.getName() == null)
             return ResponseEntity.badRequest().build();
 
         Optional<User> userExists = userRepo.findByEmail(user.getEmail());

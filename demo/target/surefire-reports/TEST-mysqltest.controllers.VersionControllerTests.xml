@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="mysqltest.demo.DemoApplicationTests" time="3.327" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="mysqltest.controllers.VersionControllerTests" time="0.26" tests="1" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -63,10 +63,18 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="contextLoads" classname="mysqltest.demo.DemoApplicationTests" time="0.003">
-    <system-out><![CDATA[2024-03-12T14:32:49.372+05:30  INFO 25244 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [mysqltest.demo.DemoApplicationTests]: DemoApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-03-12T14:32:49.413+05:30  INFO 25244 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration mysqltest.demo.DemoApplication for test class mysqltest.demo.DemoApplicationTests
-
+  <testcase name="testGetVersions" classname="mysqltest.controllers.VersionControllerTests" time="0.0">
+    <failure message="Status expected:&lt;200&gt; but was:&lt;401&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<200> but was:<401>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at mysqltest.controllers.VersionControllerTests.testGetVersions(VersionControllerTests.java:51)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -75,16 +83,49 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.2)
 
-2024-03-12T14:32:49.445+05:30  INFO 25244 --- [           main] mysqltest.demo.DemoApplicationTests      : Starting DemoApplicationTests using Java 21.0.2 with PID 25244 (started by naeem in C:\Users\naeem\Desktop\testing\SE_LAB_Team8_NITCONF\demo)
-2024-03-12T14:32:49.445+05:30  INFO 25244 --- [           main] mysqltest.demo.DemoApplicationTests      : No active profile set, falling back to 1 default profile: "default"
-2024-03-12T14:32:50.023+05:30  INFO 25244 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2024-03-12T14:32:50.088+05:30  INFO 25244 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 4 MongoDB repository interfaces.
-2024-03-12T14:32:51.230+05:30  INFO 25244 --- [           main] org.mongodb.driver.client                : MongoClient with metadata {"application": {"name": "Cluster0"}, "driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 11", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/21.0.2+13-LTS-58"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=majority, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=null, userName='naeem', source='admin', password=<hidden>, mechanismProperties=<hidden>}, transportSettings=null, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@4ea43d4d, com.mongodb.Jep395RecordCodecProvider@6f22c1f1, com.mongodb.KotlinCodecProvider@2ee095c9]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[127.0.0.1:27017], srvHost=cluster0.9c3derz.mongodb.net, srvServiceName=mongodb, mode=MULTIPLE, requiredClusterType=REPLICA_SET, requiredReplicaSetName='atlas-dvtoas-shard-0', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=true, invalidHostNameAllowed=false, context=null}, applicationName='Cluster0', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
-2024-03-12T14:32:51.797+05:30  INFO 25244 --- [erz.mongodb.net] org.mongodb.driver.cluster               : Adding discovered server ac-msmrhx0-shard-00-02.9c3derz.mongodb.net:27017 to client view of cluster
-2024-03-12T14:32:51.867+05:30  INFO 25244 --- [erz.mongodb.net] org.mongodb.driver.cluster               : Adding discovered server ac-msmrhx0-shard-00-00.9c3derz.mongodb.net:27017 to client view of cluster
-2024-03-12T14:32:51.867+05:30  INFO 25244 --- [erz.mongodb.net] org.mongodb.driver.cluster               : Adding discovered server ac-msmrhx0-shard-00-01.9c3derz.mongodb.net:27017 to client view of cluster
-2024-03-12T14:32:52.261+05:30  INFO 25244 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@cbc3bf3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31f9f9b3, org.springframework.security.web.context.SecurityContextHolderFilter@618e7761, org.springframework.security.web.header.HeaderWriterFilter@30e15628, org.springframework.web.filter.CorsFilter@7730da00, org.springframework.security.web.authentication.logout.LogoutFilter@30ca66c5, mysqltest.demo.config.JwtAuthFilter@52d01430, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5b643d6e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@34f8ce89, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3fdede3a, org.springframework.security.web.session.SessionManagementFilter@55d87b73, org.springframework.security.web.access.ExceptionTranslationFilter@34001c5d, org.springframework.security.web.access.intercept.AuthorizationFilter@792b9dd3]
-2024-03-12T14:32:52.693+05:30  INFO 25244 --- [           main] mysqltest.demo.DemoApplicationTests      : Started DemoApplicationTests in 3.272 seconds (process running for 8.031)
+2024-03-12T14:32:49.193+05:30  INFO 25244 --- [           main] m.controllers.VersionControllerTests     : Starting VersionControllerTests using Java 21.0.2 with PID 25244 (started by naeem in C:\Users\naeem\Desktop\testing\SE_LAB_Team8_NITCONF\demo)
+2024-03-12T14:32:49.193+05:30  INFO 25244 --- [           main] m.controllers.VersionControllerTests     : No active profile set, falling back to 1 default profile: "default"
+2024-03-12T14:32:49.282+05:30  INFO 25244 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4d4df0f4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@74f4a2ba, org.springframework.security.web.context.SecurityContextHolderFilter@2ba024cb, org.springframework.security.web.header.HeaderWriterFilter@ba4f370, org.springframework.security.web.csrf.CsrfFilter@d0b814d, org.springframework.security.web.authentication.logout.LogoutFilter@6684f7f2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4cecc15a, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@30ec211a, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5e385b6f, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@d969452, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7af0d91b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1c7f6e96, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@67b560fe, org.springframework.security.web.access.ExceptionTranslationFilter@6ce15112, org.springframework.security.web.access.intercept.AuthorizationFilter@505d2bac]
+2024-03-12T14:32:49.306+05:30  INFO 25244 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-03-12T14:32:49.306+05:30  INFO 25244 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-03-12T14:32:49.350+05:30  INFO 25244 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 44 ms
+2024-03-12T14:32:49.356+05:30  INFO 25244 --- [           main] m.controllers.VersionControllerTests     : Started VersionControllerTests in 0.236 seconds (process running for 4.699)
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /version/all/1
+       Parameters = {}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {SPRING_SECURITY_SAVED_REQUEST=DefaultSavedRequest [http://localhost/version/all/1?continue]}
+
+Handler:
+             Type = null
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 401
+    Error message = Unauthorized
+          Headers = [WWW-Authenticate:"Basic realm="Realm"", X-Content-Type-Options:"nosniff", X-XSS-Protection:"0", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
 ]]></system-out>
   </testcase>
 </testsuite>

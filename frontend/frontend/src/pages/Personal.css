@@ -1,62 +1,68 @@
 /* Personal.css */
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-  }
-  
-  .div {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .heading {
-    color: #333;
-  }
-  
-  .underlinecont {
-    margin: 20px auto;
-  }
-  
-  .underline {
-    width: 80px;
-    height: 4px;
-    background-color: lightgreen;
-    margin: auto;
-  }
-  
-  .pfp {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin: 20px auto;
-  }
-  
-  .information {
-    font-size: 16px;
-    margin: 8px 0;
-  }
-  
-  .homebuttom,
-  .editpage {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-  }
-  
-  .homebuttom:hover,
-  .editpage:hover {
-    background-color: #45a049;
-  }
-  
+
+.div {
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.heading {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.underlinecont {
+  margin: 20px auto;
+}
+
+.underline {
+  align-self: auto  ;
+  width: 400px;
+  height: 4px;
+  background-color: lightgreen;
+  margin: auto;
+}
+
+.pfp {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+
+.label {
+  font-weight: bold; /* Make the label text bold */
+  color: #555; /* Change label text color */
+}
+
+.value {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #333; /* Change value text color */
+}
+
+.homebutton,
+.editpage {
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.homebutton:hover,
+.editpage:hover {
+  background-color: #45a049;
+}
+

@@ -3,6 +3,7 @@ import { useState,useEffect } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Navbar from './Navbar.jsx'
+import './Personal.css'
 
 
 export const Personal = () => {
@@ -44,11 +45,10 @@ export const Personal = () => {
         <div className = 'underlinecont'>
         <p className = 'underline'> </p>
         </div>
-        <img  className = 'pfp' src = {userData.pfp} alt = 'not loaded'/>
         <p className='information'>Name : {userData.name}</p>
         <p className='information'>Email : {userData.email}</p>
-        <p className='information'>Phone : {userData.phone}</p>
-        <p className='information'>Alt email : {userData.alt}</p>
+        <p className='information'>Phone :  8861796877 {userData.phone}</p>
+        <p className='information'>Alt email : {userData.altEmail}</p>
         <h2><Link className = 'homebuttom' to = '/dashboard'>Go to Dashboard</Link></h2>
         <h2><Link className = 'editpage' to = '/editdetails'>Edit Details</Link></h2>
         

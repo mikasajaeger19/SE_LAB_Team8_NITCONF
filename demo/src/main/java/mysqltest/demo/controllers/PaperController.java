@@ -124,4 +124,5 @@ public class PaperController {
     public @ResponseBody Iterable<Paper> getPaperById(@PathVariable String id) {
         return paperRepository.findByAuthorId(id);
     }
+
 }
