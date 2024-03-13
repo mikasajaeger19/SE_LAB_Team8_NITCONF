@@ -5,6 +5,8 @@ import dummy from '../dummy.json';
 import Navbar from './Navbar.jsx';
 import Comments from './Comments.jsx';
 import './Version.css';
+import { useNavigate } from 'react-router-dom';
+import Card from '../components/Card.jsx';
 
 
 
@@ -123,21 +125,29 @@ const Version = () => {
                         ))}
                     </select>
                 </div>
+                
 
+                <div className='version--cards'>
+                    {versionPapers.map((version) => (
+                        <div key={version.id}>
+                        <Card
+                            key={version.id} 
+                            title={version.title}
+                            abstractUrl={version.abstractUrl}
+                            status={version.approved}
+                            uploadDate={version.uploadDate}
+                            paperId={version.paperId}
+                        />
+                        <button onClick={handleDropdownChange} value={version.id}>View Comments</button>
+                        </div>
+                    ))}
 
-
-
-            <h1>Version History</h1>
-            <div className='dropdown--div'>  
-                    <select id="dropdown" value={selectedPaperVersion} onChange={handleDropdownChange}>
-                    <option value=''>Select a paper</option>  
-                        {versionPapers.map((option) =>  (
-                            <option key={option.versionId} value={option.versionId}>
-                                {option.title}
-                            </option>
-                        ))}
-                    </select>
                 </div>
+                
+                
+
+
+            
 
                 <div>
                     <Comments paperId ={versionPaperId} versionId={selectedPaperVersion} />

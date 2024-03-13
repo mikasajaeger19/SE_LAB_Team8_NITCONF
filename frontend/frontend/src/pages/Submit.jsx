@@ -51,6 +51,7 @@ const Submit = () => {
         }
       
         try {
+          console.log(localStorage.getItem('token'))
           const response = await axios.post(
             `http://localhost:8080/paper/add`,
             submission,
@@ -64,7 +65,7 @@ const Submit = () => {
           navigate('/dashboard');
           alert('Abstract submitted successfully!');
         } catch (error) {
-          console.error('Error submitting abstract:', error);
+          console.error('Error submitting abstract:', error.response.data);
         }
       };
 
