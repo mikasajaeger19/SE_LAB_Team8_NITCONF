@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommentsController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo</a> &gt; <a href="index.source.html" class="el_package">mysqltest.demo.controllers</a> &gt; <span class="el_source">CommentsController.java</span></div><h1>CommentsController.java</h1><pre class="source lang-java linenums">package mysqltest.demo.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import mysqltest.demo.models.Comments;
+import mysqltest.demo.repositories.CommentRepository;
+
+import mysqltest.demo.models.Version;
+import mysqltest.demo.repositories.VersionRepository;
+
+/**
+ * Controller class for managing comments on versions.
+ */
+@RestController
+@RequestMapping(path = &quot;/comments&quot;)
+<span class="fc" id="L16">public class CommentsController {</span>
+
+    @Autowired
+    private CommentRepository commentRepository;
+    @Autowired
+    private VersionRepository versionRepository;
+
+    /**
+     * Adds a new comment to a specific version.
+     *
+     * @param comment    The comment content.
+     * @param versionId  The ID of the version to which the comment is added.
+     * @return A string indicating the status of the operation.
+     */
+    @PostMapping(path = &quot;/add/{versionId}&quot;)
+    public @ResponseBody String addNewComment(@RequestBody String comment, @PathVariable String versionId) {
+<span class="nc" id="L32">        Version existingVersion = versionRepository.findByVersionId(versionId);</span>
+<span class="nc" id="L33">        existingVersion.setComments(comment);</span>
+<span class="nc" id="L34">        versionRepository.save(existingVersion);</span>
+        // Uncomment the following line if you have a commentRepository to save comments
+        // commentRepository.save(comment);
+<span class="nc" id="L37">        return &quot;Saved&quot;;</span>
+    }
+
+    /**
+     * Returns a greeting message.
+     *
+     * @return A greeting message.
+     */
+    @GetMapping(path = &quot;/&quot;)
+    public String hello() {
+<span class="nc" id="L47">        return &quot;Hello World&quot;;</span>
+    }
+
+    /**
+     * Retrieves all comments.
+     *
+     * @return Iterable of all comments.
+     */
+    @GetMapping(path = &quot;/all&quot;)
+    public @ResponseBody Iterable&lt;Comments&gt; getAllComments() {
+<span class="nc" id="L57">        return commentRepository.findAll();</span>
+    }
+
+    /**
+     * Retrieves comments for a specific version.
+     *
+     * @param versionId The ID of the version for which comments are retrieved.
+     * @return Iterable of comments for the specified version.
+     */
+    @GetMapping(path = &quot;/version/{versionId}&quot;)
+    public @ResponseBody Iterable&lt;String&gt; getCommentsForVersion(@PathVariable String versionId) {
+        // Assuming there is a method in the versionRepository to find comments by versionId
+<span class="nc" id="L69">        return versionRepository.findCommentsByVersionId(versionId);</span>
+    }
+
+    /**
+     * Retrieves comments for a specific paper.
+     *
+     * @param paperId The ID of the paper for which comments are retrieved.
+     * @return Iterable of comments for the specified paper.
+     */
+    @GetMapping(path = &quot;/paper/{paperId}&quot;)
+    public @ResponseBody Iterable&lt;String&gt; getCommentsForPaper(@PathVariable String paperId) {
+        // Assuming there is a method in the versionRepository to find comments by paperId
+<span class="nc" id="L81">        return versionRepository.findCommentsByPaperId(paperId);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

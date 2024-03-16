@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TagController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo</a> &gt; <a href="index.source.html" class="el_package">mysqltest.demo.controllers</a> &gt; <span class="el_source">TagController.java</span></div><h1>TagController.java</h1><pre class="source lang-java linenums">package mysqltest.demo.controllers;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import mysqltest.demo.models.Tags;
+import mysqltest.demo.repositories.TagRepository;
+import mysqltest.demo.repositories.PaperRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(path = &quot;/tag&quot;)
+<span class="fc" id="L13">public class TagController{</span>
+
+    @Autowired
+    private TagRepository tagRepository;
+    @Autowired
+    private PaperRepository paperRepository;
+
+    @PostMapping(path = &quot;/add&quot;)
+    public @ResponseBody String addNewTag(@RequestBody Tags tag) {
+<span class="nc" id="L22">        tagRepository.save(tag);</span>
+<span class="nc" id="L23">        return &quot;Saved&quot;;</span>
+    }
+
+    @GetMapping(path = &quot;/{tagId}&quot;)
+    public @ResponseBody Tags getTag(@PathVariable String tagId) {
+<span class="nc" id="L28">        return tagRepository.findById(tagId).orElse(null);</span>
+    }
+
+    @GetMapping(path = &quot;/paper/{paperId}&quot;)
+    public @ResponseBody Iterable&lt;Tags&gt; getTagsByPaperId(@PathVariable String paperId) {
+<span class="nc" id="L33">        return tagRepository.findByPaperId(paperId);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PaperController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo</a> &gt; <a href="index.source.html" class="el_package">mysqltest.demo.controllers</a> &gt; <span class="el_source">PaperController.java</span></div><h1>PaperController.java</h1><pre class="source lang-java linenums">package mysqltest.demo.controllers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
+import mysqltest.demo.models.Paper;
+import mysqltest.demo.models.User;
+import mysqltest.demo.models.Version;
+import mysqltest.demo.repositories.PaperRepository;
+import mysqltest.demo.repositories.VersionRepository;
+
+/**
+ * Controller class for managing Paper-related operations.
+ */
+@RestController
+@RequestMapping(path = &quot;/paper&quot;)
+<span class="fc" id="L18">public class PaperController {</span>
+
+    @Autowired
+    private PaperRepository paperRepository;
+    @Autowired
+    private VersionRepository versionRepository;
+
+    /**
+     * Adds a new Paper to the system.
+     *
+     * @param paper The Paper to be added.
+     * @return A String indicating the result of the operation.
+     */
+    @PostMapping(path = &quot;/add&quot;)
+    public ResponseEntity&lt;Paper&gt; addNewPaper(@RequestBody Paper paper) {
+        // @ResponseBody means the returned String is the response, not a view name
+<span class="fc" id="L34">        Version version = new Version();</span>
+<span class="fc" id="L35">        version.setAbstractUrl(paper.getAbstractUrl());</span>
+<span class="fc" id="L36">        version.setTitle(paper.getTitle());</span>
+<span class="fc" id="L37">        version.setReleaseDate(paper.getUploadDate());</span>
+<span class="fc" id="L38">        version.setComments(null);</span>
+<span class="fc" id="L39">        paperRepository.save(paper);</span>
+<span class="fc" id="L40">        version.setPaperId(paper.getId()); // Change to use the ID directly</span>
+<span class="fc" id="L41">        versionRepository.save(version);</span>
+        
+<span class="fc" id="L43">        return ResponseEntity.ok(paper);</span>
+    }
+
+    /**
+     * Retrieves a Paper by its ID.
+     *
+     * @param paperId The ID of the Paper to retrieve.
+     * @return The retrieved Paper.
+     */
+    @GetMapping(path = &quot;/{paperId}&quot;)
+    public ResponseEntity &lt;Paper&gt; getPaper(@PathVariable String paperId) { // Change the parameter type to String
+<span class="nc" id="L54">        Paper result =  paperRepository.findById(paperId).orElse(null);</span>
+<span class="nc" id="L55">        return ResponseEntity.ok(result);</span>
+    }
+
+    /**
+     * Updates an existing Paper with the provided information.
+     *
+     * @param paper   The updated Paper information.
+     * @param paperId The ID of the Paper to be updated.
+     * @return A String indicating the result of the operation.
+     */
+    @PutMapping(path = &quot;/update/{paperId}&quot;)
+    public @ResponseBody String updatePaper(@RequestBody Paper paper, @PathVariable String paperId) { // Change the parameter type to String
+<span class="nc" id="L67">        Paper existingPaper = paperRepository.findByPaperId(paperId);</span>
+
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (existingPaper != null) {</span>
+            // Update fields of the existing paper with the values from the request
+<span class="nc" id="L71">            existingPaper.setTitle(paper.getTitle());</span>
+<span class="nc" id="L72">            existingPaper.setApproved(paper.getApproved());</span>
+<span class="nc" id="L73">            existingPaper.setShortdesc(paper.getShortdesc());</span>
+<span class="nc" id="L74">            existingPaper.setAbstractUrl(paper.getAbstractUrl());</span>
+<span class="nc" id="L75">            existingPaper.setTags(paper.getTags());</span>
+<span class="nc" id="L76">            existingPaper.setUploadDate(paper.getUploadDate());</span>
+<span class="nc" id="L77">            existingPaper.setAuthorId(paper.getAuthorId());</span>
+            // Don't update ID for an existing entity
+
+            // Save the updated paper
+<span class="nc" id="L81">            paperRepository.save(existingPaper);</span>
+
+            // Create a new version entry for the reupload
+<span class="nc" id="L84">            Version newVersion = new Version();</span>
+<span class="nc" id="L85">            newVersion.setAbstractUrl(existingPaper.getAbstractUrl());</span>
+<span class="nc" id="L86">            newVersion.setTitle(existingPaper.getTitle());</span>
+<span class="nc" id="L87">            newVersion.setReleaseDate(existingPaper.getUploadDate());</span>
+<span class="nc" id="L88">            newVersion.setComments(null);  // You may want to add comments from the request if needed</span>
+<span class="nc" id="L89">            newVersion.setPaperId(existingPaper.getId()); // Change to use the ID directly</span>
+<span class="nc" id="L90">            versionRepository.save(newVersion);</span>
+
+<span class="nc" id="L92">            return &quot;Paper Updated&quot;;</span>
+        } else {
+<span class="nc" id="L94">            return &quot;Paper not found&quot;;</span>
+        }
+    }
+
+    /**
+     * Retrieves Papers authored by the currently authenticated user.
+     *
+     * @return Iterable of Papers authored by the current user.
+     */
+    @GetMapping(path = &quot;/&quot;)
+    public ResponseEntity &lt;Iterable&lt;Paper&gt;&gt; getMyPapers() {
+<span class="nc" id="L105">        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();</span>
+<span class="nc" id="L106">        Iterable &lt;Paper&gt; result = paperRepository.findByAuthorId(currentUser.getId());</span>
+
+<span class="nc" id="L108">        return ResponseEntity.ok(result);</span>
+    }
+
+    /**
+     * Retrieves all Papers in the system.
+     *
+     * @return Iterable of all Papers.
+     */
+    @GetMapping(path = &quot;/all&quot;)
+    public ResponseEntity &lt;Iterable&lt;Paper&gt;&gt; getAllPapers() {
+<span class="fc" id="L118">        Iterable&lt;Paper&gt; result = paperRepository.findAll();</span>
+<span class="fc" id="L119">        return ResponseEntity.ok(result);</span>
+    }
+
+    /**
+     * Retrieves Papers authored by a specific user.
+     *
+     * @param id The ID of the author.
+     * @return Iterable of Papers authored by the specified user.
+     */
+    @GetMapping(path = &quot;/author/{id}&quot;)
+    public ResponseEntity &lt;Iterable&lt;Paper&gt;&gt; getPaperById(@PathVariable String id) {
+<span class="fc" id="L130">        Iterable&lt;Paper&gt; result = paperRepository.findByAuthorId(id);</span>
+<span class="fc" id="L131">        return ResponseEntity.ok(result);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
