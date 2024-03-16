@@ -1,5 +1,6 @@
 package mysqltest.demo.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class PaperController {
      * @return A String indicating the result of the operation.
      */
     @PostMapping(path = "/add")
-    public @ResponseBody String addNewPaper(@RequestBody Paper paper) {
+    public ResponseEntity<Paper> addNewPaper(@RequestBody Paper paper) {
         // @ResponseBody means the returned String is the response, not a view name
         Version version = new Version();
         version.setAbstractUrl(paper.getAbstractUrl());
@@ -39,7 +40,7 @@ public class PaperController {
         version.setPaperId(paper.getId()); // Change to use the ID directly
         versionRepository.save(version);
         
-        return "Saved";
+        return ResponseEntity.ok(paper);
     }
 
     /**
@@ -49,8 +50,9 @@ public class PaperController {
      * @return The retrieved Paper.
      */
     @GetMapping(path = "/{paperId}")
-    public @ResponseBody Paper getPaper(@PathVariable String paperId) { // Change the parameter type to String
-        return paperRepository.findById(paperId).orElse(null);
+    public ResponseEntity <Paper> getPaper(@PathVariable String paperId) { // Change the parameter type to String
+        Paper result =  paperRepository.findById(paperId).orElse(null);
+        return ResponseEntity.ok(result);
     }
 
     /**
@@ -99,9 +101,11 @@ public class PaperController {
      * @return Iterable of Papers authored by the current user.
      */
     @GetMapping(path = "/")
-    public @ResponseBody Iterable<Paper> getMyPapers() {
+    public ResponseEntity <Iterable<Paper>> getMyPapers() {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return paperRepository.findByAuthorId(currentUser.getId());
+        Iterable <Paper> result = paperRepository.findByAuthorId(currentUser.getId());
+
+        return ResponseEntity.ok(result);
     }
 
     /**
@@ -110,8 +114,9 @@ public class PaperController {
      * @return Iterable of all Papers.
      */
     @GetMapping(path = "/all")
-    public @ResponseBody Iterable<Paper> getAllPapers() {
-        return paperRepository.findAll();
+    public ResponseEntity <Iterable<Paper>> getAllPapers() {
+        Iterable<Paper> result = paperRepository.findAll();
+        return ResponseEntity.ok(result);
     }
 
     /**
@@ -121,8 +126,9 @@ public class PaperController {
      * @return Iterable of Papers authored by the specified user.
      */
     @GetMapping(path = "/author/{id}")
-    public @ResponseBody Iterable<Paper> getPaperById(@PathVariable String id) {
-        return paperRepository.findByAuthorId(id);
+    public ResponseEntity <Iterable<Paper>> getPaperById(@PathVariable String id) {
+        Iterable<Paper> result = paperRepository.findByAuthorId(id);
+        return ResponseEntity.ok(result);
     }
 
 }

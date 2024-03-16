@@ -10,6 +10,7 @@
   
   .card--left {
     flex: 1;
+    align-self: left;
   }
   .card--left > h1 {
     font-size: 40px;
