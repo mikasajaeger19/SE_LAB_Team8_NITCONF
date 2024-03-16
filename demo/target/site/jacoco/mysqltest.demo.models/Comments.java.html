@@ -3,21 +3,21 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = &quot;comments&quot;)
-<span class="nc" id="L6">public class Comments {</span>
+<span class="fc" id="L6">public class Comments {</span>
     @Id
     private String commentId;
 
     private String comment;
 
-    private String paperId;
+    private String versionId;
 
     public String getId() {
 <span class="nc" id="L15">        return commentId;</span>
     }
 
     public void setId(String id) {
-<span class="nc" id="L19">        this.commentId = id;</span>
-<span class="nc" id="L20">    }</span>
+<span class="fc" id="L19">        this.commentId = id;</span>
+<span class="fc" id="L20">    }</span>
 
     public String getComment() {
 <span class="nc" id="L23">        return comment;</span>
@@ -27,12 +27,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 <span class="nc" id="L27">        this.comment = comment;</span>
 <span class="nc" id="L28">    }</span>
 
-    public String getPaperId() {
-<span class="nc" id="L31">        return paperId;</span>
+    public String getVersionId() {
+<span class="nc" id="L31">        return versionId;</span>
     }
 
-    public void setPaperId(String paperId) {
-<span class="nc" id="L35">        this.paperId = paperId;</span>
-<span class="nc" id="L36">    }</span>
+    public void setVersionId(String versionId) {
+<span class="fc" id="L35">        this.versionId = versionId;</span>
+<span class="fc" id="L36">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

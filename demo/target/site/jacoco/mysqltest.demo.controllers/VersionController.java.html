@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.ResponseEntity;
 import mysqltest.demo.models.Version;
 import mysqltest.demo.repositories.VersionRepository;
 
 @RestController
 @RequestMapping(&quot;/version&quot;)
-<span class="fc" id="L16">public class VersionController {</span>
+<span class="fc" id="L17">public class VersionController {</span>
     
     @Autowired
     private VersionRepository versionRepository;
@@ -25,8 +26,9 @@ import mysqltest.demo.repositories.VersionRepository;
      * @return Iterable&lt;Version&gt;
      */
     @GetMapping(path=&quot;/all/{paperId}&quot;)
-    public @ResponseBody Iterable&lt;Version&gt; getVersions(@PathVariable String paperId) {
-<span class="nc" id="L29">        return versionRepository.findByPaperId(paperId);</span>
+    public ResponseEntity &lt;Iterable&lt;Version&gt;&gt; getVersions(@PathVariable String paperId) {
+<span class="fc" id="L30">            Iterable&lt;Version&gt; result = versionRepository.findByPaperId(paperId);</span>
+<span class="fc" id="L31">            return ResponseEntity.ok(result);</span>
     }
 
 }

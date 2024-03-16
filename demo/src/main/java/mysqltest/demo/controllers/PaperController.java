@@ -63,7 +63,7 @@ public class PaperController {
      * @return A String indicating the result of the operation.
      */
     @PutMapping(path = "/update/{paperId}")
-    public @ResponseBody String updatePaper(@RequestBody Paper paper, @PathVariable String paperId) { // Change the parameter type to String
+    public ResponseEntity <String> updatePaper(@RequestBody Paper paper, @PathVariable String paperId) { // Change the parameter type to String
         Paper existingPaper = paperRepository.findByPaperId(paperId);
 
         if (existingPaper != null) {
@@ -89,9 +89,9 @@ public class PaperController {
             newVersion.setPaperId(existingPaper.getId()); // Change to use the ID directly
             versionRepository.save(newVersion);
 
-            return "Paper Updated";
+            return ResponseEntity.ok("Paper Updated");
         } else {
-            return "Paper not found";
+            return ResponseEntity.ok("Paper not found");
         }
     }
 
@@ -100,24 +100,24 @@ public class PaperController {
      *
      * @return Iterable of Papers authored by the current user.
      */
-    @GetMapping(path = "/")
-    public ResponseEntity <Iterable<Paper>> getMyPapers() {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Iterable <Paper> result = paperRepository.findByAuthorId(currentUser.getId());
+    // @GetMapping(path = "/")
+    // public ResponseEntity <Iterable<Paper>> getMyPapers() {
+    //     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    //     Iterable <Paper> result = paperRepository.findByAuthorId(currentUser.getId());
 
-        return ResponseEntity.ok(result);
-    }
+    //     return ResponseEntity.ok(result);
+    // }
 
     /**
      * Retrieves all Papers in the system.
      *
      * @return Iterable of all Papers.
      */
-    @GetMapping(path = "/all")
-    public ResponseEntity <Iterable<Paper>> getAllPapers() {
-        Iterable<Paper> result = paperRepository.findAll();
-        return ResponseEntity.ok(result);
-    }
+    // @GetMapping(path = "/all")
+    // public ResponseEntity <Iterable<Paper>> getAllPapers() {
+    //     Iterable<Paper> result = paperRepository.findAll();
+    //     return ResponseEntity.ok(result);
+    // }
 
     /**
      * Retrieves Papers authored by a specific user.

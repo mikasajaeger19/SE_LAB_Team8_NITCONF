@@ -1,10 +1,9 @@
 package mysqltest.demo.controllers;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import mysqltest.demo.models.Comments;
-import mysqltest.demo.repositories.CommentRepository;
-
+// import mysqltest.demo.repositories.CommentRepository;
 import mysqltest.demo.models.Version;
 import mysqltest.demo.repositories.VersionRepository;
 
@@ -14,9 +13,6 @@ import mysqltest.demo.repositories.VersionRepository;
 @RestController
 @RequestMapping(path = "/comments")
 public class CommentsController {
-
-    @Autowired
-    private CommentRepository commentRepository;
     @Autowired
     private VersionRepository versionRepository;
 
@@ -28,13 +24,13 @@ public class CommentsController {
      * @return A string indicating the status of the operation.
      */
     @PostMapping(path = "/add/{versionId}")
-    public @ResponseBody String addNewComment(@RequestBody String comment, @PathVariable String versionId) {
+    public ResponseEntity <String> addNewComment(@RequestBody String comment, @PathVariable String versionId) {
         Version existingVersion = versionRepository.findByVersionId(versionId);
         existingVersion.setComments(comment);
         versionRepository.save(existingVersion);
         // Uncomment the following line if you have a commentRepository to save comments
         // commentRepository.save(comment);
-        return "Saved";
+        return ResponseEntity.ok("Saved");
     }
 
     /**
@@ -42,20 +38,20 @@ public class CommentsController {
      *
      * @return A greeting message.
      */
-    @GetMapping(path = "/")
-    public String hello() {
-        return "Hello World";
-    }
+    // @GetMapping(path = "/")
+    // public String hello() {
+    //     return "Hello World";
+    // }
 
     /**
      * Retrieves all comments.
      *
      * @return Iterable of all comments.
      */
-    @GetMapping(path = "/all")
-    public @ResponseBody Iterable<Comments> getAllComments() {
-        return commentRepository.findAll();
-    }
+    // @GetMapping(path = "/all")
+    // public @ResponseBody Iterable<Comments> getAllComments() {
+    //     return commentRepository.findAll();
+    // }
 
     /**
      * Retrieves comments for a specific version.
@@ -64,9 +60,10 @@ public class CommentsController {
      * @return Iterable of comments for the specified version.
      */
     @GetMapping(path = "/version/{versionId}")
-    public @ResponseBody Iterable<String> getCommentsForVersion(@PathVariable String versionId) {
+    public ResponseEntity <Iterable<String>> getCommentsForVersion(@PathVariable String versionId) {
         // Assuming there is a method in the versionRepository to find comments by versionId
-        return versionRepository.findCommentsByVersionId(versionId);
+        Iterable<String> result = versionRepository.findCommentsByVersionId(versionId);
+        return ResponseEntity.ok(result);
     }
 
     /**
@@ -75,9 +72,10 @@ public class CommentsController {
      * @param paperId The ID of the paper for which comments are retrieved.
      * @return Iterable of comments for the specified paper.
      */
-    @GetMapping(path = "/paper/{paperId}")
-    public @ResponseBody Iterable<String> getCommentsForPaper(@PathVariable String paperId) {
-        // Assuming there is a method in the versionRepository to find comments by paperId
-        return versionRepository.findCommentsByPaperId(paperId);
-    }
+    // @GetMapping(path = "/paper/{paperId}")
+    // public ResponseEntity <Iterable<String>> getCommentsForPaper(@PathVariable String paperId) {
+    //     // Assuming there is a method in the versionRepository to find comments by paperId
+    //     Iterable<String> result = versionRepository.findCommentsByPaperId(paperId);
+    //     return ResponseEntity.ok(result);
+    // }
 }

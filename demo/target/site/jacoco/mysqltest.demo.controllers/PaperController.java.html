@@ -51,8 +51,8 @@ import mysqltest.demo.repositories.VersionRepository;
      */
     @GetMapping(path = &quot;/{paperId}&quot;)
     public ResponseEntity &lt;Paper&gt; getPaper(@PathVariable String paperId) { // Change the parameter type to String
-<span class="nc" id="L54">        Paper result =  paperRepository.findById(paperId).orElse(null);</span>
-<span class="nc" id="L55">        return ResponseEntity.ok(result);</span>
+<span class="fc" id="L54">        Paper result =  paperRepository.findById(paperId).orElse(null);</span>
+<span class="fc" id="L55">        return ResponseEntity.ok(result);</span>
     }
 
     /**
@@ -63,35 +63,35 @@ import mysqltest.demo.repositories.VersionRepository;
      * @return A String indicating the result of the operation.
      */
     @PutMapping(path = &quot;/update/{paperId}&quot;)
-    public @ResponseBody String updatePaper(@RequestBody Paper paper, @PathVariable String paperId) { // Change the parameter type to String
-<span class="nc" id="L67">        Paper existingPaper = paperRepository.findByPaperId(paperId);</span>
+    public ResponseEntity &lt;String&gt; updatePaper(@RequestBody Paper paper, @PathVariable String paperId) { // Change the parameter type to String
+<span class="fc" id="L67">        Paper existingPaper = paperRepository.findByPaperId(paperId);</span>
 
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (existingPaper != null) {</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (existingPaper != null) {</span>
             // Update fields of the existing paper with the values from the request
-<span class="nc" id="L71">            existingPaper.setTitle(paper.getTitle());</span>
-<span class="nc" id="L72">            existingPaper.setApproved(paper.getApproved());</span>
-<span class="nc" id="L73">            existingPaper.setShortdesc(paper.getShortdesc());</span>
-<span class="nc" id="L74">            existingPaper.setAbstractUrl(paper.getAbstractUrl());</span>
-<span class="nc" id="L75">            existingPaper.setTags(paper.getTags());</span>
-<span class="nc" id="L76">            existingPaper.setUploadDate(paper.getUploadDate());</span>
-<span class="nc" id="L77">            existingPaper.setAuthorId(paper.getAuthorId());</span>
+<span class="fc" id="L71">            existingPaper.setTitle(paper.getTitle());</span>
+<span class="fc" id="L72">            existingPaper.setApproved(paper.getApproved());</span>
+<span class="fc" id="L73">            existingPaper.setShortdesc(paper.getShortdesc());</span>
+<span class="fc" id="L74">            existingPaper.setAbstractUrl(paper.getAbstractUrl());</span>
+<span class="fc" id="L75">            existingPaper.setTags(paper.getTags());</span>
+<span class="fc" id="L76">            existingPaper.setUploadDate(paper.getUploadDate());</span>
+<span class="fc" id="L77">            existingPaper.setAuthorId(paper.getAuthorId());</span>
             // Don't update ID for an existing entity
 
             // Save the updated paper
-<span class="nc" id="L81">            paperRepository.save(existingPaper);</span>
+<span class="fc" id="L81">            paperRepository.save(existingPaper);</span>
 
             // Create a new version entry for the reupload
-<span class="nc" id="L84">            Version newVersion = new Version();</span>
-<span class="nc" id="L85">            newVersion.setAbstractUrl(existingPaper.getAbstractUrl());</span>
-<span class="nc" id="L86">            newVersion.setTitle(existingPaper.getTitle());</span>
-<span class="nc" id="L87">            newVersion.setReleaseDate(existingPaper.getUploadDate());</span>
-<span class="nc" id="L88">            newVersion.setComments(null);  // You may want to add comments from the request if needed</span>
-<span class="nc" id="L89">            newVersion.setPaperId(existingPaper.getId()); // Change to use the ID directly</span>
-<span class="nc" id="L90">            versionRepository.save(newVersion);</span>
+<span class="fc" id="L84">            Version newVersion = new Version();</span>
+<span class="fc" id="L85">            newVersion.setAbstractUrl(existingPaper.getAbstractUrl());</span>
+<span class="fc" id="L86">            newVersion.setTitle(existingPaper.getTitle());</span>
+<span class="fc" id="L87">            newVersion.setReleaseDate(existingPaper.getUploadDate());</span>
+<span class="fc" id="L88">            newVersion.setComments(null);  // You may want to add comments from the request if needed</span>
+<span class="fc" id="L89">            newVersion.setPaperId(existingPaper.getId()); // Change to use the ID directly</span>
+<span class="fc" id="L90">            versionRepository.save(newVersion);</span>
 
-<span class="nc" id="L92">            return &quot;Paper Updated&quot;;</span>
+<span class="fc" id="L92">            return ResponseEntity.ok(&quot;Paper Updated&quot;);</span>
         } else {
-<span class="nc" id="L94">            return &quot;Paper not found&quot;;</span>
+<span class="nc" id="L94">            return ResponseEntity.ok(&quot;Paper not found&quot;);</span>
         }
     }
 
@@ -100,24 +100,24 @@ import mysqltest.demo.repositories.VersionRepository;
      *
      * @return Iterable of Papers authored by the current user.
      */
-    @GetMapping(path = &quot;/&quot;)
-    public ResponseEntity &lt;Iterable&lt;Paper&gt;&gt; getMyPapers() {
-<span class="nc" id="L105">        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();</span>
-<span class="nc" id="L106">        Iterable &lt;Paper&gt; result = paperRepository.findByAuthorId(currentUser.getId());</span>
+    // @GetMapping(path = &quot;/&quot;)
+    // public ResponseEntity &lt;Iterable&lt;Paper&gt;&gt; getMyPapers() {
+    //     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    //     Iterable &lt;Paper&gt; result = paperRepository.findByAuthorId(currentUser.getId());
 
-<span class="nc" id="L108">        return ResponseEntity.ok(result);</span>
-    }
+    //     return ResponseEntity.ok(result);
+    // }
 
     /**
      * Retrieves all Papers in the system.
      *
      * @return Iterable of all Papers.
      */
-    @GetMapping(path = &quot;/all&quot;)
-    public ResponseEntity &lt;Iterable&lt;Paper&gt;&gt; getAllPapers() {
-<span class="fc" id="L118">        Iterable&lt;Paper&gt; result = paperRepository.findAll();</span>
-<span class="fc" id="L119">        return ResponseEntity.ok(result);</span>
-    }
+    // @GetMapping(path = &quot;/all&quot;)
+    // public ResponseEntity &lt;Iterable&lt;Paper&gt;&gt; getAllPapers() {
+    //     Iterable&lt;Paper&gt; result = paperRepository.findAll();
+    //     return ResponseEntity.ok(result);
+    // }
 
     /**
      * Retrieves Papers authored by a specific user.

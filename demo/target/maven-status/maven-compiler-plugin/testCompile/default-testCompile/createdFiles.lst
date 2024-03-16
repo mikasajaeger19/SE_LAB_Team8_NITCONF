@@ -1,2 +1,5 @@
-mysqltest\controllers\PaperControllerTests.class
+mysqltest\controllers\MainControllerTests.class
 mysqltest\demo\DemoApplicationTests.class
+mysqltest\controllers\CommentsControllerTests.class
+mysqltest\controllers\VersionControllerTests.class
+mysqltest\controllers\PaperControllerTests.class

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.ResponseEntity;
 import mysqltest.demo.models.Version;
 import mysqltest.demo.repositories.VersionRepository;
 
@@ -25,8 +26,9 @@ public class VersionController {
      * @return Iterable<Version>
      */
     @GetMapping(path="/all/{paperId}")
-    public @ResponseBody Iterable<Version> getVersions(@PathVariable String paperId) {
-        return versionRepository.findByPaperId(paperId);
+    public ResponseEntity <Iterable<Version>> getVersions(@PathVariable String paperId) {
+            Iterable<Version> result = versionRepository.findByPaperId(paperId);
+            return ResponseEntity.ok(result);
     }
 
 }

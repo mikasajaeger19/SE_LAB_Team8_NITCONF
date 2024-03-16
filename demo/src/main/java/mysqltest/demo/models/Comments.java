@@ -9,7 +9,7 @@ public class Comments {
 
     private String comment;
 
-    private String paperId;
+    private String versionId;
 
     public String getId() {
         return commentId;
@@ -27,11 +27,11 @@ public class Comments {
         this.comment = comment;
     }
 
-    public String getPaperId() {
-        return paperId;
+    public String getVersionId() {
+        return versionId;
     }
 
-    public void setPaperId(String paperId) {
-        this.paperId = paperId;
+    public void setVersionId(String versionId) {
+        this.versionId = versionId;
     }
 }

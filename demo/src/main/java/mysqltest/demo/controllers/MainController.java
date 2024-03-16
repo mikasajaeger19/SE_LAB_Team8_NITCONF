@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import mysqltest.demo.models.User;
 import mysqltest.demo.repositories.UserRepository;
+import org.springframework.http.HttpStatus;
 
 @RestController
 @RequestMapping(path = "/demo")
@@ -13,27 +14,28 @@ public class MainController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping(path="/add")
-    public @ResponseBody String addNewUser(@RequestBody User user) {
-        userRepository.save(user);
-        return "Saved";
-    }
+    // @PostMapping(path="/add")
+    // public @ResponseBody String addNewUser(@RequestBody User user) {
+    //     userRepository.save(user);
+    //     return "Saved";
+    // }
 
-    @GetMapping(path = "/")
-    public User hello() {
-        // Retrieve the current user based on the authentication
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return currentUser;
-    }
+    // @GetMapping(path = "/")
+    // public User hello() {
+    //     // Retrieve the current user based on the authentication
+    //     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    //     return currentUser;
+    // }
 
-    @GetMapping(path = "/all")
-    public @ResponseBody Iterable<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+    // @GetMapping(path = "/all")
+    // public @ResponseBody Iterable<User> getAllUsers() {
+    //     return userRepository.findAll();
+    // }
 
     @GetMapping(path = "/user/{id}")
-    public @ResponseBody User getUser(@PathVariable String id) {
-        return userRepository.findById(id).orElse(null);
+    public ResponseEntity <User> getUser(@PathVariable String id) {
+        User user = userRepository.findById(id).orElse(null);
+        return ResponseEntity.ok(user);
     }
 
     @PutMapping(path = "/update")
