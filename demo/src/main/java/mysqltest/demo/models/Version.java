@@ -1,7 +1,7 @@
 package mysqltest.demo.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import mysqltest.demo.models.Paper;
 import java.time.LocalDate;
 
 @Document(collection = "versions")
@@ -18,6 +18,13 @@ public class Version {
 
     public Version() {
         // Default constructor required by Spring Data MongoDB
+    }
+
+    public Version (Paper paper) {
+        this.title = paper.getTitle();
+        this.abstractUrl = paper.getAbstractUrl();
+        this.releaseDate = paper.getUploadDate();
+        this.paperId = paper.getId();
     }
 
     public Version(String title, String abstractUrl, String comments, LocalDate releaseDate, String paperId) {

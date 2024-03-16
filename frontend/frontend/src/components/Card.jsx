@@ -36,34 +36,7 @@ const Card = (props) => {
                 <p>{props.abstractUrl}</p>
             </div>
 
-            <div className='card--right'>
-
-                <div className='card--right--top'>
-                {(() => {if (props.status === 2 || props.status === true){
-                    return <h1>Approved</h1>
-                }
-                else if(props.status === 1){
-                    return <h1>Under Review</h1>
-                }
-                else if(props.status === 0 || props.status === false){
-                    return <h1>Rejected</h1>
-                }
-                })()}
-
-                <h1>{props.uploadDate}</h1>
-                </div>
-
-
-                <div className='card--right--bottom'>
-                    <ul>
-                        {tags.map((tag) => (
-                            <li key={tag.id}>{tag.name}</li>
-                        ))}
-                    </ul>
-                </div>
-
-
-            </div>
+          
         </div>
     )
     

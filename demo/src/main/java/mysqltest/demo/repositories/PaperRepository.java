@@ -5,9 +5,9 @@ import mysqltest.demo.models.Paper;
 import java.util.List;
 
 public interface PaperRepository extends MongoRepository<Paper, String> {
-    List<Paper> findByApproved(Boolean approved);
+    Iterable<Paper> findByApproved(Boolean approved);
 
-    List<Paper> findByAuthorId(String authorId);
+    Iterable<Paper> findByAuthorId(String authorId);
 
     Paper findByPaperId(String paperId);
 }
