@@ -38,15 +38,17 @@ public class LoginController {
      */
     @PostMapping(&quot;/register&quot;)
     public ResponseEntity&lt;AuthenticationResponse&gt; registerUser(@RequestBody RegisterRequest user) {
-<span class="nc bnc" id="L41" title="All 6 branches missed.">        if (user.getEmail() == null || user.getPassword() == null || user.getName() == null)</span>
-<span class="nc" id="L42">            return ResponseEntity.badRequest().build();</span>
+<span class="pc bpc" id="L41" title="2 of 6 branches missed.">        if (user.getEmail() == null || user.getPassword() == null || user.getName() == null)</span>
+<span class="fc" id="L42">            return ResponseEntity.badRequest().build();</span>
 
 <span class="nc" id="L44">        Optional&lt;User&gt; userExists = userRepo.findByEmail(user.getEmail());</span>
 
 <span class="nc bnc" id="L46" title="All 2 branches missed.">        if (userExists.isPresent())</span>
 <span class="nc" id="L47">            return ResponseEntity.badRequest().build();</span>
 
-<span class="nc" id="L49">        return ResponseEntity.ok(service.register(user));</span>
+<span class="nc" id="L49">        ResponseEntity&lt;AuthenticationResponse&gt; response = ResponseEntity.ok(service.register(user));</span>
+    
+<span class="nc" id="L51">        return response;</span>
     }
 
     /**
@@ -57,10 +59,10 @@ public class LoginController {
      */
     @PostMapping(&quot;/login&quot;)
     public ResponseEntity&lt;AuthenticationResponse&gt; login(@RequestBody AuthenticationRequest user) {
-<span class="nc bnc" id="L60" title="All 4 branches missed.">        if (user.getEmail() == null || user.getPassword() == null)</span>
-<span class="nc" id="L61">            return ResponseEntity.badRequest().build();</span>
+<span class="pc bpc" id="L62" title="1 of 4 branches missed.">        if (user.getEmail() == null || user.getPassword() == null)</span>
+<span class="fc" id="L63">            return ResponseEntity.badRequest().build();</span>
 
-<span class="nc" id="L63">        return ResponseEntity.ok(service.login(user));</span>
+<span class="fc" id="L65">        return ResponseEntity.ok(service.login(user));</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,5 +1,6 @@
 mysqltest\controllers\MainControllerTests.class
 mysqltest\demo\DemoApplicationTests.class
 mysqltest\controllers\CommentsControllerTests.class
+mysqltest\controllers\LoginControllerTests.class
 mysqltest\controllers\VersionControllerTests.class
 mysqltest\controllers\PaperControllerTests.class

@@ -38,18 +38,18 @@ public class MainController {
         return ResponseEntity.ok(user);
     }
 
-    @PutMapping(path = "/update")
-    public ResponseEntity<String> updateUserDetails(@RequestBody User updatedUser) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+    @PutMapping(path = "/update/{authorId}")
+    public ResponseEntity<String> updateUserDetails(@RequestBody User updatedUser, @PathVariable String authorId) {
+        // User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userRepository.findById(authorId).orElse(null);
         // Update only the fields that are allowed to be modified
-        currentUser.setName(updatedUser.getName());
-        currentUser.setEmail(updatedUser.getEmail());
-        currentUser.setAltEmail(updatedUser.getAltEmail());
-        currentUser.setPassword(updatedUser.getPassword());
-
-        userRepository.save(currentUser);
-
+        if(currentUser != null){
+            currentUser.setName(updatedUser.getName());
+            currentUser.setEmail(updatedUser.getEmail());
+            currentUser.setAltEmail(updatedUser.getAltEmail());
+            currentUser.setPassword(updatedUser.getPassword());
+        }
+        if(currentUser == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
         return ResponseEntity.ok("User details updated");
     }
 }
