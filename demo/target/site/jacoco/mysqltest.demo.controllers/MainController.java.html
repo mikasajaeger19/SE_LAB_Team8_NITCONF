@@ -38,19 +38,19 @@ import org.springframework.http.HttpStatus;
 <span class="fc" id="L38">        return ResponseEntity.ok(user);</span>
     }
 
-    @PutMapping(path = &quot;/update&quot;)
-    public ResponseEntity&lt;String&gt; updateUserDetails(@RequestBody User updatedUser) {
-<span class="nc" id="L43">        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();</span>
-
+    @PutMapping(path = &quot;/update/{authorId}&quot;)
+    public ResponseEntity&lt;String&gt; updateUserDetails(@RequestBody User updatedUser, @PathVariable String authorId) {
+        // User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+<span class="fc" id="L44">        User currentUser = userRepository.findById(authorId).orElse(null);</span>
         // Update only the fields that are allowed to be modified
-<span class="nc" id="L46">        currentUser.setName(updatedUser.getName());</span>
-<span class="nc" id="L47">        currentUser.setEmail(updatedUser.getEmail());</span>
-<span class="nc" id="L48">        currentUser.setAltEmail(updatedUser.getAltEmail());</span>
-<span class="nc" id="L49">        currentUser.setPassword(updatedUser.getPassword());</span>
-
-<span class="nc" id="L51">        userRepository.save(currentUser);</span>
-
-<span class="nc" id="L53">        return ResponseEntity.ok(&quot;User details updated&quot;);</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if(currentUser != null){</span>
+<span class="fc" id="L47">            currentUser.setName(updatedUser.getName());</span>
+<span class="fc" id="L48">            currentUser.setEmail(updatedUser.getEmail());</span>
+<span class="fc" id="L49">            currentUser.setAltEmail(updatedUser.getAltEmail());</span>
+<span class="fc" id="L50">            currentUser.setPassword(updatedUser.getPassword());</span>
+        }
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if(currentUser == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(&quot;User not found&quot;);</span>
+<span class="fc" id="L53">        return ResponseEntity.ok(&quot;User details updated&quot;);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

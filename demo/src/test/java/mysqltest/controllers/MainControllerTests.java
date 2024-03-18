@@ -83,24 +83,24 @@ public class MainControllerTests {
         assertEquals(user, response.getBody());
     }
 
-    // @Test
-    // public void updateUser() {
-    //     // Mocking the user details
-    //     User updatedUser = new User();
-    //     // Set updatedUser properties as needed
+    @Test
+    public void updateUser() {
+        // Mocking the user details
+        User updatedUser = new User();
+        // Set updatedUser properties as needed
 
-    //     // Mocking the current user
-    //     User currentUser = new User();
+        // Mocking the current user
+        User currentUser = new User();
         
-    //     // Mocking the user repository behavior
-    //     when(userRepository.findById(anyString())).thenReturn(Optional.of(currentUser));
+        // Mocking the user repository behavior
+        when(userRepository.findById(anyString())).thenReturn(Optional.of(currentUser));
 
-    //     // Mocking the user repository behavior
-    //     when(userRepository.save(any(User.class))).thenReturn(updatedUser);
+        // Mocking the user repository behavior
+        when(userRepository.save(any(User.class))).thenReturn(updatedUser);
 
-    //     ResponseEntity response = mainController.updateUserDetails(updatedUser);
-    //     assertEquals(HttpStatus.OK, response.getStatusCode());
-    // }
+        ResponseEntity <String> response = mainController.updateUserDetails(updatedUser, "1");
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
     // @Test
     // public void testUpdateUserDetails_ValidUser_ReturnsOk() {
     //     // Create a sample User object

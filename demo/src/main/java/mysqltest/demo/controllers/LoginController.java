@@ -46,7 +46,9 @@ public class LoginController {
         if (userExists.isPresent())
             return ResponseEntity.badRequest().build();
 
-        return ResponseEntity.ok(service.register(user));
+        ResponseEntity<AuthenticationResponse> response = ResponseEntity.ok(service.register(user));
+    
+        return response;
     }
 
     /**
