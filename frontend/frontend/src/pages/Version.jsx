@@ -65,6 +65,8 @@ const Version = () => {
     const [versionPapers, setVersionPapers] = useState([]);
 
     const [selectedPaperVersion, setSelectedPaperVersion] = useState([]);
+
+    const [comments, setComments] = useState([])
     
     
     useEffect( () => {
@@ -109,7 +111,6 @@ const Version = () => {
 
 
 
-
     return (
         <div className='container'>
             <Navbar />
@@ -127,24 +128,27 @@ const Version = () => {
                 </div>
                 
 
-                <div className='version--cards'>
-                    {versionPapers.map((version) => (
-                        <div key={version.id}>
-                        <Card
-                            key={version.id} 
-                            title={version.title}
-                            abstractUrl={version.abstractUrl}
-                            status={version.approved}
-                            uploadDate={version.uploadDate}
-                            paperId={version.paperId}
-                        />
-                        <button onClick={handleDropdownChange} value={version.id}>View Comments</button>
-                        </div>
-                    ))}
-
+                <div className='version--table'>
+                    <table className='table'>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Upload Date</th>
+                                <th>View Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {versionPapers.map((version) => (
+                                <tr key={version.id}>
+                                    <td>{version.title}</td>
+                                    <td>{version.releaseDate}</td>
+                                    <td><button value={version.id} onClick={handleDropdownChange}>View Comments</button></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
-                
-                
+                   
 
 
             
