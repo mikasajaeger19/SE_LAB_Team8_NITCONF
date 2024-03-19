@@ -21,11 +21,11 @@ body{
 
 }
 .details--container > h1 {
-    height : 20vh;
+    height : -0vh;
     display:flex;
     justify-content: center;
     align-items: center;
-    font-size: 12vw;
+    font-size: 15vw;
     font-weight: normal;
     font-family: 'Neue Montreal';
     font-weight:110%;
@@ -50,8 +50,8 @@ body{
 .o{
     font-family: 'Marck Script',cursive;
     font-weight :thin;
-    font-size: 14vw;
-    margin-top : 4.5vh;
+    font-size: 17.5vw;
+    margin-top : 7vh;
 }
 
 
