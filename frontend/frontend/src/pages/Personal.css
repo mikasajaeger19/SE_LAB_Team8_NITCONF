@@ -29,6 +29,7 @@ body{
     font-weight: normal;
     font-family: 'Neue Montreal';
     font-weight:110%;
+    transition: 0.3s;
 }
 
 .details{
@@ -56,7 +57,10 @@ body{
 
 .information{
     font-family: 'Helvetica';
+    font-weight: light;
     font-size : 5vw;
+    transition : 0.2s;
+    transition-delay: 0.1s;
 }
 
 
