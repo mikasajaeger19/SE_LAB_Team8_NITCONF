@@ -7,6 +7,7 @@ import Comments from './Comments.jsx';
 import './Version.css';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card.jsx';
+import Footer from './Footer.jsx';
 
 
 
@@ -134,6 +135,7 @@ const Version = () => {
                             <tr>
                                 <th>Name</th>
                                 <th>Upload Date</th>
+                                <th>Abstract URL</th>
                                 <th>View Comments</th>
                             </tr>
                         </thead>
@@ -142,6 +144,7 @@ const Version = () => {
                                 <tr key={version.id}>
                                     <td>{version.title}</td>
                                     <td>{version.releaseDate}</td>
+                                    <td><a href = {version.abstractUrl} alt = 'abstract url'>{version.abstractUrl}</a></td>
                                     <td><button value={version.id} onClick={handleDropdownChange}>View Comments</button></td>
                                 </tr>
                             ))}
@@ -161,7 +164,7 @@ const Version = () => {
 
 
 
-            
+        
         </div>
     );
 };

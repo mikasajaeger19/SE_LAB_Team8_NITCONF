@@ -65,7 +65,7 @@ const Submit = () => {
           navigate('/dashboard');
           alert('Abstract submitted successfully!');
         } catch (error) {
-          console.error('Error submitting abstract:', error.response.data);
+          console.error('Error submitting abstract:', error.response);
         }
       };
 

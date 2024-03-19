@@ -5,6 +5,7 @@ import dummy from '../dummy.json';
 import { useNavigate } from 'react-router-dom';
 import './Reupload.css';
 import Navbar from './Navbar.jsx';
+import Footer from './Footer.jsx';
 
 
 
@@ -114,8 +115,9 @@ const Reupload = () => {
     const [currentOption, setCurrentOption] = useState([]); 
 
     useEffect(() => {
+      const fetchData = async () => {
         try{
-          const response = axios.get(`http://localhost:8080/paper/${selectedOption}`, {
+          const response =await axios.get(`http://localhost:8080/paper/${selectedOption}`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -125,6 +127,8 @@ const Reupload = () => {
         }catch(error){
           console.log(error)
         }
+      }
+      fetchData();
       },[selectedOption]);
 
    
@@ -136,7 +140,7 @@ const Reupload = () => {
                 <div className='dropdown--div'>  
                     <select id="dropdown" value={selectedOption} onChange={handleDropdownChange}>
                     <option value=''>Select a paper</option>  
-                        {userData.map((option, index) => option.approved === false && (
+                        {userData && userData.map((option, index) => option.approved === false && (
                             <option key={option.id} value={option.id}>
                                 {option.title}
                             </option>
@@ -158,6 +162,7 @@ const Reupload = () => {
                   </form>
                 )  
                     }
+           
             </div>
         );
                 }
