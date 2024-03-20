@@ -1,0 +1,66 @@
+.register-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+
+.register-container > h1{
+    font-family: 'Neue Montreal';
+    font-weight: normal;
+    font-size:  10vw;
+    margin-top : 0;
+    margin-bottom: 0;
+
+}
+
+.register-form > button {
+    width: 5vw;
+    height : 3.5vh;
+    border-radius: 9px;
+    background-color: black;
+    color: antiquewhite;
+    float: left;
+    font-size: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+input {
+    border-radius: 30px;
+    border-width: 2px;
+    width: 20vw;
+    align-self: center;
+    height: 4vh;
+    padding: 5px;
+    background-color: #f9ffd500;
+    font-family: 'Helvetica';
+    font-size: 3vh;
+    color : black;
+}
+
+input::placeholder {
+    text-indent: 10px;
+}
+
+.register-form{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+  
+    
+}
+
+.register-emails{
+    display :flex;
+    flex-direction: row;
+}

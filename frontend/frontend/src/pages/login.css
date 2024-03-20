@@ -1,0 +1,63 @@
+.login-container {
+    
+    width: 30vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+ 
+   overflow: hidden;
+    height:100vh
+}
+
+.login-header > h1 {
+    font-family: 'Neue Montreal';
+    font-weight: normal;
+    font-size:  10vw;
+    margin-top : 0;
+    margin-bottom: 0;
+   
+    
+}
+.login-header {
+    margin-bottom: -4vh;
+}
+
+.login-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 18vh;
+}
+
+input {
+    border-radius: 30px;
+    border-width: 2px;
+    width: 18vw;
+    align-self: center;
+    height: 4vh;
+    padding: 5px;
+    background-color: #f9ffd500;
+    font-family: 'Helvetica';
+    font-size: 3vh;
+    color : black;
+}
+
+input::placeholder {
+    text-indent: 10px;
+}
+
+.login-inputs > button {
+    width: 5vw;
+    height : 3.5vh;
+    border-radius: 9px;
+    background-color: black;
+    color: antiquewhite;
+    float: left;
+    font-size: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
