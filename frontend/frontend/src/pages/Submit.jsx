@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import './Submit.css';
 import emailjs from 'emailjs-com';
 import Navbar from './Navbar.jsx';
+import Footer from './Footer.jsx';
 
 const Submit = () => {
 
@@ -71,21 +72,39 @@ const Submit = () => {
 
 
     return (
-        <div className='container'>
+        <div className='submit-container'>
            <Navbar />
-          <h1>Submit Paper</h1>
-            <form>
-        <h3>Title</h3>
-        <input type="text"  name="title"   onChange={handleInputChange} />
-        <h3>Short Description</h3>
-        <input type="text" name="shortdesc"  onChange={handleInputChange} />
-        <h3>Abstract URL</h3>
-        <input type="text" name="abstractUrl"  onChange={handleInputChange} />
-        <h3>Tags</h3>
-        <input type="text" name="tags"  onChange={handleInputChange} />
-        <h3></h3>
-        <button type="button" onClick={handleEditSubmit}>Submit Abstract</button>
+          <div className='submit-content'>
+            <div className='sidebar-submit'></div>
+            <div className='submit-mainbody'>
+            <div className='submit-header'>
+            <h1 className='submit-text'>SUBMIT</h1>
+          <h1 className='abstract-text'>ABSTR<span className='submit-a'>A</span>CT</h1>
+          </div>
+            <form className='submit-form'>
+        <div className="submit-form-top">
+        <span>
+        <h3>TITLE</h3>
+        <input placeholder = 'TITLE' type="text"  name="title"   onChange={handleInputChange} /></span>
+        <span>
+        <h3>URL</h3>
+        <input placeholder = 'URL' type="text" name="abstractUrl"  onChange={handleInputChange} /></span>
+        </div>
+        <div className="submit-form-bottom">
+        <span>
+        <h3>DESCRIPTION</h3>
+        <input placeholder = 'DESCRIPTION' type="text" name="shortdesc"  onChange={handleInputChange} /></span>
+        <span>
+        <h3>TAGS</h3>
+        <input placeholder = 'TAGS' type="text" name="tags"  onChange={handleInputChange} /></span>
+       
+        </div>
+        <button className ='submit-button' type="button" onClick={handleEditSubmit}>SUBMIT</button>
       </form>
+            </div>
+          <div className='sidebar-submit'></div>
+          </div>
+      <Footer />
         </div>
     );
 };
