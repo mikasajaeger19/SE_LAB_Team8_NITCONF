@@ -51,10 +51,10 @@ export const Personal = () => {
             <div className='information--container'>
             <div className='details'>
             
-                <p className='information'>MADHAV{userData.name}</p>
-                <p className='information'>madhav@gmail.com{userData.email}</p>
-                <p className='information'>alt@gmail.com{userData.altEmail}</p>
-                <p className='information'>8861796877 {userData.phone}</p>
+                <p className='information'>{userData.name}</p>
+                <p className='information'>{userData.email}</p>
+                <p className='information'>{userData.altEmail}</p>
+                <p className='information'>{userData.phone}</p>
             </div>
                 
                 <a href = {`/editdetails`}><button className='edit'>EDIT</button></a>

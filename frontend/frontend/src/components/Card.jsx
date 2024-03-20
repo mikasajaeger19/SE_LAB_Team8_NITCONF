@@ -1,45 +1,83 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import axios from 'axios';
-import './Card.css';
+import React from 'react'
+import './Card.css'
+import axios from 'axios'
+import { useState,useEffect } from 'react'
+
+
 
 const Card = (props) => {
-
-
-    const [tags, setTags] = useState([])
-
-    useEffect (() => {
-
-        const fetchdata = async () => {
+    const [comments,setComments]=useState([])
+    //getting comments for a paper.
+    useEffect (() =>{
+        const fetchUserData = async() =>{
             try {
-                const response = await axios.get(`http://localhost:8080/paper/tags/${props.paperId}`, {
+                const response  = await axios.get(`http://localhost:8080/paper/author/${props.data.paperId}`, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('token')
                     }
                 })
                 console.log(response.data)
-                setTags(response.data)
+                setComments(response.data)
             }
-            catch(error){
-                console.log(error)
+            catch(errror){
+                console.log("invalid user")
+            
             }
         }
-        fetchdata();
-    }
-    ,[])
-           
-
-    return (
-        <div className = 'card--container'>
-            <div className='card--left'>
-                <h1>{props.title}</h1>
-                <p>{props.abstractUrl}</p>
-            </div>
-
-          
-        </div>
-    )
+        fetchUserData();
+    },[]);
     
-};
+                        
+    const [isFlipped,setIsFlipped] = useState(true);
 
-export default Card;
+    const handleClick = () => {
+        setIsFlipped(!isFlipped);
+      };
+    
+
+
+  return (
+        <div>
+            {isFlipped ? (
+        <div onClick  = {handleClick} className='card-front'>
+        <div className='card-header'>
+            <h2>{props.data.title}</h2>
+            <div className='paper-status'>
+                <p>{props.data.approved ? <p>APPROVED</p> : <p>REJECTED</p>}</p>
+            </div>
+        </div>
+        <div className='card-body'>
+            <a href = {props.data.abstractUrl}>{props.data.abstractUrl}</a>
+            <div className='tags'>
+                <div className = 'tag'>
+                    Machine Learning
+                </div>
+                <div className = 'tag'> 
+                    Cyber Security
+                </div>
+                <div className='tag'>
+                    Technology
+                </div>
+            </div>
+        </div>
+        <div className='card-footer'>
+            <button>
+                
+                <p>comments</p>
+            </button>
+        </div>
+        </div>
+            ) : (
+        <div onClick  = {handleClick} className='card-back'>
+            <h1>DESCRIPTION</h1>
+            <p>{props.data.shortdesc}</p>
+        </div>
+            )}
+        </div>
+
+
+  
+  )
+}
+
+export default Card

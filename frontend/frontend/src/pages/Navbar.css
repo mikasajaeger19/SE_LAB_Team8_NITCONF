@@ -32,3 +32,9 @@
 .nav > p {
     font-weight : normal;
 }
+
+.nav:hover{
+    background-color: black;
+    color : white;
+    transition: 0.3s;
+}
