@@ -80,6 +80,7 @@
   color: white;
   font-family: 'Neue Montreal';
   font-weight : normal;
+  font-size: 1vw;
 }
 
 .card-header > h2 {
