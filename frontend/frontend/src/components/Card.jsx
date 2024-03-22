@@ -34,7 +34,10 @@ const Card = (props) => {
         setIsFlipped(!isFlipped);
       };
     
-
+      //{props.data.tags.map((tag) => {
+        //return <div className='tag'>{tag}</div>
+    //})}
+   
 
   return (
         <div>
@@ -49,15 +52,7 @@ const Card = (props) => {
         <div className='card-body'>
             <a href = {props.data.abstractUrl}>{props.data.abstractUrl}</a>
             <div className='tags'>
-                <div className = 'tag'>
-                    Machine Learning
-                </div>
-                <div className = 'tag'> 
-                    Cyber Security
-                </div>
-                <div className='tag'>
-                    Technology
-                </div>
+                
             </div>
         </div>
         <div className='card-footer'>

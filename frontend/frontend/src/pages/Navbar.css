@@ -26,6 +26,7 @@
     justify-content:center;
     align-items:center;
     font-family: 'Helvetica';
+    transition : 0.2s;
     
 }
 
@@ -36,5 +37,5 @@
 .nav:hover{
     background-color: black;
     color : white;
-    transition: 0.3s;
+    transition: 0.2s;
 }

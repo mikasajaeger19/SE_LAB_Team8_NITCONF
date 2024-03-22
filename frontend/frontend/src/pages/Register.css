@@ -29,6 +29,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition : 0.3s;
+}
+
+
+.register-form > button:hover {
+    background-color: white;
+    color: black;
+    transition : 0.3s;
+    cursor: pointer;
 }
 
 

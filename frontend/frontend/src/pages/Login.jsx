@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('login_api_call', userDetails);
+        const response = await axios.post('http://localhost:8080/login', userDetails);
         console.log(response);
         if(response.data.token)
             localStorage.setItem('token', response.data.token);

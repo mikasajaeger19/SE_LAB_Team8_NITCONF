@@ -33,6 +33,7 @@
     box-shadow: 0px 0px 10px 0px #0000004f ;
     transform : scale(1.02);
     transition : 0.3s, ease-;
+    cursor: pointer;
   }
 
 
@@ -57,6 +58,7 @@
   justify-content: space-between;
   width: 80vw;
   align-self: center;
+  
 }
 
 
@@ -85,7 +87,8 @@
 
 .card-header > h2 {
   color: black;
-  font-family : 'Inter'
+  font-family: 'Neue Montreal';
+  font-weight: normal;
 }
 
 .card-body {

@@ -8,7 +8,6 @@ body{
     background-color: white;
     max-width: 100vw;
     min-height : 100vh;
-    height : 100vh;
     overflow-x: hidden;
     
 }
@@ -56,8 +55,8 @@ body{
 
 
 .information{
-    font-family: 'Helvetica';
-    font-weight: light;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: thin;
     font-size : 5vw;
     transition : 0.2s;
     transition-delay: 0.1s;
