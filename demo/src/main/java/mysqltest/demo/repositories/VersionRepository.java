@@ -1,11 +1,13 @@
 package mysqltest.demo.repositories;
-
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import mysqltest.demo.models.Version;
 
 public interface VersionRepository extends MongoRepository<Version, String> {
-    Iterable<Version> findByPaperId(String paperId);
+    Iterable<Version> findByPaperId(String paperId, Sort sort);
+
+    Version findFirstByPaperId(String paperId);
 
     Version findByVersionId(String versionId);
 

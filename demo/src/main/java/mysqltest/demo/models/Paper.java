@@ -18,12 +18,13 @@ public class Paper {
     private String tags;
     private LocalDate uploadDate;
     private String authorId;
+    private byte[] file;
 
     public Paper() {
     }
 
     public Paper(String title, Boolean approved, String shortdesc, String abstractUrl,
-                 String tags, LocalDate uploadDate, String authorId) {
+                 String tags, LocalDate uploadDate, String authorId, byte[] file) {
 
         this.title = title;
         this.approved = approved;
@@ -32,6 +33,7 @@ public class Paper {
         this.tags = tags;
         this.uploadDate = uploadDate;
         this.authorId = authorId;
+        this.file = file;
     }
 
     public String getId() {
@@ -96,5 +98,13 @@ public class Paper {
 
     public void setAuthorId(String authorId) {
         this.authorId = authorId;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
     }
 }

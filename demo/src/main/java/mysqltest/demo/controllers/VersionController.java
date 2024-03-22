@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.http.ResponseEntity;
 import mysqltest.demo.models.Version;
 import mysqltest.demo.repositories.VersionRepository;
+import org.springframework.data.domain.Sort;
 
 @RestController
 @RequestMapping("/version")
@@ -27,7 +28,7 @@ public class VersionController {
      */
     @GetMapping(path="/all/{paperId}")
     public ResponseEntity <Iterable<Version>> getVersions(@PathVariable String paperId) {
-            Iterable<Version> result = versionRepository.findByPaperId(paperId);
+            Iterable<Version> result = versionRepository.findByPaperId(paperId, Sort.by (Sort.Direction.DESC, "versionId"));
             return ResponseEntity.ok(result);
     }
 

@@ -1,8 +1,8 @@
-// package mysqltest.demo.repositories;
-// import org.springframework.data.mongodb.repository.MongoRepository;
+package mysqltest.demo.repositories;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-// import mysqltest.demo.models.Comments;
+import mysqltest.demo.models.Comments;
 
-// public interface CommentRepository extends MongoRepository<Comments, String> {
-//     Iterable<Comments> findByPaperId(String paperId);
-// }
+public interface CommentRepository extends MongoRepository<Comments, String> {
+    Iterable<Comments> findByVersionId(String versionId);
+}
