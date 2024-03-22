@@ -45,8 +45,8 @@ const Card = (props) => {
         <div onClick  = {handleClick} className='card-front'>
         <div className='card-header'>
             <h2>{props.data.title}</h2>
-            <div className='paper-status'>
-                <p>{props.data.approved ? <p>APPROVED</p> : <p>REJECTED</p>}</p>
+            <div className='paper-status' style={{ backgroundColor: props.data.approved ? "#00FF0A" : "#CCFF00" }}>
+                <p>{props.data.approved ? <p>APPROVED</p> : <p>REVIEW</p>}</p>
             </div>
         </div>
         <div className='card-body'>

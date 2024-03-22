@@ -102,8 +102,8 @@
     margin-top:0;
 }
 .paper-option > img{
-    transform : scale(0.25);
-    margin-right: 0;
+    width : 1vw;
+    margin-right: 10px;
 }
 
 
