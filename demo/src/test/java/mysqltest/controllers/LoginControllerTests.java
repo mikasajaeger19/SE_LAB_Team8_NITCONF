@@ -57,26 +57,26 @@ public class LoginControllerTests {
             MockitoAnnotations.initMocks(this);
         }
     
-        // @Test
-        // public void testRegisterUser() {
-        //     User user = new User();
-        //     user.setEmail("nae@g.com");
-        //     user.setName("nae");
-        //     user.setPassword("nae");
+        @Test
+        public void testRegisterUser() {
+            User user = new User();
+            user.setEmail("nae@g.com");
+            user.setName("nae");
+            user.setPassword("nae");
 
-        //     RegisterRequest registerRequest = new RegisterRequest();
-        //     registerRequest.setEmail(user.getEmail());
-        //     registerRequest.setName(user.getName());
-        //     registerRequest.setPassword(user.getPassword());
+            RegisterRequest registerRequest = new RegisterRequest();
+            registerRequest.setEmail(user.getEmail());
+            registerRequest.setName(user.getName());
+            registerRequest.setPassword(user.getPassword());
 
-        //     when(userRepo.findByEmail(anyString())).thenReturn(Optional.empty());
-        //     when(userRepo.save(any(User.class))).thenReturn(user);
+            when(userRepo.findByEmail(anyString())).thenReturn(Optional.empty());
+            when(userRepo.save(any(User.class))).thenReturn(user);
 
-        //     ResponseEntity <AuthenticationResponse> response = loginController.registerUser(registerRequest);
+            ResponseEntity <AuthenticationResponse> response = loginController.registerUser(registerRequest);
 
-        //     assertEquals(response.getStatusCode(), HttpStatus.OK);
+            assertEquals(response.getStatusCode(), HttpStatus.OK);
             
-        // }
+        }
 
         @Test
         void testLogin() {

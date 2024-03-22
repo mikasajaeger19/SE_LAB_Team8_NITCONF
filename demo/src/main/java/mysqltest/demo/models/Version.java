@@ -11,10 +11,10 @@ public class Version {
 
     private String title;
     private String abstractUrl;
-    private String comments;
     private LocalDate releaseDate;
 
     private String paperId; // Changed to String to store ObjectId
+    private byte[] file;
 
     public Version() {
         // Default constructor required by Spring Data MongoDB
@@ -25,14 +25,15 @@ public class Version {
         this.abstractUrl = paper.getAbstractUrl();
         this.releaseDate = paper.getUploadDate();
         this.paperId = paper.getId();
+        this.file = paper.getFile();
     }
 
-    public Version(String title, String abstractUrl, String comments, LocalDate releaseDate, String paperId) {
+    public Version(String title, String abstractUrl, LocalDate releaseDate, String paperId, byte[] file) { 
         this.title = title;
         this.abstractUrl = abstractUrl;
-        this.comments = comments;
         this.releaseDate = releaseDate;
         this.paperId = paperId;
+        this.file = file;
     }
 
     // Getters and setters
@@ -60,14 +61,6 @@ public class Version {
         this.abstractUrl = abstractUrl;
     }
 
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
     public LocalDate getReleaseDate() {
         return releaseDate;
     }
@@ -82,5 +75,13 @@ public class Version {
 
     public void setPaperId(String paperId) {
         this.paperId = paperId;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
     }
 }

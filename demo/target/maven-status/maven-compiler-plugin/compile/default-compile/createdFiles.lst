@@ -1,5 +1,6 @@
 mysqltest\demo\auth\RegisterRequest$RegisterRequestBuilder.class
 mysqltest\demo\config\SecurityConfig.class
+mysqltest\demo\repositories\CommentRepository.class
 mysqltest\demo\auth\AuthenticationResponse.class
 mysqltest\demo\controllers\VersionController.class
 mysqltest\demo\auth\AuthenticationRequest$AuthenticationRequestBuilder.class
@@ -10,6 +11,7 @@ mysqltest\demo\models\Paper.class
 mysqltest\demo\repositories\VersionRepository.class
 mysqltest\demo\config\JwtService.class
 mysqltest\demo\config\ApplicationConfig.class
+mysqltest\demo\controllers\TagController.class
 mysqltest\demo\DemoApplication$1.class
 mysqltest\demo\DemoApplication.class
 mysqltest\demo\auth\AuthenticationResponse$AuthenticationResponseBuilder.class
