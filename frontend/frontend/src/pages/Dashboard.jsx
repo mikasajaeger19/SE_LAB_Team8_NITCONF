@@ -64,12 +64,12 @@ const handleReupload = () => {
                 <div className='dashboard-sidebar'></div>
                 <div className='dashboard-details'>
                 <h1 className='dashboard--header'>DASHB<span className='dashboard-o'>O</span>ARD</h1>
-                <div className='dashboard-cards'>{userData && userData.map((data) => {
+                <div className='dashboard-cards'>{userData ? (userData.map((data) => {
                     return (
                         <Card data={data} />
                     )
-                }
-                )}
+                })) : (<h1>NO PAPER UPLOADED</h1>)
+            }
                 </div>
                 </div>
                 <div className='dashboard-sidebar'></div>

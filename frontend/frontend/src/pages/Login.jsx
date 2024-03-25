@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import './Login.css'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
@@ -9,17 +10,27 @@ const Login = () => {
     password : '',
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
+    if (!userDetails.email || !userDetails.password) {
+        alert('Please fill all the fields');
+        return;
+    }
     e.preventDefault();
     try {
         const response = await axios.post('http://localhost:8080/login', userDetails);
         console.log(response);
         if(response.data.token)
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem('authorId', response.data.id);
+        navigate('/dashboard');
     }
     catch (err) {
         console.log(err);
     }
+    
+    
   };
 
   const handleChange = (e) => {
@@ -53,7 +64,7 @@ const Login = () => {
                 onChange={handleChange}
                 required
             />
-        <button>
+        <button onClick={handleSubmit}>
             SUBMIT
         </button>
       </div>

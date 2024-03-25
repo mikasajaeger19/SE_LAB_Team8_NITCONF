@@ -1,7 +1,48 @@
-.container{
+.version-container{
 
 background-color: #C6CFFF;
-height : 100vh;
+overflow-x: hidden;
 display: flex;
-flex-direction: column
+flex-direction: column;
+justify-content: space-between;
+min-height : 100vh;
+
+}
+
+.version-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   
+
+}
+
+.version-text{
+    font-family : 'Neue Montreal';
+    font-weight: normal;
+    font-size : 13vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;margin-bottom : 0; 
+}
+
+.version-o{
+    font-family : 'Marck Script';
+    font-size : 15vw;
+    margin-top : 3vw;
+}
+.dropdown--div{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction : column;
+
+}
+
+.version-sidebar{
+    width : 5vw;
+    border-right:1px solid black;
+    border-left : 1px solid black;
+    height : 100;
 }

@@ -23,7 +23,13 @@ const Submit = () => {
         uploadDate: uploadDate,
         authorId : authorId
       });
-    
+      const [file, setFile] = useState(null);
+      
+      const handleFile = async (e) => {
+        setFile(e.target.files[0]);
+        console.log(e.target.files[0]);
+      };
+        
       const navigate = useNavigate();
 
 
@@ -39,38 +45,68 @@ const Submit = () => {
       };
     
       const handleEditSubmit = async (e) => {
-        console.log(submission);
-      
+        e.preventDefault();
         if (
-          submission.title === '' ||
-          submission.shortdesc === '' ||
-          submission.abstractUrl === '' ||
-          submission.tags === ''
+            submission.title === '' ||
+            submission.shortdesc === '' ||
+            (submission.abstractUrl === '' && file === null) ||
+            submission.tags === ''
         ) {
-          alert('Please fill in all fields!');
-          return;
+            alert('Please fill in all fields!');
+            return;
         }
-      
+    
         try {
-          console.log(localStorage.getItem('token'))
-          const response = await axios.post(
-            `http://localhost:8080/paper/add`,
-            submission,
-            {
-              headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('token')
-              },
-            }
+            console.log(localStorage.getItem('token'));
+            // Add the paper and obtain the paper ID
+            const addPaperResponse = await axios.post(
+                `http://localhost:8080/paper/add`,
+                submission,
+                {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    },
+                }
+            );
+    
+            console.log(addPaperResponse.data.id);
+    
+        
+if (file) {
+  const uploadFile = async () => {
+      try {
+          const formData = new FormData();
+          formData.append('file', file);
+
+          await axios.post(
+              `http://localhost:8080/paper/upload/${addPaperResponse.data.id}`,
+              formData,
+              {
+                  headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
+                      'Content-Type': 'multipart/form-data',
+                  },
+              }
           );
-          emailjs.sendForm('service_ndmh9hs', 'template_xllzwct', e.target, 'Fu40AmkAkR7VbMApW')
-          navigate('/dashboard');
-          alert('Abstract submitted successfully!');
+
+          console.log('File uploaded successfully');
+      } catch (error) {
+          console.error('Error uploading file:', error);
+      }
+  };
+
+  uploadFile();
+}
+
+    
+            
+           
+            alert('Abstract submitted successfully!');
         } catch (error) {
-          console.error('Error submitting abstract:', error.response);
+            console.error('Error submitting abstract:', error.response);
         }
-      };
-
-
+    };
+    
     return (
         <div className='submit-container'>
            <Navbar />
@@ -88,7 +124,10 @@ const Submit = () => {
         <input placeholder = 'TITLE' type="text"  name="title"   onChange={handleInputChange} /></span>
         <span>
         <h3>URL</h3>
-        <input placeholder = 'URL' type="text" name="abstractUrl"  onChange={handleInputChange} /></span>
+
+        <div className = "fileupload"><input placeholder = 'URL' type="text" name="abstractUrl"  onChange={handleInputChange} />
+        <label><input onChange = {handleFile}  style = {{display : "none"}}type='file' accept = ".pdf, .doc, .docx" /><img src = './fileupload.svg' alt='fileupload' className='fileupload-icon'/></label></div>
+        </span>
         </div>
         <div className="submit-form-bottom">
         <span>

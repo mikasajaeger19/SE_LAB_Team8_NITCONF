@@ -20,7 +20,14 @@ export const Personal = () => {
 
         const fetchUserData = async() =>{
             try {
-                const response  =await axios.get(`http://localhost:8080/demo/user/${id}`)
+                const response  =await axios.get(`http://localhost:8080/demo/user/${id}`,
+                 {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('token')
+                    }
+                })
+                
+                  
                 console.log(response.data)
                 setuserData(response.data)
             } catch(error){
@@ -39,7 +46,7 @@ export const Personal = () => {
   return (
     
     
-    <div className='container'>
+    <div className='personal-container'>
          <Navbar />
 
     <div className='mainbody'>
@@ -58,6 +65,7 @@ export const Personal = () => {
             </div>
                 
                 <a href = {`/editdetails`}><button className='edit'>EDIT</button></a>
+                <a href= {`/dashboard`}><button className='edit'>LOGOUT</button></a>
             </div>
         </div>
 
