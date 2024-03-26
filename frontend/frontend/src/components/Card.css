@@ -1,50 +1,179 @@
-.card--container {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 20px;
+.card-front {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 0px;
+  box-shadow: 0px 0px 10px 0px #0000004f ;
+  border : 1px solid black;
+  margin-bottom : 5vh;
+  margin-left:0;
+  margin-right:0;
+  margin-top : 2.5vh;
+  width : 100%;
+  transition : 0.3s;
+  justify-content: space-between;
+}
+
+.card-back{
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+  color :white;
+  border-radius: 0px;
+  box-shadow: 0px 0px 10px 0px #0000004f ;
+  border : 1px solid black;
+  margin-bottom : 5vh;
+  margin-left:0;
+  margin-right:0;
+  margin-top : 2.5vh;
+  width : 100%;
+  transition : 0.3s;
+}
+
+  .card-front:hover , .card-back:hover{
+    box-shadow: 0px 0px 10px 0px #0000004f ;
+    transform : scale(1.02);
+    transition : 0.3s, ease-;
+    cursor: pointer;
   }
+
+
+
+
+
+.card-back > h1{
+  font-family: 'Neue Montreal';
+  font-weight: normal;
+  margin-left: 2vw;
+}
+.card-back > p{
+  font-family: 'Neue Montreal';
+  font-weight: normal;
+  margin-left: 2vw;
+}
+
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80vw;
+  align-self: center;
   
-  .card--left {
-    flex: 1;
-    align-self: left;
-  }
-  .card--left > h1 {
-    font-size: 40px;
-  }
-  
-  .card--right {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    
-  }
-  
-  .card--right--top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 20px;
-    
-  }
-  
-  .card--right--bottom {
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
-    
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 5px;
-    font-size: 20px;
-  }
-  
+}
+
+
+.paper-status {
+  margin-top: 25px;
+  background-color: #00CB08;
+  display: inline-block;
+  border-radius: 50px;
+  height: 5vh;
+  width : 7.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+ 
+
+.paper-status > p {
+  margin: 0;
+  color: white;
+  font-family: 'Neue Montreal';
+  font-weight : normal;
+  font-size: 1vw;
+}
+
+.card-header > h2 {
+  color: black;
+  font-family: 'Neue Montreal';
+  font-weight: normal;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  padding-bottom: 20px;
+}
+
+.card-body > a {
+  color: black;
+  text-decoration: none;
+}
+
+.tags {
+  display: flex;
+  width: 25vw;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+
+.tag {
+
+  background-color : #D9D9D9;
+  color: black;
+  white-space: nowrap;
+  padding: 2px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 12px;
+  border-radius: 4px;
+  border-width: 1.5px;
+  width : 6.25vw;
+  font-size: 0.9vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Neue Montreal';
+  font-weight: normal;
+}
+
+.card-footer {
+  background-color: #d9d9d9;
+  display: flex;
+}
+
+.card-footer > button {
+  margin-left: 2vw;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-footer > button > p {
+  margin: 0; /* Remove default margin */
+  margin-top: 10px; /* Adjust the value to push the <p> element up */
+}
+
+
+
+.down-arrow {
+  margin-top: 10px;
+  height: 13px;
+  width: 17px;
+}
+
+.card-rightside{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.card-rightside > p {
+  font-family: 'Neue Montreal';
+  font-weight: normal;
+  margin-right: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

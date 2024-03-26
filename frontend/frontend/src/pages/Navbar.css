@@ -1,27 +1,41 @@
-/* Navbar.css */
+.navbar{
+    width : 100vw;
+    height : 15vh;
+    display:flex;
+    flex-direction : row;
+    justify-content: space-evenly;
+    border-bottom: 1px solid black;
+    background-color : white;
+    max-width: 100vw;
 
-/* Style the entire navbar */
-.navbar {
-    background-color: #333; /* Black Color */
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
+    
+
 }
 
-/* Style the individual navigation links */
-.navbar h3 {
-    margin: 0;
+
+.nav{ 
+    border-right: 1px solid black;
+    font-size: 2vw;
+    width  : 20vw;
+    text-decoration : none;
+    color : black;
+    font-weight: normal;
+    font-style: thin;
+    height : 15vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: 'Helvetica';
+    transition : 0.2s;
+    
 }
 
-.navbar a {
-    text-decoration: none;
-    color: #fff; /* White Color */
-    font-weight: bold;
-    font-size: 16px;
-    transition: color 0.3s ease;
+.nav > p {
+    font-weight : normal;
 }
 
-/* Change link color on hover */
-.navbar a:hover {
-    color: #b0c4a8; /* Sage Green Color on Hover */
+.nav:hover{
+    background-color: black;
+    color : white;
+    transition: 0.2s;
 }

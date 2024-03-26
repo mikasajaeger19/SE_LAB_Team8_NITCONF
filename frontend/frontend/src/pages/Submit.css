@@ -1,51 +1,132 @@
-/*Submit.css*/
+.submit-container{
+    background-color: #FFC6FD;
+}
 
-.container {
-    background-color: #b0c4a8;
-    padding: 20px;
-    text-align: center;
-    min-height: 100vh;
-  }
-  
-  h1 {
-    color: #fff;
-    font-size: 100px;
-    margin-bottom: 100px;
-  }
-  
-  form {
+.submit-header > h1{
+    font-family: 'Neue Montreal';
+    font-weight: normal;
+    font-size:  8.5vw;
+    margin-top : 0;
+    margin-bottom: 0;
+
+}
+
+.submit-a{
+    font-family  : 'Marck Script';
+    margin-left : 1vw;
+}
+
+
+
+.submit-form{
     display: flex;
     flex-direction: column;
-    width: 300px;
-    margin: auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
   
-  h3 {
-    color: #333;
-    margin-top: 10px;
-  }
-  
-  input {
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
+
+.submit-form-top > span >  h3{
+
+    font-family: 'Neue Montreal';
+    font-weight: normal;
+    font-size:  3vw;
+    margin-top : 0;
+    margin-bottom: 0;
+}
+
+.submit-form-bottom > span >  h3 {
+font-family: 'Neue Montreal';
+    font-weight: normal;
+    font-size:  3vw;
+    margin-top : 0;
+    margin-bottom: 0;
+}
+
+.submit-mainbody{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.sidebar-submit{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: #FFC6FD;
+    width : 8vw;
+}
+
+.submit-content{
+    display : flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.submit-text{
+    margin-right : 10vw;
+}
+.abstract-text{
+    margin-left: 10vw;
+}
+
+.submit-form{
+    width: 90vw;
+    border-top : 1px solid black;
+}
+
+.submit-form-top{
+    display:flex;
+    flex-direction:row;
+    padding : 50px;
+}
+
+.submit-form-bottom{
+    display:flex;
+    flex-direction:row;
+    margin-bottom : 10vh;
+}
+
+.submit-form-top > span{
+    padding : 10px
+}
+
+.submit-form-bottom > span{
+    padding : 20px
+}
+
+.submit-button{
+    font-family: 'Helvetica';
+    font-size : 2vw;
+    background-color: black;
+    border: 1px solid black;
+    border-radius : 1.5vw;
+    padding: 1vw;
     cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
+    transition: 0.3s;
+    width : 10vw;
+    color: white;
+    font-weight: normal;
+    float:right;
+    margin-right : 20px;
+    display:flex;
+    justify-content: center;
+    margin-bottom : 5vw;
+    align-items: center;
+    
+    
+}
+
+.submit-button:hover{
+    background-color: white;
+    color: black;
+}
+
+
+.fileupload-icon { 
+    width : 30px;
+    margin-left : 1vw;
+}

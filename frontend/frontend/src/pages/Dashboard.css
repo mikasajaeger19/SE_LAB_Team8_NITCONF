@@ -1,39 +1,53 @@
-/* Dashboard.css */
-
-.container {
-  background-color: #b0c4a8; /* Sage Green Color */
-  padding: 20px;
-  text-align: center; /* Center text horizontally */
-  min-height: 100vh;
+.dashboard-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height:100vh;
+    background-color: #C6FCFF;
+    overflow-x: hidden;
+    
 }
 
-.dashboard--header {
-  color: #fff; /* White Color */
-  font-size: 100px; /* Adjust the font size as needed */
-  margin-bottom: 100px; /* Add some bottom margin for spacing */
+.dashboard-content{
+    display  : flex;
+    flex-direction : row;
+    justify-content : space-between;
+    max-width : 100vw;
+
 }
 
-.table {
-  width: 100%;
-  margin-top: 20px;
+.dashboard-sidebar{
+    width : 5vw;
+    border-right : 1px solid black;
+    border-left : 1px solid black;
+    min-height : 75vh;
 }
 
-.table th {
-  background-color: #333; /* Black Color */
-  color: #fff; /* White Color */
-  padding: 10px;
+.dashboard-details > h1{
+    font-family:  'Neue Montreal';
+    font-weight: normal;
+    font-size: 12vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:0;
+    margin-bottom : 0px;
+    width: 90vw;
+    border-bottom : 1px solid black;
+    transition : 0.3s;
+ 
 }
 
-.table td,
-.table th {
-  padding: 10px;
-  border: 1px solid #333; /* Black Color */
+.dashboard-o{
+    font-family: 'Marck Script';
+    font-weight: normal;
+    font-size: 120%;
+    margin-top: 2.4vw;
 }
 
-.table tbody tr:nth-child(even) {
-  background-color: #d9e1d4; /* Light Sage Green Color */
-}
+.dashboard-cards{
+    margin-top : 5vh;
+    width : 90vw;
 
-.table tbody tr:hover {
-  background-color: #a8bba3; /* Darker Sage Green Color on Hover */
+
 }

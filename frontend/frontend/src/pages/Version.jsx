@@ -7,6 +7,7 @@ import Comments from './Comments.jsx';
 import './Version.css';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card.jsx';
+import Footer from './Footer.jsx';
 
 
 
@@ -66,7 +67,7 @@ const Version = () => {
 
     const [selectedPaperVersion, setSelectedPaperVersion] = useState([]);
 
-    const [comments, setComments] = useState([])
+
     
     
     useEffect( () => {
@@ -81,7 +82,8 @@ const Version = () => {
                     
                 })
                 setVersionPapers(response.data)
-                console.log('the versions of the selected paper are: ' + response.data)
+                console.log('the versions of the selected paper are: ')
+                console.log(versionPapers)
                 
             } catch(error){
                 
@@ -102,66 +104,51 @@ const Version = () => {
     
   
 
-    const handleDropdownChangePapers = (e) => {
-       console.log('selected version id is :' + e.target.value)
-        setVersionPaperId(e.target.value);
-        setSelectedPaperVersion('');
+    const handleDropdownChangePapers = (paperId) => {
+       console.log('selected version id is :' + paperId)
+        setVersionPaperId(paperId);
+        setSelectedPaperVersion(paperId);
     
     } 
 
 
 
     return (
-        <div className='container'>
+        <div className='version-container'>
             <Navbar />
-
-            <h1>Select Paper</h1>
+            <div className='version-content'>
+            <div className='version-sidebar'></div>
+                <div className='version-body'>
+                    <h1 className='version-text'>VERSI<span className='version-o'>O</span>NS</h1>
             <div className='dropdown--div'>  
-                    <select id="dropdown" value={versionPaperId} onChange={handleDropdownChangePapers}>
-                    <option value=''>Select a paper</option>  
-                        {allPapers.map((option) =>(
-                            <option key={option.id} value={option.id}>
-                                {option.title}
-                            </option>
-                        ))}
-                    </select>
+                <h2 className='choose-paper'>CHOOSE A PAPER</h2>
+                      <div className = 'reupload-papers-container'>
+                        
+                        {allPapers.map((paper, index) => paper.approved === false && 
+                          <div className='paper-option'>
+                            {paper.id === selectedPaperVersion ? <img src='./tick.svg' alt = 'tick' /> : null}
+                            <h2 key = {paper.id} onClick  = {() => handleDropdownChangePapers(paper.id)}className='reupload-titles'>{paper.title}</h2>
+                            </div>
+                        )}
+                        </div>
                 </div>
                 
 
-                <div className='version--table'>
-                    <table className='table'>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Upload Date</th>
-                                <th>View Comments</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {versionPapers.map((version) => (
-                                <tr key={version.id}>
-                                    <td>{version.title}</td>
-                                    <td>{version.releaseDate}</td>
-                                    <td><button value={version.id} onClick={handleDropdownChange}>View Comments</button></td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div className='version--cards'>
+                    {versionPapers.map((version,index) => (
+                        <div>
+                        <h3>Version {index+1}</h3>
+                        <Card key={version.id} data={version} />
+                        </div>
+                    ))
+                    }
                 </div>
-                   
-
-
-            
-
-                <div>
-                    <Comments paperId ={versionPaperId} versionId={selectedPaperVersion} />
-
                 </div>
+                <div className='version-sidebar'></div>
+                </div>
+  
 
-
-
-
-            
+        <Footer />
         </div>
     );
 };

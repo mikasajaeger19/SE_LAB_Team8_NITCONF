@@ -1,44 +1,71 @@
-/* LoginForm.css */
-
-form {
+.login-container {
+    
+    width: 30vw;
+    height: 50vh;
     display: flex;
     flex-direction: column;
-    width: 300px;
-    margin: auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  label {
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  
-  input {
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-   .login{
-    margin-top : 20px
-   }
+    justify-content: space-between;
+    align-items: center;
+ 
+   overflow: hidden;
+    height:100vh
+}
 
-   .container--login{
-    margin-top:200px
-   }
+.login-header > h1 {
+    font-family: 'Neue Montreal';
+    font-weight: normal;
+    font-size:  10vw;
+    margin-top : 0;
+    margin-bottom: 0;
+   
+    
+}
+.login-header {
+    margin-bottom: -4vh;
+}
+
+.login-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 18vh;
+}
+
+input {
+    border-radius: 30px;
+    border-width: 2px;
+    width: 18vw;
+    align-self: center;
+    height: 4vh;
+    padding: 5px;
+    background-color: #f9ffd500;
+    font-family: 'Helvetica';
+    font-size: 3vh;
+    color : black;
+}
+
+input::placeholder {
+    text-indent: 10px;
+}
+
+.login-inputs > button {
+    width: 5vw;
+    height : 3.5vh;
+    border-radius: 9px;
+    background-color: black;
+    color: antiquewhite;
+    float: left;
+    font-size: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition : 0.3s;
+
+}
+
+.login-inputs > button:hover {
+    background-color: white;
+    color: black;
+    transition : 0.3s;
+    cursor: pointer;
+}

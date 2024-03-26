@@ -1,60 +1,54 @@
-/* Version.css */
+.version-container{
 
-.container {
-    background-color: #b0c4a8; /* Sage Green Color */
-    padding: 20px;
-    text-align: center; /* Center text horizontally */
-    min-height: 100vh;
-  }
-  
- 
-  
-  .dropdown--div {
-    margin-bottom: 20px; /* Add margin bottom for spacing between dropdowns */
-  }
-  
-  .dropdown--div select {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #333; /* Black Color */
-    background-color: #fff; /* White Color */
-    color: #333; /* Black Color */
-    width: 100%;
-    max-width: 300px; /* Adjust the width as needed */
-  }
-  
-  .dropdown--div select:hover {
-    background-color: #f0f0f0; /* Light Gray Color on Hover */
-  }
-  
-  .dropdown--div select:focus {
-    outline: none;
-    border-color: #666; /* Dark Gray Color on Focus */
-  }
-  
-  .table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-  }
-  
-  .table th {
-    background-color: #333; /* Black Color */
-    color: #fff; /* White Color */
-    padding: 10px;
-  }
-  
-  .table td,
-  .table th {
-    padding: 10px;
-    border: 1px solid #333; /* Black Color */
-  }
-  
-  .table tbody tr:nth-child(even) {
-    background-color: #d9e1d4; /* Light Sage Green Color */
-  }
-  
-  .table tbody tr:hover {
-    background-color: #a8bba3; /* Darker Sage Green Color on Hover */
-  }
-  
+background-color: #C6CFFF;
+overflow-x: hidden;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+min-height : 100vh;
+
+}
+
+.version-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   
+
+}
+
+.version-text{
+    font-family : 'Neue Montreal';
+    font-weight: normal;
+    font-size : 17vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;margin-bottom : 0; 
+    border-bottom : 1px solid black;
+    width : 90vw;
+}
+
+.version-o{
+    font-family : 'Marck Script';
+    font-size : 120%;
+    margin-top : 3.4vw;
+}
+.dropdown--div{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction : column;
+
+}
+
+.version-sidebar{
+    width : 5vw;
+    border-right:1px solid black;
+    border-left : 1px solid black;
+    min-height : 76vh;
+}
+
+.version--cards{
+    margin-bottom : 5vh;
+}
