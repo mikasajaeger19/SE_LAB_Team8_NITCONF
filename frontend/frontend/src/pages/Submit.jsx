@@ -116,6 +116,7 @@ if (file) {
         } catch (error) {
             console.error('Error submitting abstract:', error.response);
         }
+        navigate('/dashboard');
     };
 
 

@@ -103,6 +103,16 @@ const Reupload = () => {
 
   const handleEditSubmit = async () => {
     console.log(submission);
+    if(
+      submission.title === '' ||
+      submission.shortdesc === '' ||
+      (submission.abstractUrl === '' && file === null) ||
+      submission.tags === ''
+    ){
+      alert('Please fill in all fields!');
+      return;
+    }
+    
    
     try {
       const paperId = selectedOption;
