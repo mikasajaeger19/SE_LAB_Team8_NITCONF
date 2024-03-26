@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.http.ResponseEntity;
 import mysqltest.demo.models.Version;
 import mysqltest.demo.repositories.VersionRepository;
+import org.springframework.data.domain.Sort;
 
 @RestController
 @RequestMapping(&quot;/version&quot;)
-<span class="fc" id="L17">public class VersionController {</span>
+<span class="fc" id="L18">public class VersionController {</span>
     
     @Autowired
     private VersionRepository versionRepository;
@@ -27,8 +28,8 @@ import mysqltest.demo.repositories.VersionRepository;
      */
     @GetMapping(path=&quot;/all/{paperId}&quot;)
     public ResponseEntity &lt;Iterable&lt;Version&gt;&gt; getVersions(@PathVariable String paperId) {
-<span class="fc" id="L30">            Iterable&lt;Version&gt; result = versionRepository.findByPaperId(paperId);</span>
-<span class="fc" id="L31">            return ResponseEntity.ok(result);</span>
+<span class="fc" id="L31">            Iterable&lt;Version&gt; result = versionRepository.findByPaperId(paperId);</span>
+<span class="fc" id="L32">            return ResponseEntity.ok(result);</span>
     }
 
 }

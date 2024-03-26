@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import mysqltest.demo.models.Version;
 
 public interface VersionRepository extends MongoRepository<Version, String> {
-    Iterable<Version> findByPaperId(String paperId, Sort sort);
+    Iterable<Version> findByPaperId(String paperId);
 
     Version findFirstByPaperId(String paperId);
 

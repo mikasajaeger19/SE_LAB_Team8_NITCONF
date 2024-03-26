@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: mysqltest.controllers.PaperControllerTests
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.228 s -- in mysqltest.controllers.PaperControllerTests
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.294 s -- in mysqltest.controllers.PaperControllerTests

@@ -54,7 +54,7 @@ public class LoginControllerTests {
     
         @BeforeEach
         public void setUp() {
-            MockitoAnnotations.initMocks(this);
+            MockitoAnnotations.openMocks(this);
         }
     
         @Test
@@ -70,7 +70,6 @@ public class LoginControllerTests {
             registerRequest.setPassword(user.getPassword());
 
             when(userRepo.findByEmail(anyString())).thenReturn(Optional.empty());
-            when(userRepo.save(any(User.class))).thenReturn(user);
 
             ResponseEntity <AuthenticationResponse> response = loginController.registerUser(registerRequest);
 

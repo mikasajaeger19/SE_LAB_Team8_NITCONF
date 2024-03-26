@@ -25,8 +25,8 @@ public class SecurityConfig {
 <span class="fc" id="L25">        http</span>
 <span class="fc" id="L26">            .csrf(res -&gt; res.disable())</span>
 
-            //.authorizeHttpRequests(res -&gt; res.requestMatchers(&quot;/login&quot;, &quot;/register&quot;,&quot;/v3/api-docs&quot;,&quot;v3/api-docs/**&quot;,&quot;/swagger-ui.html&quot;).permitAll().anyRequest().authenticated())
-<span class="fc" id="L29">            .authorizeHttpRequests(res -&gt; res.anyRequest().permitAll())</span>
+<span class="fc" id="L28">            .authorizeHttpRequests(res -&gt; res.requestMatchers(&quot;/login&quot;, &quot;/register&quot;,&quot;/v3/api-docs&quot;,&quot;v3/api-docs/**&quot;,&quot;/swagger-ui.html&quot;).permitAll().anyRequest().authenticated())</span>
+            // .authorizeHttpRequests(res -&gt; res.anyRequest().permitAll())
 <span class="fc" id="L30">            .sessionManagement(res -&gt; res.sessionCreationPolicy(SessionCreationPolicy.STATELESS))</span>
 <span class="fc" id="L31">            .authenticationProvider(authenticationProvider)</span>
 <span class="fc" id="L32">            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);</span>

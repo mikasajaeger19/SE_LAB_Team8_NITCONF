@@ -37,6 +37,10 @@ public class PaperController {
      */
     @PostMapping(path = "/add")
     public ResponseEntity<Paper> addNewPaper(@RequestBody Paper paper){
+        if(paper.getAuthorId() == null || paper.getTitle() == null || paper.getShortdesc() == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
         // @ResponseBody means the returned String is the response, not a view name
         Version version = new Version();
         version.setAbstractUrl(paper.getAbstractUrl());

@@ -24,12 +24,6 @@ public class TagController{
         return ResponseEntity.ok("Saved");
     }
 
-    @GetMapping(path = "/{tagId}")
-    public ResponseEntity <Tags> getTag(@PathVariable String tagId) {
-        Tags tags = tagRepository.findById(tagId).orElse(null);
-        return ResponseEntity.ok(tags);
-    }
-
     @GetMapping(path = "/paper/{paperId}")
     public ResponseEntity <Iterable<Tags>> getTagsByPaperId(@PathVariable String paperId) {
         Iterable <Tags> tags = tagRepository.findByPaperId(paperId);

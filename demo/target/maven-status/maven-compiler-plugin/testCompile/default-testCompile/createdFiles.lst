@@ -1,0 +1,5 @@
+mysqltest\demo\DemoApplicationTests.class
+mysqltest\controllers\TagControllerTests.class
+mysqltest\controllers\LoginControllerTests.class
+mysqltest\controllers\MainControllerTests.class
+mysqltest\controllers\CommentsControllerTests.class

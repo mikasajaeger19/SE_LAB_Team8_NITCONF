@@ -41,10 +41,10 @@ public class LoginController {
         if (user.getEmail() == null || user.getPassword() == null || user.getName() == null)
             return ResponseEntity.badRequest().build();
 
-        Optional<User> userExists = userRepo.findByEmail(user.getEmail());
+        // Optional<User> userExists = userRepo.findByEmail(user.getEmail());
 
-        if (userExists.isPresent())
-            return ResponseEntity.badRequest().build();
+        // if (userExists.isPresent())
+        //     return ResponseEntity.badRequest().build();
 
         ResponseEntity<AuthenticationResponse> response = ResponseEntity.ok(service.register(user));
     

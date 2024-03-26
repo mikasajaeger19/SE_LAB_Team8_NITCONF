@@ -38,17 +38,17 @@ public class LoginController {
      */
     @PostMapping(&quot;/register&quot;)
     public ResponseEntity&lt;AuthenticationResponse&gt; registerUser(@RequestBody RegisterRequest user) {
-<span class="pc bpc" id="L41" title="2 of 6 branches missed.">        if (user.getEmail() == null || user.getPassword() == null || user.getName() == null)</span>
+<span class="pc bpc" id="L41" title="1 of 6 branches missed.">        if (user.getEmail() == null || user.getPassword() == null || user.getName() == null)</span>
 <span class="fc" id="L42">            return ResponseEntity.badRequest().build();</span>
 
-<span class="nc" id="L44">        Optional&lt;User&gt; userExists = userRepo.findByEmail(user.getEmail());</span>
+        // Optional&lt;User&gt; userExists = userRepo.findByEmail(user.getEmail());
 
-<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (userExists.isPresent())</span>
-<span class="nc" id="L47">            return ResponseEntity.badRequest().build();</span>
+        // if (userExists.isPresent())
+        //     return ResponseEntity.badRequest().build();
 
-<span class="nc" id="L49">        ResponseEntity&lt;AuthenticationResponse&gt; response = ResponseEntity.ok(service.register(user));</span>
+<span class="fc" id="L49">        ResponseEntity&lt;AuthenticationResponse&gt; response = ResponseEntity.ok(service.register(user));</span>
     
-<span class="nc" id="L51">        return response;</span>
+<span class="fc" id="L51">        return response;</span>
     }
 
     /**

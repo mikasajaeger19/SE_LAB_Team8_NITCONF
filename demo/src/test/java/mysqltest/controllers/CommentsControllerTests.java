@@ -1,89 +1,93 @@
-// package mysqltest.controllers;
+package mysqltest.controllers;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertThrows;
-// import static org.mockito.ArgumentMatchers.any;
-// import static org.mockito.ArgumentMatchers.anyString;
-// import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
-// import java.beans.Transient;
-// import java.io.IOException;
-// import java.util.ArrayList;
-// import java.util.Arrays;
+import java.beans.Transient;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-// import java.util.List;
-// import java.util.NoSuchElementException;
-// import java.util.Optional;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
-// import javax.xml.stream.events.Comment;
+import javax.xml.stream.events.Comment;
 
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.MockitoAnnotations;
-// import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-// import org.springframework.security.core.Authentication;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 
-// import org.springframework.http.HttpStatus;
-// import org.springframework.http.ResponseEntity;
-// import org.springframework.mock.web.MockMultipartFile;
-// import org.springframework.security.core.context.SecurityContext;
-// import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 
-// import mysqltest.demo.controllers.CommentsController;
-// import mysqltest.demo.repositories.VersionRepository;
-// import mysqltest.demo.models.Version;
-// import mysqltest.demo.models.Comments;
+import mysqltest.demo.controllers.CommentsController;
+import mysqltest.demo.repositories.CommentRepository;
+import mysqltest.demo.repositories.VersionRepository;
+import mysqltest.demo.models.Version;
+import mysqltest.demo.models.Comments;
 
-// public class CommentsControllerTests {
-
-
-//     @InjectMocks
-//     private CommentsController commentsController;
-
-//     @Mock
-//     private VersionRepository versionRepository;
+public class CommentsControllerTests {
 
 
-//     @BeforeEach
-//     public void setUp() {
-//         MockitoAnnotations.openMocks(this);
-//     }
+    @InjectMocks
+    private CommentsController commentsController;
 
-//     @Test
-//     public void AddCommentsToVersion() {
-//         String CommentId = "1";
-//         String VersionId = "1";
-//         Version version = new Version();
-//         version.setId("1");
-//         versionRepository.save(version);
+    @Mock
+    private VersionRepository versionRepository;
 
-//         Comments comments = new Comments();
-//         comments.setId(CommentId);
-//         comments.setVersionId(VersionId);
+    @Mock
+    private CommentRepository commentRepository;
 
-//         when(versionRepository.findByVersionId("1")).thenReturn(version);
 
-//         ResponseEntity<String> comment = commentsController.addNewComment("hello", "1");
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-//         assertEquals(HttpStatus.OK, comment.getStatusCode());
+    @Test
+    public void AddCommentsToVersion() {
+        String CommentId = "1";
+        String VersionId = "1";
+        Version version = new Version();
+        version.setId("1");
+        versionRepository.save(version);
 
-//     }
+        Comments comments = new Comments();
+        comments.setId(CommentId);
+        comments.setVersionId(VersionId);
 
-//     @Test
-//     public void getCommentsOfVersion() {
-//         String VersionId = "1";
-//         Version version = new Version();
-//         version.setId("1");
-//         versionRepository.save(version);
+        when(versionRepository.findByVersionId("1")).thenReturn(version);
 
-//         when(versionRepository.findByVersionId("1")).thenReturn(version);
+        ResponseEntity<String> comment = commentsController.addNewComment("hello", "1");
 
-//         ResponseEntity<Iterable <String>> comment = commentsController.getCommentsForVersion("1");
+        assertEquals(HttpStatus.OK, comment.getStatusCode());
 
-//         assertEquals(HttpStatus.OK, comment.getStatusCode());
+    }
 
-//     }
+    @Test
+    public void getCommentsOfVersion() {
+        String VersionId = "1";
+        Version version = new Version();
+        version.setId("1");
+        versionRepository.save(version);
 
-// }
+        when(versionRepository.findByVersionId("1")).thenReturn(version);
+
+        ResponseEntity<Iterable <Comments>> comment = commentsController.getCommentsForVersion("1");
+
+        assertEquals(HttpStatus.OK, comment.getStatusCode());
+
+    }
+
+}

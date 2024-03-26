@@ -28,7 +28,7 @@ public class VersionController {
      */
     @GetMapping(path="/all/{paperId}")
     public ResponseEntity <Iterable<Version>> getVersions(@PathVariable String paperId) {
-            Iterable<Version> result = versionRepository.findByPaperId(paperId, Sort.by (Sort.Direction.DESC, "versionId"));
+            Iterable<Version> result = versionRepository.findByPaperId(paperId);
             return ResponseEntity.ok(result);
     }
 
