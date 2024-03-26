@@ -5,6 +5,7 @@
     min-height:100vh;
     background-color: #C6FCFF;
     overflow-x: hidden;
+    
 }
 
 .dashboard-content{
@@ -19,6 +20,7 @@
     width : 5vw;
     border-right : 1px solid black;
     border-left : 1px solid black;
+    min-height : 75vh;
 }
 
 .dashboard-details > h1{

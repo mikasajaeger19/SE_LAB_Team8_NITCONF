@@ -68,7 +68,7 @@ const handleReupload = () => {
                     return (
                         <Card data={data} />
                     )
-                })) : (<h1>NO PAPER UPLOADED</h1>)
+                })) : <h1>NO PAPER UPLOADED</h1>
             }
                 </div>
                 </div>

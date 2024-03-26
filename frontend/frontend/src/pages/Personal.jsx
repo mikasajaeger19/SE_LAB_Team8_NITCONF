@@ -65,7 +65,7 @@ export const Personal = () => {
             </div>
                 
                 <a href = {`/editdetails`}><button className='edit'>EDIT</button></a>
-                <a href= {`/dashboard`}><button className='edit'>LOGOUT</button></a>
+                <a href= {`/`}><button className='edit'>LOG</button></a>
             </div>
         </div>
 

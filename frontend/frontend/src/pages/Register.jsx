@@ -20,6 +20,7 @@ const Register = () => {
       ...formData,
       [name]: value,
     });
+    console.log(formData);
   };
 
   const handleSubmit = (e) => {

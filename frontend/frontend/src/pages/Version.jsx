@@ -82,7 +82,8 @@ const Version = () => {
                     
                 })
                 setVersionPapers(response.data)
-                console.log('the versions of the selected paper are: ' + response.data)
+                console.log('the versions of the selected paper are: ')
+                console.log(versionPapers)
                 
             } catch(error){
                 
@@ -134,8 +135,11 @@ const Version = () => {
                 
 
                 <div className='version--cards'>
-                    {versionPapers.map((version) => (
+                    {versionPapers.map((version,index) => (
+                        <div>
+                        <h3>Version {index+1}</h3>
                         <Card key={version.id} data={version} />
+                        </div>
                     ))
                     }
                 </div>

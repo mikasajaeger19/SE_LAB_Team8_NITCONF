@@ -2,22 +2,26 @@ import React from 'react'
 import './Card.css'
 import axios from 'axios'
 import { useState,useEffect } from 'react'
+import { saveAs } from 'file-saver';
 
 
 
 const Card = (props) => {
-    const [comments,setComments]=useState([])
+
+
+   
+    const [tags,setTags]=useState([])
     //getting comments for a paper.
     useEffect (() =>{
         const fetchUserData = async() =>{
             try {
-                const response  = await axios.get(`http://localhost:8080/paper/author/${props.data.paperId}`, {
+                const response  = await axios.get(`http://localhost:8080/tag/paper/${props.data.id}`, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('token')
                     }
                 })
                 console.log(response.data)
-                setComments(response.data)
+                setTags(response.data)
             }
             catch(errror){
                 console.log("invalid user")
@@ -34,10 +38,41 @@ const Card = (props) => {
         setIsFlipped(!isFlipped);
       };
     
+      const Flipped = true
+
+      
+
       //{props.data.tags.map((tag) => {
         //return <div className='tag'>{tag}</div>
     //})}
-   
+
+
+    const viewPdf = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/paper/doc/${props.data.id}`, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                },
+                responseType: 'arraybuffer' // Set the response type to arraybuffer
+            });
+    
+            // Check if response status is 200 OK
+            if (response.status === 200) {
+                const pdfData = new Blob(
+                    [response.data],
+                    { type: 'application/pdf' }
+                );
+                saveAs(pdfData, 'paper.pdf'); // Use file-saver to save the PDF
+                console.log('PDF downloaded successfully');
+            } else {
+                console.error('Error downloading PDF: Server returned status ' + response.status);
+            }
+        } catch (error) {
+            console.error('Error downloading PDF:', error);
+        }
+    };
+                    
+
 
   return (
         <div>
@@ -45,14 +80,20 @@ const Card = (props) => {
         <div onClick  = {handleClick} className='card-front'>
         <div className='card-header'>
             <h2>{props.data.title}</h2>
+            <div className='card-rightside'>
+            <p>{props.data.uploadDate}</p>
             <div className='paper-status' style={{ backgroundColor: props.data.approved ? "#00FF0A" : "#CCFF00" }}>
                 <p>{props.data.approved ? <p>APPROVED</p> : <p>REVIEW</p>}</p>
             </div>
+            </div>
         </div>
         <div className='card-body'>
-            <a href = {props.data.abstractUrl}>{props.data.abstractUrl}</a>
+            {props.data.abstractUrl ? <a href = {props.data.abstractUrl}>{props.data.abstractUrl}</a> : <a onClick = {viewPdf}>[View Uploaded PDF]</a>}
             <div className='tags'>
-                
+                 {tags.map((tag,index) => {
+                     return <div className='tag'>{tag.tagName}</div>
+                 })}
+
             </div>
         </div>
         <div className='card-footer'>

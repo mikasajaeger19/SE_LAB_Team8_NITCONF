@@ -24,6 +24,7 @@ const Submit = () => {
         authorId : authorId
       });
       const [file, setFile] = useState(null);
+      const [tags, setTags] = useState([]);
       
       const handleFile = async (e) => {
         setFile(e.target.files[0]);
@@ -50,7 +51,7 @@ const Submit = () => {
             submission.title === '' ||
             submission.shortdesc === '' ||
             (submission.abstractUrl === '' && file === null) ||
-            submission.tags === ''
+            tags === ''
         ) {
             alert('Please fill in all fields!');
             return;
@@ -70,6 +71,16 @@ const Submit = () => {
             );
     
             console.log(addPaperResponse.data.id);
+
+            for (const tag of tags){
+              const tarResponse = await axios.post( `http://localhost:8080/tag/add`, {tagName: tag, paperId: addPaperResponse.data.id},
+              {
+                  headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
+            }
+          });
+          console.log(tarResponse.data);
+        }
     
         
 if (file) {
@@ -106,6 +117,15 @@ if (file) {
             console.error('Error submitting abstract:', error.response);
         }
     };
+
+
+
+
+    const handleTags = (e) => {
+      const tagString = e.target.value;
+      const tagArray = tagString.split(',');
+      setTags(tagArray);
+  }
     
     return (
         <div className='submit-container'>
@@ -126,7 +146,7 @@ if (file) {
         <h3>URL</h3>
 
         <div className = "fileupload"><input placeholder = 'URL' type="text" name="abstractUrl"  onChange={handleInputChange} />
-        <label><input onChange = {handleFile}  style = {{display : "none"}}type='file' accept = ".pdf, .doc, .docx" /><img src = './fileupload.svg' alt='fileupload' className='fileupload-icon'/></label></div>
+        <label><input onChange = {handleFile}  style = {{display : "none"}}type='file' accept = ".pdf, .doc, .docx" /><img src = './fileupload.svg' alt='fileupload' className='fileupload-icon'/></label>{file ? <p>{file.name}</p> : null}</div>
         </span>
         </div>
         <div className="submit-form-bottom">
@@ -135,7 +155,7 @@ if (file) {
         <input placeholder = 'DESCRIPTION' type="text" name="shortdesc"  onChange={handleInputChange} /></span>
         <span>
         <h3>TAGS</h3>
-        <input placeholder = 'TAGS' type="text" name="tags"  onChange={handleInputChange} /></span>
+        <input placeholder = 'TAGS' type="text" name="tags"  onChange={handleTags} /></span>
        
         </div>
         <button className ='submit-button' type="button" onClick={handleEditSubmit}>SUBMIT</button>

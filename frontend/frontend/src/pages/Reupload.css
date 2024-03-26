@@ -18,7 +18,7 @@
 
 
 .reupload-sidebar{
-    height: 201vh;
+    min-height : 75vh;
     width : 5vw;
     border-right : 1px solid #000000;
     border-left: 1px solid #000000;

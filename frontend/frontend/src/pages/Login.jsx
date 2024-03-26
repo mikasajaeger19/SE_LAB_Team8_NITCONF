@@ -39,6 +39,7 @@ const Login = () => {
         ...userDetails,
         [name] : value,
     });
+    console.log(userDetails);
   };
   
   return (
@@ -52,13 +53,15 @@ const Login = () => {
       
             <input 
                 type='text' 
+                name = 'email'
                 placeholder='EMAIL' 
                 className='login_input'
                 onChange={handleChange}
                 required
             />  
             <input 
-                type='text' 
+                type='password'
+                name = 'password' 
                 placeholder='PASSWORD' 
                 className='login_input'
                 onChange={handleChange}

@@ -15,6 +15,8 @@ const Reupload = () => {
     const [userData,setUserData]=useState([])
     localStorage.setItem('paperId', '');
 
+    const [file, setFile] = useState(null);
+
 
     let today = new Date();
 
@@ -88,22 +90,62 @@ const Reupload = () => {
     }));
 
   console.log('the id the of the paper selected is : ' + selectedOption);
+  console.log('the submission data is : ' + submission);
   };
 
 
 
+
+  const handleFile = async (e) => {
+    setFile(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
+
   const handleEditSubmit = async () => {
     console.log(submission);
-    if (submission.title === '' || submission.shortdesc === '' || submission.abstractUrl === '' || submission.tags === '') {
-      alert('Please fill in all fields!');
-      return;
-    }
+   
     try {
       const paperId = selectedOption;
       await axios.put(`http://localhost:8080/paper/update/${paperId}`, submission, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+
+
+      if (file) {
+        const uploadFile = async () => {
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+      
+                await axios.post(
+                    `http://localhost:8080/paper/upload/${paperId}`,
+                    formData,
+                    {
+                        headers: {
+                          Authorization: 'Bearer ' + localStorage.getItem('token'),
+                            'Content-Type': 'multipart/form-data',
+                        },
+                    }
+                );
+      
+                console.log('File uploaded successfully');
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            }
+        };
+      
+        uploadFile();
+      }
+      
       
       navigate('/dashboard');
       alert('Abstract submitted successfully!')
+
+
+
+
+
+
+
+
     
     } catch (error) {
       console.error('Error updating user data:', error);
@@ -165,7 +207,10 @@ const Reupload = () => {
                             <input placeholder = 'TITLE' type="text"  name="title"   onChange={handleInputChange} /></span>
                             <span>
                             <h3>URL</h3>
-                            <input placeholder = 'URL' type="text" name="abstractUrl"  onChange={handleInputChange} /></span>
+
+                            <div className = "fileupload"><input placeholder = 'URL' type="text" name="abstractUrl"  onChange={handleInputChange} />
+                            <label><input onChange = {handleFile}  style = {{display : "none"}}type='file' accept = ".pdf, .doc, .docx" /><img src = './fileupload.svg' alt='fileupload' className='fileupload-icon'/></label>{file ? <p>{file.name}</p> : null}</div>
+                            </span>
                             </div>
                             <div className="submit-form-bottom">
                             <span>
