@@ -138,7 +138,7 @@ const Version = () => {
                     {versionPapers.map((version,index) => (
                         <div>
                         <h3>Version {index+1}</h3>
-                        <Card key={version.id} data={version} />
+                        <Card key={version.id} ver ={true} data={version} />
                         </div>
                     ))
                     }

@@ -7,29 +7,38 @@ import { saveAs } from 'file-saver';
 
 
 const Card = (props) => {
-
-
+   
    
     const [tags,setTags]=useState([])
     //getting comments for a paper.
-    useEffect (() =>{
-        const fetchUserData = async() =>{
+    useEffect(() => {
+        const fetchUserData = async () => {
             try {
-                const response  = await axios.get(`http://localhost:8080/tag/paper/${props.data.id}`, {
-                    headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('token')
-                    }
-                })
-                console.log(response.data)
-                setTags(response.data)
+                let response;
+                if (!props.ver) {
+                    response = await axios.get(`http://localhost:8080/tag/paper/${props.data.id}`, {
+                        headers: {
+                            Authorization: 'Bearer ' + localStorage.getItem('token')
+                        }
+                    });
+                } else {
+                    response = await axios.get(`http://localhost:8080/tag/paper/${props.data.paperId}` , {
+                        headers: {
+                            Authorization: 'Bearer ' + localStorage.getItem('token')
+                        }
+                    })
+                }
+                
+                console.log(response.data);
+                setTags(response.data);
+            } catch (error) {
+                console.log("invalid user:", error);
             }
-            catch(errror){
-                console.log("invalid user")
-            
-            }
-        }
+        };
+    
         fetchUserData();
-    },[]);
+    }, [props]);
+    
     
                         
     const [isFlipped,setIsFlipped] = useState(true);
@@ -49,12 +58,20 @@ const Card = (props) => {
 
     const viewPdf = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/paper/doc/${props.data.id}`, {
+            let response;
+            if(!props.ver) {
+            response = await axios.get(`http://localhost:8080/paper/doc/${props.data.id}`, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 },
                 responseType: 'arraybuffer' // Set the response type to arraybuffer
             });
+        } else {
+             response = await axios.get(`http://localhost:8080/paper/doc/${props.data.paperId}`, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                }})}
+
     
             // Check if response status is 200 OK
             if (response.status === 200) {
@@ -79,7 +96,7 @@ const Card = (props) => {
             {isFlipped ? (
         <div onClick  = {handleClick} className='card-front'>
         <div className='card-header'>
-            <h2>{props.data.title}</h2>
+            <h2>{props.data.title}</h2><p>[click to view desc.]</p>
             <div className='card-rightside'>
             <p>{props.data.uploadDate}</p>
             <div className='paper-status' style={{ backgroundColor: props.data.approved ? "#00FF0A" : "#CCFF00" }}>
