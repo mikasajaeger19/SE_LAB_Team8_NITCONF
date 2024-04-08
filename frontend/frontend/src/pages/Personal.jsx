@@ -64,7 +64,7 @@ export const Personal = () => {
                 <p className='information'>{userData.phone}</p>
             </div>
                 
-                <a href = {`/editdetails`}><button className='edit'>EDIT</button></a>
+                
                 <a href= {`/`}><button className='edit'>LOG OUT</button></a>
             </div>
         </div>

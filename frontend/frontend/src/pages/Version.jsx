@@ -82,7 +82,7 @@ const Version = () => {
                     
                 })
                 setVersionPapers(response.data)
-                console.log('the versions of the selected paper are: ')
+                
                 console.log(versionPapers)
                 
             } catch(error){
@@ -105,7 +105,7 @@ const Version = () => {
   
 
     const handleDropdownChangePapers = (paperId) => {
-       console.log('selected version id is :' + paperId)
+       
 
         setVersionPaperId(paperId);
         setSelectedPaperVersion(paperId);
@@ -136,13 +136,15 @@ const Version = () => {
                 
 
                 <div className='version--cards'>
-                    {versionPapers.toReversed().map((version,index) => (
-                        <div>
-                        <h3>Version {versionPapers.length - index}</h3>
-                        <Card key={index} ver ={true} data={version} />
-                        </div>
-                    ))
-                    }
+                {versionPapers.slice(0).reverse().map((version, index) => (
+    (index < versionPapers.length-1) ? (
+        <div key={index}>
+            <h3>Version {versionPapers.length - index-1}</h3>
+            <Card ver={true} data={version} />
+        </div>
+    ) : null
+))}
+
                 </div>
                 </div>
                 <div className='version-sidebar'></div>

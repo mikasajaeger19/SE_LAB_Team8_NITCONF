@@ -22,14 +22,14 @@ const Card = (props) => {
                         }
                     });
                 } else {
-                    response = await axios.get(`http://localhost:8080/tag/paper/${props.data.paperId}` , {
+                    response = await axios.get(`http://localhost:8080/tag/paper/${props.data.id}` , {
                         headers: {
                             Authorization: 'Bearer ' + localStorage.getItem('token')
                         }
                     })
                 }
                 
-                console.log(response.data);
+                
                 setTags(response.data);
             } catch (error) {
                 console.log("invalid user:", error);
@@ -67,10 +67,12 @@ const Card = (props) => {
                 responseType: 'arraybuffer' // Set the response type to arraybuffer
             });
         } else {
-             response = await axios.get(`http://localhost:8080/paper/doc/${props.data.paperId}`, {
+             response = await axios.get(`http://localhost:8080/version/doc/${props.data.id}`, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
-                }})}
+                },
+                responseType: 'arraybuffer' // Set the response type to arraybuffer
+            })}
 
     
             // Check if response status is 200 OK
@@ -98,7 +100,7 @@ const Card = (props) => {
         <div className='card-header'>
             <h2>{props.data.title}</h2><p>[click to view desc.]</p>
             <div className='card-rightside'>
-            <p>{props.data.uploadDate}</p>
+            <p>{props.data.uploadDate || props.data.releaseDate}</p>
             <div className='paper-status' style={{ backgroundColor: props.data.approved ? "#00FF0A" : "#CCFF00" }}>
                 <p>{props.data.approved ? <p>APPROVED</p> : <p>REVIEW</p>}</p>
             </div>
