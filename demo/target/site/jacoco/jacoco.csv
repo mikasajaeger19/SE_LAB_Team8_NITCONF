@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 demo,mysqltest.demo.controllers,PaperController,20,239,6,12,6,63,6,11,0,8
 demo,mysqltest.demo.controllers,CommentsController,0,29,0,0,0,8,0,3,0,3
-demo,mysqltest.demo.controllers,VersionController,0,11,0,0,0,3,0,2,0,2
+demo,mysqltest.demo.controllers,VersionController,29,11,6,0,11,3,4,2,1,2
 demo,mysqltest.demo.controllers,LoginController,0,41,2,8,0,8,2,6,0,3
 demo,mysqltest.demo.controllers,MainController,5,45,2,2,0,11,2,3,0,3
 demo,mysqltest.demo.controllers,TagController,0,19,0,0,0,5,0,3,0,3
