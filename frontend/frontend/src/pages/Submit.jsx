@@ -170,3 +170,5 @@ if (file) {
 };
 
 export default Submit;
+
+//in navigate use useParams for the id from url and in naviate the path is /home/:id

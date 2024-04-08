@@ -106,12 +106,13 @@ const Version = () => {
 
     const handleDropdownChangePapers = (paperId) => {
        console.log('selected version id is :' + paperId)
+
         setVersionPaperId(paperId);
         setSelectedPaperVersion(paperId);
     
     } 
 
-
+    
 
     return (
         <div className='version-container'>
@@ -135,10 +136,10 @@ const Version = () => {
                 
 
                 <div className='version--cards'>
-                    {versionPapers.map((version,index) => (
+                    {versionPapers.toReversed().map((version,index) => (
                         <div>
-                        <h3>Version {index+1}</h3>
-                        <Card key={version.id} ver ={true} data={version} />
+                        <h3>Version {versionPapers.length - index}</h3>
+                        <Card key={index} ver ={true} data={version} />
                         </div>
                     ))
                     }
